@@ -12,6 +12,18 @@
     "file": "BAe_Hawk"
   },
   {
+    "name": "Boeing AH 64D Apache Combat Helicopter",
+    "file": "Boeing_AH-64D_Apache_Combat_Helicopter"
+  },
+  {
+    "name": "Boeing E 3A Sentry AWACS",
+    "file": "Boeing_E-3A_Sentry_AWACS"
+  },
+  {
+    "name": "Boeing E 7 Wedgetail AEWC",
+    "file": "Boeing_E-7_Wedgetail_AEWC"
+  },
+  {
     "name": "F35",
     "file": "F35"
   },
