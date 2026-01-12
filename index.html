@@ -1,228 +1,190 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>RAF ASSET VIEWER</title>
+    <title>RAF 3D Asset Viewer | Auto-Scale 2M</title>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     
     <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
     
     <style>
         :root {
-            --app-bg: #1a202c;
             --raf-blue: #5d7a8c;
+            --raf-dark: #2d3748;
             --raf-red: #c21807;
-            --glass: rgba(255, 255, 255, 0.1);
-            --glass-border: rgba(255, 255, 255, 0.2);
+            --raf-white: #ffffff;
         }
 
-        body, html {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            background-color: var(--app-bg);
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        body { 
+            margin: 0; 
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; 
+            display: flex; 
+            flex-direction: column; 
+            height: 100vh; 
+            background-color: #ced7de;
         }
 
-        /* Full Screen Viewer */
-        model-viewer {
-            width: 100vw;
-            height: 100vh;
-            background-color: #2d3748;
-            --poster-color: transparent;
-        }
-
-        /* Floating App Interface */
-        .app-overlay {
-            position: absolute;
-            top: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 100;
-            width: 90%;
-            max-width: 500px;
-        }
-
-        .control-panel {
-            background: var(--glass);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            border: 1px solid var(--glass-border);
-            padding: 12px 20px;
-            border-radius: 12px;
+        /* RAF Branded Header */
+        .header {
+            padding: 15px;
             display: flex;
-            justify-content: space-between;
+            flex-direction: column;
             align-items: center;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+            background: var(--raf-blue);
+            color: white;
+            border-bottom: 4px solid var(--raf-dark);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
         }
 
-        .panel-label {
-            color: #cbd5e0;
-            font-size: 10px;
-            font-weight: 800;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
+        .controls {
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 8px 20px;
+            border-radius: 2px;
+        }
+
+        label { 
+            font-size: 12px; 
+            font-weight: bold; 
+            text-transform: uppercase; 
+            letter-spacing: 1px;
         }
 
         select {
-            background: transparent;
-            color: white;
-            border: none;
-            font-size: 14px;
-            font-weight: 600;
-            outline: none;
-            cursor: pointer;
+            padding: 5px 10px;
+            border: 1px solid white;
+            background: white;
+            color: var(--raf-dark);
+            font-weight: bold;
             text-transform: uppercase;
-            max-width: 60%;
+            cursor: pointer;
         }
 
-        select option { background: #2d3748; color: white; }
+        /* 3D Viewer */
+        model-viewer {
+            flex-grow: 1;
+            width: 100%;
+            background-color: #cbd5e0;
+        }
 
-        /* Professional AR Button */
+        /* AR Button (RAF Red) */
         #ar-button {
+            background-color: var(--raf-red);
+            border: 2px solid white;
+            padding: 14px 28px;
             position: absolute;
-            bottom: 40px;
+            bottom: 30px;
             left: 50%;
             transform: translateX(-50%);
-            background: var(--raf-red);
+            font-weight: bold;
             color: white;
-            border: none;
-            padding: 16px 32px;
-            border-radius: 50px;
-            font-weight: 700;
-            letter-spacing: 1px;
             text-transform: uppercase;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            box-shadow: 0 10px 20px rgba(194, 24, 7, 0.3);
+            letter-spacing: 1px;
             cursor: pointer;
-            transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
         }
 
-        #ar-button:active { transform: translateX(-50%) scale(0.95); }
-
-        /* Custom Reticle (The Targeting Ring) */
-        .reticle {
-            display: none;
-            width: 100px;
-            height: 100px;
-            border: 4px dashed white;
-            border-radius: 50%;
-            animation: rotate 4s linear infinite;
-        }
-
-        @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-
-        /* Loading progress */
-        .progress-bar {
-            display: block;
-            width: 33%;
-            height: 4px;
-            max-height: 4px;
+        /* Status Badge */
+        .status-badge {
             position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            border-radius: 4px;
-            background-color: var(--glass-border);
-        }
-
-        .update-bar {
-            background-color: white;
-            width: 0%;
-            height: 100%;
-            border-radius: 4px;
-            transition: width 0.3s;
+            top: 20px;
+            left: 20px;
+            background: rgba(45, 55, 72, 0.8);
+            color: white;
+            padding: 6px 12px;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-left: 3px solid var(--raf-red);
         }
     </style>
 </head>
 <body>
 
-    <div class="app-overlay">
-        <div class="control-panel">
-            <div class="panel-info">
-                <div class="panel-label">Mission Asset</div>
-                <select id="model-select">
-                    <option>Loading System...</option>
-                </select>
-            </div>
-            <div class="status-dot" style="width: 8px; height: 8px; background: #48bb78; border-radius: 50%; box-shadow: 0 0 10px #48bb78;"></div>
-        </div>
+<header class="header">
+    <img src="logo.jpeg" alt="RAF Logo" style="height: 50px; margin-bottom: 5px;">
+    <div class="controls">
+        <label for="model-select">Asset Registry:</label>
+        <select id="model-select">
+            <option>Synchronizing...</option>
+        </select>
     </div>
+</header>
 
-    <model-viewer 
-        id="main-viewer" 
-        ar 
-        ar-modes="webxr scene-viewer quick-look" 
-        ar-placement="floor"
-        camera-controls 
-        touch-action="pan-y"
-        shadow-intensity="1.5"
-        shadow-softness="1"
-        auto-rotate
-        interpolation-decay="200"
-        exposure="1"
-        tone-mapping="neutral">
-        
-        <div slot="progress-bar" class="progress-bar">
-            <div class="update-bar"></div>
-        </div>
-
-        <button slot="ar-button" id="ar-button">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M7 1h10v2H7V1zm10 16h2V7h-2v10zM7 21h10v-2H7v2zM5 7h2v10H5V7zm-2 1v8h2V8H3zm16 0v8h2V8h-2z"/></svg>
-            Start AR Deployment
-        </button>
-    </model-viewer>
+<model-viewer 
+    id="main-viewer" 
+    ar 
+    ar-modes="webxr scene-viewer quick-look" 
+    ar-scale="fixed"
+    camera-controls 
+    shadow-intensity="1" 
+    auto-rotate 
+    tone-mapping="neutral">
+    
+    <div class="status-badge">Standardized Scale: 2.0m</div>
+    <button slot="ar-button" id="ar-button">Deploy to AR (Fixed 2M)</button>
+</model-viewer>
 
 <script>
     const viewer = document.querySelector('#main-viewer');
     const modelSelect = document.querySelector('#model-select');
-    const progressBar = document.querySelector('.update-bar');
 
-    // Update loading bar
-    viewer.addEventListener('progress', (event) => {
-        progressBar.style.width = `${event.detail.totalProgress * 100}%`;
-        if (event.detail.totalProgress === 1) {
-            setTimeout(() => { document.querySelector('.progress-bar').style.display = 'none'; }, 500);
-        }
-    });
-
-    async function initializeApp() {
+    async function initialize() {
         try {
+            // Fetch the list generated by your GitHub Action
             const response = await fetch('models.json');
             const models = await response.json();
-            modelSelect.innerHTML = ''; 
+            
+            modelSelect.innerHTML = ''; // Clear status
 
             models.forEach(m => {
                 const opt = document.createElement('option');
                 opt.value = `models/${m.file}.glb`;
                 opt.setAttribute('data-ios', `models/${m.file}.usdz`);
-                opt.textContent = m.name;
+                opt.textContent = m.name.toUpperCase();
                 modelSelect.appendChild(opt);
             });
 
+            // Load the first asset in the list
             if (models.length > 0) {
                 updateAsset(modelSelect.options[0]);
             }
+
         } catch (e) {
-            modelSelect.innerHTML = '<option>SYSTEM OFFLINE</option>';
+            console.error("Initialization error:", e);
+            modelSelect.innerHTML = '<option>CONNECTION ERROR</option>';
         }
     }
 
     function updateAsset(option) {
-        document.querySelector('.progress-bar').style.display = 'block';
         viewer.src = option.value;
         viewer.iosSrc = option.getAttribute('data-ios');
+
+        // REVERTED SCALING LOGIC:
+        // Automatically calculates the scale to ensure the model's longest side is 2 meters
+        const enforceTwoMeterScale = () => {
+            const dimensions = viewer.getDimensions();
+            const maxDimension = Math.max(dimensions.x, dimensions.y, dimensions.z);
+            
+            if (maxDimension > 0) {
+                const multiplier = 2 / maxDimension;
+                viewer.scale = `${multiplier} ${multiplier} ${multiplier}`;
+                console.log(`Auto-scaled ${option.textContent} to 2m (Factor: ${multiplier.toFixed(3)})`);
+            }
+        };
+
+        // Trigger whenever a new model finishes loading
+        viewer.addEventListener('load', enforceTwoMeterScale, { once: true });
     }
 
     modelSelect.addEventListener('change', (e) => {
         updateAsset(e.target.selectedOptions[0]);
     });
 
-    initializeApp();
+    initialize();
 </script>
 
 </body>
