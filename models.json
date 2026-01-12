@@ -13,7 +13,7 @@
   },
   {
     "name": "Apache AH-64D",
-    "file": "Boeing_AH-64D_Apache_Combat_Helicopter",
+    "file": "boeing_AH-64D_Apache_Combat_Helicopter",
     "usdz_file": "Boeing_AH-64D_Apache_Combat_Helicopter",
     "crew": "2 (Pilot & Co-Pilot)",
     "base": "Wattisham Airfield",
@@ -25,7 +25,7 @@
   },
   {
     "name": "F-35B Lightning",
-    "file": "F35",
+    "file": "f35",
     "usdz_file": "F35",
     "crew": "1",
     "base": "RAF Marham",
@@ -37,7 +37,7 @@
   },
   {
     "name": "Chinook HC6A",
-    "file": "chinook",
+    "file": "chinook-2",
     "usdz_file": "Chinook mk2",
     "crew": "4 (2 pilots, 2 crewmen)",
     "base": "RAF Odiham",
@@ -61,7 +61,7 @@
   },
   {
     "name": "Voyager",
-    "file": "Voyager",
+    "file": "voyager",
     "usdz_file": "Voyager",
     "crew": "3",
     "base": "RAF Brize Norton",
@@ -73,7 +73,7 @@
   },
   {
     "name": "RC-135W Airseeker",
-    "file": "Airseeker",
+    "file": "airseeker",
     "usdz_file": "Airseeker",
     "crew": "Up to 35",
     "base": "RAF Waddington",
@@ -85,7 +85,7 @@
   },
   {
     "name": "E-3A Sentry AWACS",
-    "file": "Boeing_E-3A_Sentry_AWACS",
+    "file": "boeing_E-3A_Sentry_AWACS",
     "usdz_file": "Boeing_E-3A_Sentry_AWACS",
     "crew": "13-19",
     "base": "RAF Waddington (Retired)",
@@ -97,7 +97,7 @@
   },
   {
     "name": "E-7 Wedgetail AEWC",
-    "file": "Boeing_E-7_Wedgetail_AEWC",
+    "file": "boeing_E-7_Wedgetail_AEWC",
     "usdz_file": "Boeing_E-7_Wedgetail_AEWC",
     "crew": "6-10",
     "base": "RAF Lossiemouth",
@@ -109,7 +109,7 @@
   },
   {
     "name": "BAe Hawk",
-    "file": "BAe_Hawk",
+    "file": "bAe_Hawk",
     "usdz_file": "BAe_Hawk",
     "crew": "2",
     "base": "RAF Valley",
@@ -121,7 +121,7 @@
   },
   {
     "name": "Puma HC2",
-    "file": "Puma",
+    "file": "puma",
     "usdz_file": "Puma",
     "crew": "3",
     "base": "RAF Benson",
@@ -133,7 +133,7 @@
   },
   {
     "name": "KC-10A Extender",
-    "file": "McDonnell_Douglas_KC-10A_Extender",
+    "file": "cDonnell_Douglas_KC-10A_Extender",
     "usdz_file": "McDonnell_Douglas_KC-10A_Extender",
     "crew": "4",
     "base": "USAF (Ally Asset)",
