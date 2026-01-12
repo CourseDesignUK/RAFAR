@@ -9,307 +9,250 @@
     
     <style>
         :root {
-            --app-bg: #1a202c;
+            --app-bg: #0d1117;
             --raf-blue: #5d7a8c;
             --raf-red: #c21807;
-            --glass: rgba(255, 255, 255, 0.1);
-            --glass-border: rgba(255, 255, 255, 0.2);
+            --glass: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
             --accent: #63b3ed;
         }
 
         body, html {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            background-color: var(--app-bg);
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            margin: 0; padding: 0; width: 100%; height: 100%;
+            overflow: hidden; background-color: var(--app-bg);
+            font-family: 'Segoe UI', Roboto, sans-serif;
         }
 
-        /* Full Screen Viewer */
-        model-viewer {
-            width: 100vw;
-            height: 100vh;
-            background-color: #2d3748;
-            --poster-color: transparent;
+        /* --- START SCREEN --- */
+        #start-screen {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at center, #1a202c 0%, #0d1117 100%);
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.8s ease, visibility 0.8s;
         }
 
-        /* Floating App Interface */
-        .app-overlay {
+        /* Radar Animation Background */
+        .radar {
             position: absolute;
-            top: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 100;
-            width: 90%;
-            max-width: 550px;
+            width: 400px; height: 400px;
+            border: 1px solid rgba(99, 179, 237, 0.2);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+        .radar::after {
+            content: "";
+            position: absolute;
+            width: 50%; height: 50%;
+            top: 0; left: 0;
+            background: conic-gradient(from 0deg, rgba(99, 179, 237, 0.3), transparent 90deg);
+            border-radius: 100% 0 0 0;
+            transform-origin: 100% 100%;
+            animation: sweep 4s linear infinite;
+        }
+
+        @keyframes sweep { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+        .start-ui {
+            text-align: center;
+            z-index: 1001;
+            padding: 20px;
+        }
+
+        .raf-logo {
+            width: 80px; height: 80px;
+            border: 4px solid white; border-radius: 50%;
+            margin-bottom: 20px;
+            display: inline-flex; justify-content: center; align-items: center;
+            font-weight: 900; color: white; border: 8px solid var(--raf-red);
+            outline: 8px solid var(--raf-blue);
+        }
+
+        .title-main {
+            font-size: 24px; color: white; letter-spacing: 5px;
+            text-transform: uppercase; margin-bottom: 5px;
+        }
+
+        .title-sub {
+            font-size: 10px; color: var(--raf-blue); letter-spacing: 3px;
+            text-transform: uppercase; margin-bottom: 40px;
+        }
+
+        .boot-logs {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 10px; color: var(--accent);
+            height: 20px; margin-bottom: 30px; opacity: 0.8;
+        }
+
+        .commence-btn {
+            background: transparent;
+            color: white; border: 1px solid white;
+            padding: 15px 40px; border-radius: 4px;
+            letter-spacing: 2px; font-weight: bold;
+            cursor: pointer; transition: all 0.3s;
+            overflow: hidden; position: relative;
+        }
+        .commence-btn:hover {
+            background: white; color: black;
+            box-shadow: 0 0 20px rgba(255,255,255,0.4);
+        }
+
+        /* --- MAIN VIEWER STYLES --- */
+        model-viewer { width: 100vw; height: 100vh; background-color: #1a202c; }
+
+        .app-overlay {
+            position: absolute; top: 20px; left: 50%;
+            transform: translateX(-50%); z-index: 100;
+            width: 90%; max-width: 550px;
         }
 
         .control-panel {
-            background: var(--glass);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
+            background: var(--glass); backdrop-filter: blur(15px);
             border: 1px solid var(--glass-border);
-            padding: 12px 20px;
-            border-radius: 12px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+            padding: 12px 20px; border-radius: 12px;
+            display: flex; justify-content: space-between; align-items: center;
         }
 
-        .panel-label {
-            color: #cbd5e0;
-            font-size: 10px;
-            font-weight: 800;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-        }
-
-        select {
-            background: transparent;
-            color: white;
-            border: none;
-            font-size: 14px;
-            font-weight: 600;
-            outline: none;
-            cursor: pointer;
-            text-transform: uppercase;
-            width: 100%;
-        }
-
-        select option { background: #2d3748; color: white; }
-
-        /* Tactical Button */
         .factsheet-btn {
-            background: var(--raf-blue);
-            color: white;
-            border: none;
-            padding: 8px 12px;
-            border-radius: 6px;
-            font-size: 10px;
-            font-weight: 800;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            transition: background 0.3s;
+            background: var(--raf-blue); color: white; border: none;
+            padding: 8px 12px; border-radius: 6px; font-size: 10px;
+            font-weight: 800; cursor: pointer;
         }
-
-        .factsheet-btn:hover { background: var(--accent); }
 
         /* Tactical Details Panel */
         .details-panel {
-            position: absolute;
-            top: 0;
-            right: -100%; /* Hidden to the right */
-            width: 100%;
-            max-width: 450px;
-            height: 100%;
-            background: rgba(10, 15, 25, 0.98);
-            backdrop-filter: blur(20px);
-            z-index: 300;
-            transition: right 0.4s cubic-bezier(0.19, 1, 0.22, 1);
-            color: white;
-            border-left: 2px solid var(--raf-blue);
-            display: flex;
-            flex-direction: column;
+            position: absolute; top: 0; right: -100%;
+            width: 100%; max-width: 450px; height: 100%;
+            background: rgba(10, 15, 25, 0.98); backdrop-filter: blur(20px);
+            z-index: 300; transition: right 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+            color: white; border-left: 2px solid var(--raf-blue);
         }
-
         .details-panel.active { right: 0; }
 
-        /* Scanning Animation Effect */
-        .details-panel.active::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background: var(--accent);
-            box-shadow: 0 0 15px var(--accent);
-            animation: scan 3s linear infinite;
-            z-index: 301;
-            opacity: 0.3;
-        }
-
-        @keyframes scan {
-            0% { top: 0%; }
-            100% { top: 100%; }
-        }
-
-        .details-content {
-            padding: 60px 40px;
-            overflow-y: auto;
-        }
-
-        .details-panel h2 {
-            font-size: 28px;
-            letter-spacing: 2px;
-            margin: 10px 0;
-            color: white;
-            text-transform: uppercase;
-        }
-
-        .spec-sheet {
-            width: 100%;
-            margin-top: 30px;
-        }
-
-        .spec-item {
-            border-top: 1px solid var(--glass-border);
-            padding: 20px 0;
-        }
-
-        .spec-label {
-            display: block;
-            font-size: 11px;
-            color: var(--accent);
-            font-weight: 800;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            margin-bottom: 8px;
-        }
-
-        .spec-value {
-            font-size: 16px;
-            color: #cbd5e0;
-            line-height: 1.6;
-            font-family: 'Courier New', Courier, monospace; /* Tech look */
-        }
+        .spec-item { border-top: 1px solid var(--glass-border); padding: 15px 0; }
+        .spec-label { font-size: 10px; color: var(--accent); text-transform: uppercase; }
+        .spec-value { display: block; font-size: 14px; margin-top: 5px; }
 
         #ar-button {
-            position: absolute;
-            bottom: 40px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--raf-red);
-            color: white;
-            border: none;
-            padding: 16px 32px;
-            border-radius: 50px;
-            font-weight: 700;
-            text-transform: uppercase;
-            cursor: pointer;
-            z-index: 50;
-            box-shadow: 0 10px 20px rgba(194, 24, 7, 0.4);
-        }
-
-        .close-btn {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background: none;
-            border: 1px solid white;
-            color: white;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            cursor: pointer;
-            font-size: 20px;
+            position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%);
+            background: var(--raf-red); color: white; border: none;
+            padding: 16px 32px; border-radius: 50px; font-weight: 700;
+            cursor: pointer; z-index: 50;
         }
     </style>
 </head>
 <body>
 
+    <div id="start-screen">
+        <div class="radar"></div>
+        <div class="start-ui">
+            <div class="raf-logo">RAF</div>
+            <h1 class="title-main">Asset Viewer</h1>
+            <p class="title-sub">Digital Inventory & AR Deployment</p>
+            <div id="boot-logs" class="boot-logs">Initializing Secure Link...</div>
+            <button class="commence-btn" onclick="enterApp()">COMMENCE MISSION</button>
+        </div>
+    </div>
+
     <div id="details-panel" class="details-panel">
-        <button class="close-btn" onclick="toggleDetails()">×</button>
-        <div class="details-content">
-            <div class="panel-label">Intelligence Report</div>
+        <div style="padding: 60px 40px;">
             <h2 id="asset-title">Asset Name</h2>
-            <hr style="border: 0; border-top: 2px solid var(--raf-blue); width: 50px; margin: 20px 0;">
-            
-            <div class="spec-sheet">
-                <div class="spec-item">
-                    <span class="spec-label">Personnel / Crew</span>
-                    <span id="spec-crew" class="spec-value">-</span>
-                </div>
-                <div class="spec-item">
-                    <span class="spec-label">Tactical Armament</span>
-                    <span id="spec-armament" class="spec-value">-</span>
-                </div>
-                <div class="spec-item">
-                    <span class="spec-label">Operational Profile</span>
-                    <span id="spec-desc" class="spec-value">-</span>
-                </div>
+            <div class="spec-item">
+                <span class="spec-label">Personnel / Crew</span>
+                <span id="spec-crew" class="spec-value">-</span>
             </div>
+            <div class="spec-item">
+                <span class="spec-label">Tactical Armament</span>
+                <span id="spec-armament" class="spec-value">-</span>
+            </div>
+            <div class="spec-item">
+                <span class="spec-label">Operational Profile</span>
+                <span id="spec-desc" class="spec-value">-</span>
+            </div>
+            <button onclick="toggleDetails()" style="margin-top: 20px; background: none; border: 1px solid white; color: white; padding: 10px; width: 100%; cursor: pointer;">RETURN</button>
         </div>
     </div>
 
     <div class="app-overlay">
         <div class="control-panel">
             <div style="flex-grow: 1;">
-                <div class="panel-label">Mission Asset</div>
-                <select id="model-select">
-                    <option>Loading System...</option>
+                <select id="model-select" style="background:transparent; color:white; border:none; font-weight:bold; outline:none; cursor:pointer;">
+                    <option>Loading assets...</option>
                 </select>
             </div>
-            <button class="factsheet-btn" onclick="toggleDetails()">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
-                FACTSHEET
-            </button>
+            <button class="factsheet-btn" onclick="toggleDetails()">FACTSHEET</button>
         </div>
     </div>
 
-    <model-viewer 
-        id="main-viewer" 
-        ar 
-        ar-modes="webxr scene-viewer quick-look" 
-        ar-placement="floor"
-        camera-controls 
-        touch-action="pan-y"
-        shadow-intensity="1.5"
-        auto-rotate
-        exposure="1">
-        
-        <button slot="ar-button" id="ar-button">Start AR Deployment</button>
+    <model-viewer id="main-viewer" ar ar-modes="webxr" camera-controls auto-rotate shadow-intensity="2">
+        <button slot="ar-button" id="ar-button">DEPLOY TO BATTLESPACE</button>
     </model-viewer>
 
 <script>
+    const logs = [
+        "Establishing Satellite Link...",
+        "Bypassing Firewall...",
+        "Syncing 3D Geometry Data...",
+        "Encryption: AES-256 Verified.",
+        "System Ready. Standing by."
+    ];
+    let logIndex = 0;
+
+    // Boot Log Animation
+    function updateLogs() {
+        if (logIndex < logs.length) {
+            document.getElementById('boot-logs').innerText = logs[logIndex];
+            logIndex++;
+            setTimeout(updateLogs, 800);
+        }
+    }
+    updateLogs();
+
+    function enterApp() {
+        const startScreen = document.getElementById('start-screen');
+        startScreen.style.opacity = '0';
+        setTimeout(() => startScreen.style.visibility = 'hidden', 800);
+    }
+
     const viewer = document.querySelector('#main-viewer');
     const modelSelect = document.querySelector('#model-select');
-    const detailsPanel = document.querySelector('#details-panel');
     let modelData = [];
 
     function toggleDetails() {
-        detailsPanel.classList.toggle('active');
+        document.getElementById('details-panel').classList.toggle('active');
     }
 
     async function initializeApp() {
         try {
-            // Load your data (ensure models.json has name, file, crew, armament, description)
             const response = await fetch('models.json');
             modelData = await response.json();
             modelSelect.innerHTML = ''; 
-
             modelData.forEach((m, index) => {
                 const opt = document.createElement('option');
                 opt.value = index;
                 opt.textContent = m.name;
                 modelSelect.appendChild(opt);
             });
-
             if (modelData.length > 0) updateAsset(0);
         } catch (e) {
-            modelSelect.innerHTML = '<option>SYSTEM OFFLINE</option>';
+            modelSelect.innerHTML = '<option>OFFLINE</option>';
         }
     }
 
     function updateAsset(index) {
         const asset = modelData[index];
         viewer.src = `models/${asset.file}.glb`;
-        viewer.iosSrc = `models/${asset.file}.usdz`;
-
-        // Map data to the Factsheet
         document.getElementById('asset-title').textContent = asset.name;
-        document.getElementById('spec-crew').textContent = asset.crew || "Information Restricted";
-        document.getElementById('spec-armament').textContent = asset.armament || "Standard Configuration";
-        document.getElementById('spec-desc').textContent = asset.description || "Mission profile pending.";
+        document.getElementById('spec-crew').textContent = asset.crew || "N/A";
+        document.getElementById('spec-armament').textContent = asset.armament || "Standard";
+        document.getElementById('spec-desc').textContent = asset.description || "No data.";
     }
 
     modelSelect.addEventListener('change', (e) => updateAsset(e.target.value));
-
     initializeApp();
 </script>
 
