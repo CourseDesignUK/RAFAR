@@ -1,7 +1,7 @@
 [
   {
     "name": "Eurofighter Typhoon FGR4",
-    "file": "Typhoon",
+    "file": "typhoon",
     "usdz_file": "Typhoon",
     "crew": "1",
     "base": "RAF Coningsby / Lossiemouth",
@@ -49,7 +49,7 @@
   },
   {
     "name": "A400M Atlas",
-    "file": "AirbusA400M",
+    "file": "airbusA400M",
     "usdz_file": "AirbusA400M",
     "crew": "3-4",
     "base": "RAF Brize Norton",
@@ -133,7 +133,7 @@
   },
   {
     "name": "KC-10A Extender",
-    "file": "cDonnell_Douglas_KC-10A_Extender",
+    "file": "mcDonnell_Douglas_KC-10A_Extender",
     "usdz_file": "McDonnell_Douglas_KC-10A_Extender",
     "crew": "4",
     "base": "USAF (Ally Asset)",
