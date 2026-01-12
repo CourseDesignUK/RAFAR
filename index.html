@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>RAF ASSET VIEWER - TACTICAL</title>
+    <title>RAF ASSET VIEWER</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     
@@ -9,273 +9,219 @@
     
     <style>
         :root {
-            --app-bg: #0d1117;
+            --app-bg: #1a202c;
             --raf-blue: #5d7a8c;
             --raf-red: #c21807;
-            --glass: rgba(255, 255, 255, 0.05);
-            --glass-border: rgba(255, 255, 255, 0.1);
-            --accent: #63b3ed;
+            --glass: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.2);
         }
 
         body, html {
-            margin: 0; padding: 0; width: 100%; height: 100%;
-            overflow: hidden; background-color: var(--app-bg);
-            font-family: 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background-color: var(--app-bg);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
         }
 
-        /* --- START SCREEN --- */
-        #start-screen {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(circle at center, #1a202c 0%, #0d1117 100%);
-            z-index: 1000;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            transition: opacity 0.8s ease, visibility 0.8s;
+        /* Full Screen Viewer */
+        model-viewer {
+            width: 100vw;
+            height: 100vh;
+            background-color: #2d3748;
+            --poster-color: transparent;
         }
 
-        .radar {
-            position: absolute;
-            width: 400px; height: 400px;
-            border: 1px solid rgba(99, 179, 237, 0.2);
-            border-radius: 50%;
-            pointer-events: none;
-        }
-        .radar::after {
-            content: "";
-            position: absolute;
-            width: 50%; height: 50%;
-            top: 0; left: 0;
-            background: conic-gradient(from 0deg, rgba(99, 179, 237, 0.3), transparent 90deg);
-            border-radius: 100% 0 0 0;
-            transform-origin: 100% 100%;
-            animation: sweep 4s linear infinite;
-        }
-
-        @keyframes sweep { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-
-        .start-ui { text-align: center; z-index: 1001; padding: 20px; }
-
-        .raf-logo {
-            width: 60px; height: 60px;
-            margin-bottom: 20px;
-            display: inline-flex; justify-content: center; align-items: center;
-            font-weight: 900; color: white; border: 6px solid var(--raf-red);
-            outline: 6px solid var(--raf-blue); border-radius: 50%;
-        }
-
-        .title-main { font-size: 22px; color: white; letter-spacing: 5px; text-transform: uppercase; margin-bottom: 5px; }
-        .boot-logs { font-family: 'Courier New', Courier, monospace; font-size: 10px; color: var(--accent); height: 20px; margin-bottom: 30px; opacity: 0.8; }
-
-        .commence-btn {
-            background: transparent; color: white; border: 1px solid white;
-            padding: 12px 30px; border-radius: 4px; letter-spacing: 2px; font-weight: bold;
-            cursor: pointer; transition: all 0.3s;
-        }
-        .commence-btn:hover { background: white; color: black; }
-
-        /* --- MAIN VIEWER & UI --- */
-        model-viewer { width: 100vw; height: 100vh; background-color: #1a202c; }
-
+        /* Floating App Interface */
         .app-overlay {
-            position: absolute; top: 20px; left: 50%;
-            transform: translateX(-50%); z-index: 100;
-            width: 90%; max-width: 500px;
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 100;
+            width: 90%;
+            max-width: 500px;
         }
 
         .control-panel {
-            background: var(--glass); 
+            background: var(--glass);
             backdrop-filter: blur(15px);
             -webkit-backdrop-filter: blur(15px);
             border: 1px solid var(--glass-border);
-            padding: 10px 15px; 
+            padding: 12px 20px;
             border-radius: 12px;
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center;
-            gap: 15px;
-        }
-
-        .panel-info {
             display: flex;
-            flex-direction: column;
-            flex-grow: 1;
-            overflow: hidden;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
         }
 
         .panel-label {
-            font-size: 9px;
-            color: var(--raf-blue);
-            text-transform: uppercase;
+            color: #cbd5e0;
+            font-size: 10px;
             font-weight: 800;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
         }
 
         select {
             background: transparent;
             color: white;
             border: none;
-            font-weight: bold;
+            font-size: 14px;
+            font-weight: 600;
             outline: none;
             cursor: pointer;
-            font-size: 14px;
-            width: 100%;
-            text-overflow: ellipsis;
-        }
-
-        .factsheet-btn {
-            background: var(--raf-blue); 
-            color: white; 
-            border: none;
-            padding: 8px 14px; 
-            border-radius: 6px; 
-            font-size: 10px;
-            font-weight: 800; 
-            cursor: pointer; 
             text-transform: uppercase;
-            white-space: nowrap;
-            transition: background 0.2s;
+            max-width: 60%;
         }
-        .factsheet-btn:hover { background: var(--raf-red); }
 
-        /* --- TACTICAL FACTSHEET PANEL --- */
-        .details-panel {
-            position: absolute; top: 0; right: -100%;
-            width: 100%; max-width: 400px; height: 100%;
-            background: rgba(10, 15, 25, 0.98); backdrop-filter: blur(25px);
-            z-index: 300; transition: right 0.5s cubic-bezier(0.19, 1, 0.22, 1);
-            color: white; border-left: 2px solid var(--raf-blue);
-            overflow-y: auto;
-        }
-        .details-panel.active { right: 0; }
-        .details-inner { padding: 40px 30px; }
-        
-        .spec-grid {
-            display: grid; grid-template-columns: 1fr 1fr;
-            gap: 15px; margin-top: 20px;
-        }
-        .spec-item { border-top: 1px solid var(--glass-border); padding: 12px 0; }
-        .full-width { grid-column: span 2; }
-        .spec-label { font-size: 9px; color: var(--accent); text-transform: uppercase; font-weight: 800; }
-        .spec-value { display: block; font-size: 13px; margin-top: 4px; font-family: 'Courier New', monospace; color: #e2e8f0; }
+        select option { background: #2d3748; color: white; }
 
+        /* Professional AR Button */
         #ar-button {
-            position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%);
-            background: var(--raf-red); color: white; border: none;
-            padding: 14px 28px; border-radius: 50px; font-weight: 700;
-            cursor: pointer; z-index: 50; text-transform: uppercase; font-size: 12px;
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--raf-red);
+            color: white;
+            border: none;
+            padding: 16px 32px;
+            border-radius: 50px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 10px 20px rgba(194, 24, 7, 0.3);
+            cursor: pointer;
+            transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        #ar-button:active { transform: translateX(-50%) scale(0.95); }
+
+        /* Custom Reticle (The Targeting Ring) */
+        .reticle {
+            display: none;
+            width: 100px;
+            height: 100px;
+            border: 4px dashed white;
+            border-radius: 50%;
+            animation: rotate 4s linear infinite;
+        }
+
+        @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+        /* Loading progress */
+        .progress-bar {
+            display: block;
+            width: 33%;
+            height: 4px;
+            max-height: 4px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 4px;
+            background-color: var(--glass-border);
+        }
+
+        .update-bar {
+            background-color: white;
+            width: 0%;
+            height: 100%;
+            border-radius: 4px;
+            transition: width 0.3s;
         }
     </style>
 </head>
 <body>
 
-    <div id="start-screen">
-        <div class="radar"></div>
-        <div class="start-ui">
-            <div class="raf-logo">RAF</div>
-            <h1 class="title-main">Asset Viewer</h1>
-            <div id="boot-logs" class="boot-logs">Initializing Secure Link...</div>
-            <button class="commence-btn" onclick="enterApp()">COMMENCE MISSION</button>
-        </div>
-    </div>
-
-    <div id="details-panel" class="details-panel">
-        <div class="details-inner">
-            <div class="spec-label" style="color:var(--raf-red)">Classification: Restricted</div>
-            <h2 id="asset-title" style="margin: 10px 0; font-size: 24px; text-transform: uppercase;">Asset Name</h2>
-            
-            <div class="spec-grid">
-                <div class="spec-item"><span class="spec-label">Crew</span><span id="spec-crew" class="spec-value">-</span></div>
-                <div class="spec-item"><span class="spec-label">Home Base</span><span id="spec-base" class="spec-value">-</span></div>
-                <div class="spec-item"><span class="spec-label">Length</span><span id="spec-length" class="spec-value">-</span></div>
-                <div class="spec-item"><span class="spec-label">Max Weight</span><span id="spec-weight" class="spec-value">-</span></div>
-                <div class="spec-item full-width"><span class="spec-label">Payload Capacity</span><span id="spec-payload" class="spec-value">-</span></div>
-                <div class="spec-item full-width"><span class="spec-label">Primary Weapons</span><span id="spec-weapons" class="spec-value">-</span></div>
-                <div class="spec-item full-width"><span class="spec-label">Mission Description</span><span id="spec-desc" class="spec-value" style="font-family: inherit; line-height: 1.4;">-</span></div>
-            </div>
-            
-            <button onclick="toggleDetails()" style="margin-top: 30px; background: none; border: 1px solid var(--raf-blue); color: white; padding: 12px; width: 100%; cursor: pointer; font-weight: bold; text-transform: uppercase; font-size: 11px;">Return to Viewer</button>
-        </div>
-    </div>
-
     <div class="app-overlay">
         <div class="control-panel">
             <div class="panel-info">
-                <span class="panel-label">Tactical Asset</span>
+                <div class="panel-label">Mission Asset</div>
                 <select id="model-select">
-                    <option>Syncing...</option>
+                    <option>Loading System...</option>
                 </select>
             </div>
-            <button class="factsheet-btn" onclick="toggleDetails()">Factsheet</button>
+            <div class="status-dot" style="width: 8px; height: 8px; background: #48bb78; border-radius: 50%; box-shadow: 0 0 10px #48bb78;"></div>
         </div>
     </div>
 
-    <model-viewer id="main-viewer" ar ar-modes="webxr scene-viewer" camera-controls auto-rotate shadow-intensity="2" environment-image="neutral" exposure="1">
-        <button slot="ar-button" id="ar-button">Deploy to Battlespace</button>
+    <model-viewer 
+        id="main-viewer" 
+        ar 
+        ar-modes="webxr scene-viewer quick-look" 
+        ar-placement="floor"
+        camera-controls 
+        touch-action="pan-y"
+        shadow-intensity="1.5"
+        shadow-softness="1"
+        auto-rotate
+        interpolation-decay="200"
+        exposure="1"
+        tone-mapping="neutral">
+        
+        <div slot="progress-bar" class="progress-bar">
+            <div class="update-bar"></div>
+        </div>
+
+        <button slot="ar-button" id="ar-button">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M7 1h10v2H7V1zm10 16h2V7h-2v10zM7 21h10v-2H7v2zM5 7h2v10H5V7zm-2 1v8h2V8H3zm16 0v8h2V8h-2z"/></svg>
+            Start AR Deployment
+        </button>
     </model-viewer>
 
 <script>
-    const logs = ["Establishing Link...", "Verifying Credentials...", "Syncing Geometry...", "Loading Tactical Data...", "Ready."];
-    let logIndex = 0;
-
-    function updateLogs() {
-        if (logIndex < logs.length) {
-            document.getElementById('boot-logs').innerText = logs[logIndex];
-            logIndex++;
-            setTimeout(updateLogs, 600);
-        }
-    }
-    updateLogs();
-
-    function enterApp() {
-        const startScreen = document.getElementById('start-screen');
-        startScreen.style.opacity = '0';
-        setTimeout(() => startScreen.style.visibility = 'hidden', 800);
-    }
-
     const viewer = document.querySelector('#main-viewer');
     const modelSelect = document.querySelector('#model-select');
-    let modelData = [];
+    const progressBar = document.querySelector('.update-bar');
 
-    function toggleDetails() {
-        document.getElementById('details-panel').classList.toggle('active');
-    }
+    // Update loading bar
+    viewer.addEventListener('progress', (event) => {
+        progressBar.style.width = `${event.detail.totalProgress * 100}%`;
+        if (event.detail.totalProgress === 1) {
+            setTimeout(() => { document.querySelector('.progress-bar').style.display = 'none'; }, 500);
+        }
+    });
 
     async function initializeApp() {
         try {
             const response = await fetch('models.json');
-            modelData = await response.json();
+            const models = await response.json();
             modelSelect.innerHTML = ''; 
-            modelData.forEach((m, index) => {
+
+            models.forEach(m => {
                 const opt = document.createElement('option');
-                opt.value = index;
+                opt.value = `models/${m.file}.glb`;
+                opt.setAttribute('data-ios', `models/${m.file}.usdz`);
                 opt.textContent = m.name;
                 modelSelect.appendChild(opt);
             });
-            if (modelData.length > 0) updateAsset(0);
+
+            if (models.length > 0) {
+                updateAsset(modelSelect.options[0]);
+            }
         } catch (e) {
             modelSelect.innerHTML = '<option>SYSTEM OFFLINE</option>';
         }
     }
 
-    function updateAsset(index) {
-        const asset = modelData[index];
-        viewer.src = `models/${asset.file}.glb`;
-        
-        // Update Factsheet Fields
-        document.getElementById('asset-title').textContent = asset.name;
-        document.getElementById('spec-crew').textContent = asset.crew || "Classified";
-        document.getElementById('spec-base').textContent = asset.base || "Unknown";
-        document.getElementById('spec-weapons').textContent = asset.weapons || "N/A";
-        document.getElementById('spec-weight').textContent = asset.weight || "N/A";
-        document.getElementById('spec-length').textContent = asset.length || "N/A";
-        document.getElementById('spec-payload').textContent = asset.payload || "N/A";
-        document.getElementById('spec-desc').textContent = asset.description || "No data.";
+    function updateAsset(option) {
+        document.querySelector('.progress-bar').style.display = 'block';
+        viewer.src = option.value;
+        viewer.iosSrc = option.getAttribute('data-ios');
     }
 
-    modelSelect.addEventListener('change', (e) => updateAsset(e.target.value));
+    modelSelect.addEventListener('change', (e) => {
+        updateAsset(e.target.selectedOptions[0]);
+    });
+
     initializeApp();
 </script>
 
