@@ -4,6 +4,14 @@
     "file": "Chinook-2"
   },
   {
+    "name": "F35",
+    "file": "F35"
+  },
+  {
+    "name": "Protector",
+    "file": "Protector"
+  },
+  {
     "name": "Typhoon",
     "file": "Typhoon"
   }
