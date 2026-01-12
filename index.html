@@ -36,7 +36,6 @@
             transition: opacity 0.8s ease, visibility 0.8s;
         }
 
-        /* Radar Animation Background */
         .radar {
             position: absolute;
             width: 400px; height: 400px;
@@ -57,91 +56,116 @@
 
         @keyframes sweep { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 
-        .start-ui {
-            text-align: center;
-            z-index: 1001;
-            padding: 20px;
-        }
+        .start-ui { text-align: center; z-index: 1001; padding: 20px; }
 
         .raf-logo {
-            width: 80px; height: 80px;
-            border: 4px solid white; border-radius: 50%;
+            width: 60px; height: 60px;
             margin-bottom: 20px;
             display: inline-flex; justify-content: center; align-items: center;
-            font-weight: 900; color: white; border: 8px solid var(--raf-red);
-            outline: 8px solid var(--raf-blue);
+            font-weight: 900; color: white; border: 6px solid var(--raf-red);
+            outline: 6px solid var(--raf-blue); border-radius: 50%;
         }
 
-        .title-main {
-            font-size: 24px; color: white; letter-spacing: 5px;
-            text-transform: uppercase; margin-bottom: 5px;
-        }
-
-        .title-sub {
-            font-size: 10px; color: var(--raf-blue); letter-spacing: 3px;
-            text-transform: uppercase; margin-bottom: 40px;
-        }
-
-        .boot-logs {
-            font-family: 'Courier New', Courier, monospace;
-            font-size: 10px; color: var(--accent);
-            height: 20px; margin-bottom: 30px; opacity: 0.8;
-        }
+        .title-main { font-size: 22px; color: white; letter-spacing: 5px; text-transform: uppercase; margin-bottom: 5px; }
+        .boot-logs { font-family: 'Courier New', Courier, monospace; font-size: 10px; color: var(--accent); height: 20px; margin-bottom: 30px; opacity: 0.8; }
 
         .commence-btn {
-            background: transparent;
-            color: white; border: 1px solid white;
-            padding: 15px 40px; border-radius: 4px;
-            letter-spacing: 2px; font-weight: bold;
+            background: transparent; color: white; border: 1px solid white;
+            padding: 12px 30px; border-radius: 4px; letter-spacing: 2px; font-weight: bold;
             cursor: pointer; transition: all 0.3s;
-            overflow: hidden; position: relative;
         }
-        .commence-btn:hover {
-            background: white; color: black;
-            box-shadow: 0 0 20px rgba(255,255,255,0.4);
-        }
+        .commence-btn:hover { background: white; color: black; }
 
-        /* --- MAIN VIEWER STYLES --- */
+        /* --- MAIN VIEWER & UI --- */
         model-viewer { width: 100vw; height: 100vh; background-color: #1a202c; }
 
         .app-overlay {
             position: absolute; top: 20px; left: 50%;
             transform: translateX(-50%); z-index: 100;
-            width: 90%; max-width: 550px;
+            width: 90%; max-width: 500px;
         }
 
         .control-panel {
-            background: var(--glass); backdrop-filter: blur(15px);
+            background: var(--glass); 
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
             border: 1px solid var(--glass-border);
-            padding: 12px 20px; border-radius: 12px;
-            display: flex; justify-content: space-between; align-items: center;
+            padding: 10px 15px; 
+            border-radius: 12px;
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center;
+            gap: 15px;
+        }
+
+        .panel-info {
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            overflow: hidden;
+        }
+
+        .panel-label {
+            font-size: 9px;
+            color: var(--raf-blue);
+            text-transform: uppercase;
+            font-weight: 800;
+            letter-spacing: 1px;
+        }
+
+        select {
+            background: transparent;
+            color: white;
+            border: none;
+            font-weight: bold;
+            outline: none;
+            cursor: pointer;
+            font-size: 14px;
+            width: 100%;
+            text-overflow: ellipsis;
         }
 
         .factsheet-btn {
-            background: var(--raf-blue); color: white; border: none;
-            padding: 8px 12px; border-radius: 6px; font-size: 10px;
-            font-weight: 800; cursor: pointer;
+            background: var(--raf-blue); 
+            color: white; 
+            border: none;
+            padding: 8px 14px; 
+            border-radius: 6px; 
+            font-size: 10px;
+            font-weight: 800; 
+            cursor: pointer; 
+            text-transform: uppercase;
+            white-space: nowrap;
+            transition: background 0.2s;
         }
+        .factsheet-btn:hover { background: var(--raf-red); }
 
-        /* Tactical Details Panel */
+        /* --- TACTICAL FACTSHEET PANEL --- */
         .details-panel {
             position: absolute; top: 0; right: -100%;
-            width: 100%; max-width: 450px; height: 100%;
-            background: rgba(10, 15, 25, 0.98); backdrop-filter: blur(20px);
-            z-index: 300; transition: right 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+            width: 100%; max-width: 400px; height: 100%;
+            background: rgba(10, 15, 25, 0.98); backdrop-filter: blur(25px);
+            z-index: 300; transition: right 0.5s cubic-bezier(0.19, 1, 0.22, 1);
             color: white; border-left: 2px solid var(--raf-blue);
+            overflow-y: auto;
         }
         .details-panel.active { right: 0; }
-
-        .spec-item { border-top: 1px solid var(--glass-border); padding: 15px 0; }
-        .spec-label { font-size: 10px; color: var(--accent); text-transform: uppercase; }
-        .spec-value { display: block; font-size: 14px; margin-top: 5px; }
+        .details-inner { padding: 40px 30px; }
+        
+        .spec-grid {
+            display: grid; grid-template-columns: 1fr 1fr;
+            gap: 15px; margin-top: 20px;
+        }
+        .spec-item { border-top: 1px solid var(--glass-border); padding: 12px 0; }
+        .full-width { grid-column: span 2; }
+        .spec-label { font-size: 9px; color: var(--accent); text-transform: uppercase; font-weight: 800; }
+        .spec-value { display: block; font-size: 13px; margin-top: 4px; font-family: 'Courier New', monospace; color: #e2e8f0; }
 
         #ar-button {
-            position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%);
+            position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%);
             background: var(--raf-red); color: white; border: none;
-            padding: 16px 32px; border-radius: 50px; font-weight: 700;
-            cursor: pointer; z-index: 50;
+            padding: 14px 28px; border-radius: 50px; font-weight: 700;
+            cursor: pointer; z-index: 50; text-transform: uppercase; font-size: 12px;
         }
     </style>
 </head>
@@ -152,62 +176,55 @@
         <div class="start-ui">
             <div class="raf-logo">RAF</div>
             <h1 class="title-main">Asset Viewer</h1>
-            <p class="title-sub">Digital Inventory & AR Deployment</p>
             <div id="boot-logs" class="boot-logs">Initializing Secure Link...</div>
             <button class="commence-btn" onclick="enterApp()">COMMENCE MISSION</button>
         </div>
     </div>
 
     <div id="details-panel" class="details-panel">
-        <div style="padding: 60px 40px;">
-            <h2 id="asset-title">Asset Name</h2>
-            <div class="spec-item">
-                <span class="spec-label">Personnel / Crew</span>
-                <span id="spec-crew" class="spec-value">-</span>
+        <div class="details-inner">
+            <div class="spec-label" style="color:var(--raf-red)">Classification: Restricted</div>
+            <h2 id="asset-title" style="margin: 10px 0; font-size: 24px; text-transform: uppercase;">Asset Name</h2>
+            
+            <div class="spec-grid">
+                <div class="spec-item"><span class="spec-label">Crew</span><span id="spec-crew" class="spec-value">-</span></div>
+                <div class="spec-item"><span class="spec-label">Home Base</span><span id="spec-base" class="spec-value">-</span></div>
+                <div class="spec-item"><span class="spec-label">Length</span><span id="spec-length" class="spec-value">-</span></div>
+                <div class="spec-item"><span class="spec-label">Max Weight</span><span id="spec-weight" class="spec-value">-</span></div>
+                <div class="spec-item full-width"><span class="spec-label">Payload Capacity</span><span id="spec-payload" class="spec-value">-</span></div>
+                <div class="spec-item full-width"><span class="spec-label">Primary Weapons</span><span id="spec-weapons" class="spec-value">-</span></div>
+                <div class="spec-item full-width"><span class="spec-label">Mission Description</span><span id="spec-desc" class="spec-value" style="font-family: inherit; line-height: 1.4;">-</span></div>
             </div>
-            <div class="spec-item">
-                <span class="spec-label">Tactical Armament</span>
-                <span id="spec-armament" class="spec-value">-</span>
-            </div>
-            <div class="spec-item">
-                <span class="spec-label">Operational Profile</span>
-                <span id="spec-desc" class="spec-value">-</span>
-            </div>
-            <button onclick="toggleDetails()" style="margin-top: 20px; background: none; border: 1px solid white; color: white; padding: 10px; width: 100%; cursor: pointer;">RETURN</button>
+            
+            <button onclick="toggleDetails()" style="margin-top: 30px; background: none; border: 1px solid var(--raf-blue); color: white; padding: 12px; width: 100%; cursor: pointer; font-weight: bold; text-transform: uppercase; font-size: 11px;">Return to Viewer</button>
         </div>
     </div>
 
     <div class="app-overlay">
         <div class="control-panel">
-            <div style="flex-grow: 1;">
-                <select id="model-select" style="background:transparent; color:white; border:none; font-weight:bold; outline:none; cursor:pointer;">
-                    <option>Loading assets...</option>
+            <div class="panel-info">
+                <span class="panel-label">Tactical Asset</span>
+                <select id="model-select">
+                    <option>Syncing...</option>
                 </select>
             </div>
-            <button class="factsheet-btn" onclick="toggleDetails()">FACTSHEET</button>
+            <button class="factsheet-btn" onclick="toggleDetails()">Factsheet</button>
         </div>
     </div>
 
-    <model-viewer id="main-viewer" ar ar-modes="webxr" camera-controls auto-rotate shadow-intensity="2">
-        <button slot="ar-button" id="ar-button">DEPLOY TO BATTLESPACE</button>
+    <model-viewer id="main-viewer" ar ar-modes="webxr scene-viewer" camera-controls auto-rotate shadow-intensity="2" environment-image="neutral" exposure="1">
+        <button slot="ar-button" id="ar-button">Deploy to Battlespace</button>
     </model-viewer>
 
 <script>
-    const logs = [
-        "Establishing Satellite Link...",
-        "Bypassing Firewall...",
-        "Syncing 3D Geometry Data...",
-        "Encryption: AES-256 Verified.",
-        "System Ready. Standing by."
-    ];
+    const logs = ["Establishing Link...", "Verifying Credentials...", "Syncing Geometry...", "Loading Tactical Data...", "Ready."];
     let logIndex = 0;
 
-    // Boot Log Animation
     function updateLogs() {
         if (logIndex < logs.length) {
             document.getElementById('boot-logs').innerText = logs[logIndex];
             logIndex++;
-            setTimeout(updateLogs, 800);
+            setTimeout(updateLogs, 600);
         }
     }
     updateLogs();
@@ -239,16 +256,22 @@
             });
             if (modelData.length > 0) updateAsset(0);
         } catch (e) {
-            modelSelect.innerHTML = '<option>OFFLINE</option>';
+            modelSelect.innerHTML = '<option>SYSTEM OFFLINE</option>';
         }
     }
 
     function updateAsset(index) {
         const asset = modelData[index];
         viewer.src = `models/${asset.file}.glb`;
+        
+        // Update Factsheet Fields
         document.getElementById('asset-title').textContent = asset.name;
-        document.getElementById('spec-crew').textContent = asset.crew || "N/A";
-        document.getElementById('spec-armament').textContent = asset.armament || "Standard";
+        document.getElementById('spec-crew').textContent = asset.crew || "Classified";
+        document.getElementById('spec-base').textContent = asset.base || "Unknown";
+        document.getElementById('spec-weapons').textContent = asset.weapons || "N/A";
+        document.getElementById('spec-weight').textContent = asset.weight || "N/A";
+        document.getElementById('spec-length').textContent = asset.length || "N/A";
+        document.getElementById('spec-payload').textContent = asset.payload || "N/A";
         document.getElementById('spec-desc').textContent = asset.description || "No data.";
     }
 
