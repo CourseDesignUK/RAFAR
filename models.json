@@ -1,50 +1,146 @@
 [
   {
-    "name": "AirbusA400M",
-    "file": "AirbusA400M"
+    "name": "Eurofighter Typhoon FGR4",
+    "file": "Typhoon",
+    "usdz_file": "Typhoon",
+    "crew": "1",
+    "base": "RAF Coningsby / Lossiemouth",
+    "length": "15.96 m",
+    "weight": "23,500 kg",
+    "payload": "9,000 kg",
+    "weapons": "Mauser BK-27, AMRAAM, Meteor, ASRAAM, Paveway IV, Brimstone",
+    "description": "The backbone of the RAF. A highly agile multi-role fighter used for Quick Reaction Alerts (QRA) and precision strikes."
   },
   {
-    "name": "Airseeker",
-    "file": "Airseeker"
+    "name": "Apache AH-64D",
+    "file": "Boeing_AH-64D_Apache_Combat_Helicopter",
+    "usdz_file": "Boeing_AH-64D_Apache_Combat_Helicopter",
+    "crew": "2",
+    "base": "Wattisham Airfield",
+    "length": "17.7 m",
+    "weight": "10,433 kg",
+    "payload": "1,560 kg",
+    "weapons": "30mm M230 Chain Gun, Hellfire Missiles, Hydra 70 Rockets",
+    "description": "A lethal attack helicopter capable of destroying armor, personnel, and materiel targets in obscured battlefield conditions."
   },
   {
-    "name": "BAe Hawk",
-    "file": "BAe_Hawk"
-  },
-  {
-    "name": "Boeing AH 64D Apache Combat Helicopter",
-    "file": "Boeing_AH-64D_Apache_Combat_Helicopter"
-  },
-  {
-    "name": "Boeing E 3A Sentry AWACS",
-    "file": "Boeing_E-3A_Sentry_AWACS"
-  },
-  {
-    "name": "Boeing E 7 Wedgetail AEWC",
-    "file": "Boeing_E-7_Wedgetail_AEWC"
+    "name": "F-35B Lightning",
+    "file": "F35",
+    "usdz_file": "F35",
+    "crew": "1",
+    "base": "RAF Marham",
+    "length": "15.7 m",
+    "weight": "27,300 kg",
+    "payload": "6,800 kg",
+    "weapons": "AIM-120D, Paveway IV, SPEAR 3",
+    "description": "5th Generation stealth fighter with STOVL capabilities for carrier and land operations."
   },
   {
     "name": "Chinook mk2",
-    "file": "Chinook mk2"
+    "file": "chinook",
+    "usdz_file": "Chinook mk2",
+    "crew": "4",
+    "base": "RAF Odiham",
+    "length": "30.1 m",
+    "weight": "22,680 kg",
+    "payload": "10,000 kg",
+    "weapons": "M134 Miniguns, M60D Machine guns",
+    "description": "Heavy-lift helicopter used for trooping, resupply, and battlefield casualty evacuation."
   },
   {
-    "name": "F35",
-    "file": "F35"
-  },
-  {
-    "name": "McDonnell Douglas KC 10A Extender",
-    "file": "McDonnell_Douglas_KC-10A_Extender"
-  },
-  {
-    "name": "Puma",
-    "file": "Puma"
-  },
-  {
-    "name": "Typhoon",
-    "file": "Typhoon"
+    "name": "A400M Atlas",
+    "file": "AirbusA400M",
+    "usdz_file": "AirbusA400M",
+    "crew": "3-4",
+    "base": "RAF Brize Norton",
+    "length": "45.1 m",
+    "weight": "141,000 kg",
+    "payload": "37,000 kg",
+    "weapons": "N/A",
+    "description": "Strategic and tactical airlift capability, capable of delivering heavy loads to short, unprepared runways."
   },
   {
     "name": "Voyager",
-    "file": "Voyager"
+    "file": "Voyager",
+    "usdz_file": "Voyager",
+    "crew": "3",
+    "base": "RAF Brize Norton",
+    "length": "58.8 m",
+    "weight": "233,000 kg",
+    "payload": "45,000 kg (fuel)",
+    "weapons": "N/A",
+    "description": "The RAF's sole air-to-air refuelling (AAR) tanker and also operates as a strategic air transport."
+  },
+  {
+    "name": "RC-135W Airseeker",
+    "file": "Airseeker",
+    "usdz_file": "Airseeker",
+    "crew": "Up to 35",
+    "base": "RAF Waddington",
+    "length": "41.5 m",
+    "weight": "146,000 kg",
+    "payload": "Classified",
+    "weapons": "N/A",
+    "description": "Electronic surveillance aircraft that provides the UK with a world-class ISTAR capability."
+  },
+  {
+    "name": "E-3A Sentry AWACS",
+    "file": "Boeing_E-3A_Sentry_AWACS",
+    "usdz_file": "Boeing_E-3A_Sentry_AWACS",
+    "crew": "13-19",
+    "base": "RAF Waddington (Retired)",
+    "length": "46.6 m",
+    "weight": "156,000 kg",
+    "payload": "N/A",
+    "weapons": "N/A",
+    "description": "Airborne early warning and control (AEW&C) platform providing all-weather surveillance and communications."
+  },
+  {
+    "name": "E-7 Wedgetail AEWC",
+    "file": "Boeing_E-7_Wedgetail_AEWC",
+    "usdz_file": "Boeing_E-7_Wedgetail_AEWC",
+    "crew": "6-10",
+    "base": "RAF Lossiemouth",
+    "length": "33.6 m",
+    "weight": "77,000 kg",
+    "payload": "N/A",
+    "weapons": "N/A",
+    "description": "The future of the RAF's Airborne Early Warning and Control capability, based on the Boeing 737 Next Generation."
+  },
+  {
+    "name": "BAe Hawk",
+    "file": "BAe_Hawk",
+    "usdz_file": "BAe_Hawk",
+    "crew": "2",
+    "base": "RAF Valley",
+    "length": "12.4 m",
+    "weight": "9,100 kg",
+    "payload": "3,000 kg",
+    "weapons": "30mm ADEN cannon pod, SNEB rockets",
+    "description": "Advanced jet trainer used for preparing pilots for the latest generation of combat aircraft."
+  },
+  {
+    "name": "Puma HC2",
+    "file": "Puma",
+    "usdz_file": "Puma",
+    "crew": "3",
+    "base": "RAF Benson",
+    "length": "18.15 m",
+    "weight": "7,400 kg",
+    "payload": "3,200 kg",
+    "weapons": "7.62mm GPMG",
+    "description": "Medium-lift transport helicopter used for tactical movement of troops and equipment."
+  },
+  {
+    "name": "KC-10A Extender",
+    "file": "McDonnell_Douglas_KC-10A_Extender",
+    "usdz_file": "McDonnell_Douglas_KC-10A_Extender",
+    "crew": "4",
+    "base": "USAF (Ally Asset)",
+    "length": "55.3 m",
+    "weight": "267,000 kg",
+    "payload": "160,000 kg (fuel)",
+    "weapons": "N/A",
+    "description": "Strategic tanker and transport aircraft, often integrated into joint-force operations."
   }
 ]
