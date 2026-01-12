@@ -24,8 +24,16 @@
     "file": "Boeing_E-7_Wedgetail_AEWC"
   },
   {
+    "name": "Chinook mk2",
+    "file": "Chinook mk2"
+  },
+  {
     "name": "F35",
     "file": "F35"
+  },
+  {
+    "name": "McDonnell Douglas KC 10A Extender",
+    "file": "McDonnell_Douglas_KC-10A_Extender"
   },
   {
     "name": "Puma",
