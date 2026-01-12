@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>RAF ASSET VIEWER</title>
+    <title>RAF ASSET VIEWER - TACTICAL</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     
@@ -14,6 +14,7 @@
             --raf-red: #c21807;
             --glass: rgba(255, 255, 255, 0.1);
             --glass-border: rgba(255, 255, 255, 0.2);
+            --accent: #63b3ed;
         }
 
         body, html {
@@ -80,66 +81,141 @@
 
         select option { background: #2d3748; color: white; }
 
-        /* Professional AR Button */
+        /* Tactical Details Panel */
+        .details-panel {
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 85%;
+            max-width: 400px;
+            height: 100%;
+            background: rgba(10, 15, 25, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            z-index: 200;
+            transition: left 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+            color: white;
+            border-right: 2px solid var(--raf-blue);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .details-panel.active { left: 0; }
+
+        .details-content {
+            padding: 40px 30px;
+            overflow-y: auto;
+        }
+
+        .details-panel h2 {
+            font-size: 24px;
+            letter-spacing: 2px;
+            margin-bottom: 5px;
+            color: var(--accent);
+            text-transform: uppercase;
+        }
+
+        .spec-table {
+            width: 100%;
+            margin-top: 30px;
+            border-collapse: collapse;
+        }
+
+        .spec-row {
+            border-bottom: 1px solid var(--glass-border);
+            padding: 15px 0;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .spec-label {
+            font-size: 10px;
+            color: var(--raf-blue);
+            font-weight: 800;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .spec-value {
+            font-size: 15px;
+            color: #e2e8f0;
+            line-height: 1.4;
+        }
+
+        .swipe-hint {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            color: var(--raf-blue);
+            font-size: 10px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 0.4; }
+            50% { opacity: 1; }
+            100% { opacity: 0.4; }
+        }
+
         #ar-button {
             position: absolute;
             bottom: 40px;
-            left: 50%;
-            transform: translateX(-50%);
+            right: 20px;
             background: var(--raf-red);
             color: white;
             border: none;
-            padding: 16px 32px;
+            padding: 12px 24px;
             border-radius: 50px;
             font-weight: 700;
-            letter-spacing: 1px;
             text-transform: uppercase;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            box-shadow: 0 10px 20px rgba(194, 24, 7, 0.3);
             cursor: pointer;
-            transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 50;
         }
 
-        #ar-button:active { transform: translateX(-50%) scale(0.95); }
-
-        /* Custom Reticle (The Targeting Ring) */
-        .reticle {
-            display: none;
-            width: 100px;
-            height: 100px;
-            border: 4px dashed white;
-            border-radius: 50%;
-            animation: rotate 4s linear infinite;
-        }
-
-        @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-
-        /* Loading progress */
         .progress-bar {
             display: block;
             width: 33%;
             height: 4px;
-            max-height: 4px;
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            border-radius: 4px;
             background-color: var(--glass-border);
         }
 
-        .update-bar {
-            background-color: white;
-            width: 0%;
-            height: 100%;
-            border-radius: 4px;
-            transition: width 0.3s;
-        }
+        .update-bar { background-color: white; width: 0%; height: 100%; transition: width 0.3s; }
     </style>
 </head>
 <body>
+
+    <div id="details-panel" class="details-panel">
+        <div class="details-content">
+            <div class="panel-label" style="margin-bottom: 10px;">Classification: Official</div>
+            <h2 id="asset-title">Asset Name</h2>
+            <div id="asset-type" style="font-size: 12px; color: var(--raf-blue); margin-bottom: 20px;">Multi-role Combat Aircraft</div>
+            
+            <div class="spec-table">
+                <div class="spec-row">
+                    <span class="spec-label">Crew Requirements</span>
+                    <span id="spec-crew" class="spec-value">-</span>
+                </div>
+                <div class="spec-row">
+                    <span class="spec-label">Armament / Payload</span>
+                    <span id="spec-armament" class="spec-value">-</span>
+                </div>
+                <div class="spec-row">
+                    <span class="spec-label">Mission Capability</span>
+                    <span id="spec-desc" class="spec-value">-</span>
+                </div>
+            </div>
+
+            <button onclick="toggleDetails()" style="margin-top: 40px; background: none; border: 1px solid var(--raf-blue); color: var(--raf-blue); padding: 10px; cursor: pointer; width: 100%; font-weight: bold;">CLOSE DATA SHEET</button>
+        </div>
+    </div>
 
     <div class="app-overlay">
         <div class="control-panel">
@@ -153,6 +229,8 @@
         </div>
     </div>
 
+    <div class="swipe-hint">Swipe Right for Specs →</div>
+
     <model-viewer 
         id="main-viewer" 
         ar 
@@ -161,26 +239,47 @@
         camera-controls 
         touch-action="pan-y"
         shadow-intensity="1.5"
-        shadow-softness="1"
         auto-rotate
-        interpolation-decay="200"
-        exposure="1"
-        tone-mapping="neutral">
+        exposure="1">
         
         <div slot="progress-bar" class="progress-bar">
             <div class="update-bar"></div>
         </div>
 
-        <button slot="ar-button" id="ar-button">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M7 1h10v2H7V1zm10 16h2V7h-2v10zM7 21h10v-2H7v2zM5 7h2v10H5V7zm-2 1v8h2V8H3zm16 0v8h2V8h-2z"/></svg>
-            Start AR Deployment
-        </button>
+        <button slot="ar-button" id="ar-button">Deploy AR</button>
     </model-viewer>
 
 <script>
     const viewer = document.querySelector('#main-viewer');
     const modelSelect = document.querySelector('#model-select');
+    const detailsPanel = document.querySelector('#details-panel');
     const progressBar = document.querySelector('.update-bar');
+    
+    let modelData = [];
+    let touchStartX = 0;
+
+    // Swipe Detection
+    document.addEventListener('touchstart', e => {
+        touchStartX = e.changedTouches[0].screenX;
+    });
+
+    document.addEventListener('touchend', e => {
+        const touchEndX = e.changedTouches[0].screenX;
+        const diff = touchEndX - touchStartX;
+
+        // Swipe Right (Threshold 100px)
+        if (diff > 100) {
+            detailsPanel.classList.add('active');
+        } 
+        // Swipe Left to close
+        else if (diff < -100) {
+            detailsPanel.classList.remove('active');
+        }
+    });
+
+    function toggleDetails() {
+        detailsPanel.classList.toggle('active');
+    }
 
     // Update loading bar
     viewer.addEventListener('progress', (event) => {
@@ -192,34 +291,43 @@
 
     async function initializeApp() {
         try {
+            // NOTE: Ensure models.json contains: name, file, crew, armament, description
             const response = await fetch('models.json');
-            const models = await response.json();
+            modelData = await response.json();
             modelSelect.innerHTML = ''; 
 
-            models.forEach(m => {
+            modelData.forEach((m, index) => {
                 const opt = document.createElement('option');
-                opt.value = `models/${m.file}.glb`;
-                opt.setAttribute('data-ios', `models/${m.file}.usdz`);
+                opt.value = index;
                 opt.textContent = m.name;
                 modelSelect.appendChild(opt);
             });
 
-            if (models.length > 0) {
-                updateAsset(modelSelect.options[0]);
+            if (modelData.length > 0) {
+                updateAsset(0);
             }
         } catch (e) {
             modelSelect.innerHTML = '<option>SYSTEM OFFLINE</option>';
+            console.error("Failed to load models.json", e);
         }
     }
 
-    function updateAsset(option) {
+    function updateAsset(index) {
+        const asset = modelData[index];
+        
         document.querySelector('.progress-bar').style.display = 'block';
-        viewer.src = option.value;
-        viewer.iosSrc = option.getAttribute('data-ios');
+        viewer.src = `models/${asset.file}.glb`;
+        viewer.iosSrc = `models/${asset.file}.usdz`;
+
+        // Update Tactical Panel
+        document.getElementById('asset-title').textContent = asset.name;
+        document.getElementById('spec-crew').textContent = asset.crew || "Unknown";
+        document.getElementById('spec-armament').textContent = asset.armament || "Classified";
+        document.getElementById('spec-desc').textContent = asset.description || "No mission data available.";
     }
 
     modelSelect.addEventListener('change', (e) => {
-        updateAsset(e.target.selectedOptions[0]);
+        updateAsset(e.target.value);
     });
 
     initializeApp();
