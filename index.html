@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>RAF 3D Viewer</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
+    <style>
+        body { margin: 0; font-family: sans-serif; display: flex; flex-direction: column; height: 100vh; }
+        .header { padding: 10px 15px; display: flex; flex-direction: column; align-items: center; background: white; border-bottom: 2px solid #00837d; }
+        .header img { height: 50px; width: auto; margin-bottom: 10px; }
+        .controls { margin-bottom: 10px; display: flex; gap: 10px; align-items: center; }
+        select { padding: 8px; border-radius: 5px; border: 1px solid #00837d; color: #00837d; font-weight: bold; background: white; }
+        model-viewer { flex-grow: 1; width: 100%; background-color: #eeeeee; }
+        #ar-button { background: white; border-radius: 8px; border: 1px solid #00837d; padding: 12px 20px; position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%); font-weight: bold; color: #00837d; z-index: 10; }
+    </style>
+</head>
+<body>
+
+<header class="header">
+    <img src="logo.jpeg" alt="RAF Logo">
+    <div class="controls">
+        <label for="model-select">Select Asset:</label>
+        <select id="model-select">
+            <option>Loading models...</option>
+        </select>
+    </div>
+</header>
+
+<model-viewer 
+    id="main-viewer" 
+    ar ar-modes="webxr scene-viewer quick-look" 
+    camera-controls 
+    shadow-intensity="1" 
+    auto-rotate>
+    <button slot="ar-button" id="ar-button">👋 VIEW IN YOUR SPACE</button>
+</model-viewer>
+
+<script>
+    const viewer = document.querySelector('#main-viewer');
+    const modelSelect = document.querySelector('#model-select');
+
+    async function loadModelList() {
+        try {
+            const response = await fetch('models.json');
+            const models = await response.json();
+
+            modelSelect.innerHTML = ''; // Clear the "Loading" message
+
+            models.forEach((m, index) => {
+                const opt = document.createElement('option');
+                opt.value = `models/${m.file}.glb`;
+                opt.setAttribute('data-ios', `models/${m.file}.usdz`);
+                opt.textContent = m.name;
+                modelSelect.appendChild(opt);
+            });
+
+            // Load the first model automatically
+            if (models.length > 0) {
+                updateModel(modelSelect.options[0]);
+            }
+        } catch (error) {
+            console.error("Error loading model list. Make sure models.json exists.", error);
+            modelSelect.innerHTML = '<option>Error loading models</option>';
+        }
+    }
+
+    function updateModel(option) {
+        viewer.src = option.value;
+        viewer.iosSrc = option.getAttribute('data-ios');
+    }
+
+    modelSelect.addEventListener('change', (e) => {
+        updateModel(e.target.selectedOptions[0]);
+    });
+
+    loadModelList();
+</script>
+</body>
+</html>
