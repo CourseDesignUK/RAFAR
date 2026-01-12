@@ -1,5 +1,13 @@
 [
   {
+    "name": "AirbusA400M",
+    "file": "AirbusA400M"
+  },
+  {
+    "name": "Airseeker",
+    "file": "Airseeker"
+  },
+  {
     "name": "BAe Hawk",
     "file": "BAe_Hawk"
   },
@@ -8,7 +16,19 @@
     "file": "Chinook"
   },
   {
+    "name": "F35",
+    "file": "F35"
+  },
+  {
     "name": "Puma",
     "file": "Puma"
+  },
+  {
+    "name": "Typhoon",
+    "file": "Typhoon"
+  },
+  {
+    "name": "Voyager",
+    "file": "Voyager"
   }
 ]
