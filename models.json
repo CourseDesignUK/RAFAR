@@ -1,5 +1,13 @@
 [
   {
+    "name": "Airseeker",
+    "file": "Airseeker"
+  },
+  {
+    "name": "BAe Hawk",
+    "file": "BAe_Hawk"
+  },
+  {
     "name": "Chinook 2",
     "file": "Chinook-2"
   },
@@ -14,5 +22,9 @@
   {
     "name": "Typhoon",
     "file": "Typhoon"
+  },
+  {
+    "name": "Voyager",
+    "file": "Voyager"
   }
 ]
