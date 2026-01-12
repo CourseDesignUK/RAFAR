@@ -1,50 +1,112 @@
 [
   {
-    "name": "AirbusA400M",
-    "file": "AirbusA400M"
+    "name": "Eurofighter Typhoon FGR4",
+    "file": "typhoon",
+    "crew": "1",
+    "base": "RAF Coningsby / Lossiemouth",
+    "weapons": "27mm Mauser BK-27, Meteor, ASRAAM, Brimstone, Paveway IV",
+    "weight": "23,500 kg",
+    "length": "15.96 m",
+    "payload": "7,500 kg",
+    "description": "A highly agile multi-role fighter, the Typhoon is the backbone of UK Air Sovereignty (QRA) and high-intensity combat operations."
   },
   {
-    "name": "Airseeker",
-    "file": "Airseeker"
+    "name": "F-35B Lightning II",
+    "file": "f35",
+    "crew": "1",
+    "base": "RAF Marham / HMS Queen Elizabeth",
+    "weapons": "AIM-120D AMRAAM, AIM-132 ASRAAM, Paveway IV, SPEAR 3",
+    "weight": "27,215 kg",
+    "length": "15.70 m",
+    "payload": "6,800 kg",
+    "description": "A 5th Generation stealth fighter combining advanced sensors and STOVL capabilities for carrier-based global projection."
   },
   {
-    "name": "BAe Hawk",
-    "file": "BAe_Hawk"
+    "name": "Poseidon MRA1",
+    "file": "poseidon",
+    "crew": "9",
+    "base": "RAF Lossiemouth",
+    "weapons": "Mk 54 Torpedoes, AGM-84 Harpoon Anti-Ship Missiles",
+    "weight": "85,820 kg",
+    "length": "39.47 m",
+    "payload": "9,000 kg",
+    "description": "Maritime patrol aircraft specializing in anti-submarine warfare and long-range search and rescue missions."
   },
   {
-    "name": "Boeing AH 64D Apache Combat Helicopter",
-    "file": "Boeing_AH-64D_Apache_Combat_Helicopter"
+    "name": "A400M Atlas",
+    "file": "atlas",
+    "crew": "3-4",
+    "base": "RAF Brize Norton",
+    "weapons": "None (Defensive Aids Sub-System)",
+    "weight": "141,000 kg",
+    "length": "45.10 m",
+    "payload": "37,000 kg",
+    "description": "Next-generation tactical airlift capable of delivering heavy loads into short, unprepared landing strips."
   },
   {
-    "name": "Boeing E 3A Sentry AWACS",
-    "file": "Boeing_E-3A_Sentry_AWACS"
+    "name": "C-17 Globemaster III",
+    "file": "globemaster",
+    "crew": "3",
+    "base": "RAF Brize Norton",
+    "weapons": "None (Flare/Chaff Dispensers)",
+    "weight": "265,350 kg",
+    "length": "53.00 m",
+    "payload": "77,519 kg",
+    "description": "Strategic heavy-lift transport aircraft capable of rapid global deployment of troops and outsized cargo, including Chinook helicopters."
   },
   {
-    "name": "Boeing E 7 Wedgetail AEWC",
-    "file": "Boeing_E-7_Wedgetail_AEWC"
+    "name": "Voyager KC2/KC3",
+    "file": "voyager",
+    "crew": "3 (+ 8 Cabin Crew)",
+    "base": "RAF Brize Norton",
+    "weapons": "None",
+    "weight": "233,000 kg",
+    "length": "58.82 m",
+    "payload": "45,000 kg (Fuel Transfer)",
+    "description": "The RAF's sole Air-to-Air Refuelling (AAR) tanker, also doubling as a strategic air transport for up to 291 personnel."
   },
   {
-    "name": "Chinook mk2",
-    "file": "Chinook mk2"
+    "name": "Chinook HC6A",
+    "file": "chinook",
+    "crew": "4",
+    "base": "RAF Odiham / Benson",
+    "weapons": "2x M134 Miniguns, 1x M60D Machine Gun",
+    "weight": "22,680 kg",
+    "length": "30.10 m",
+    "payload": "10,000 kg",
+    "description": "Versatile heavy-lift helicopter used for trooping, casualty evacuation, and underslung load carrying in all environments."
   },
   {
-    "name": "F35",
-    "file": "F35"
+    "name": "Proteus RG1",
+    "file": "proteus",
+    "crew": "0 (Remote Operated)",
+    "base": "RAF Waddington",
+    "weapons": "Brimstone Missiles, Paveway IV",
+    "weight": "5,670 kg",
+    "length": "11.00 m",
+    "payload": "1,800 kg",
+    "description": "Remotely Piloted Aircraft System (RPAS) designed for long-endurance persistent surveillance and precision strike."
   },
   {
-    "name": "McDonnell Douglas KC 10A Extender",
-    "file": "McDonnell_Douglas_KC-10A_Extender"
+    "name": "Shadow R2",
+    "file": "shadow",
+    "crew": "5",
+    "base": "RAF Waddington",
+    "weapons": "None",
+    "weight": "7,484 kg",
+    "length": "14.22 m",
+    "payload": "Classified (Sensor Suite)",
+    "description": "Intelligence, Surveillance, Target Acquisition and Reconnaissance (ISTAR) asset providing critical data to commanders on the ground."
   },
   {
-    "name": "Puma",
-    "file": "Puma"
-  },
-  {
-    "name": "Typhoon",
-    "file": "Typhoon"
-  },
-  {
-    "name": "Voyager",
-    "file": "Voyager"
+    "name": "Red Arrows Hawk T1",
+    "file": "hawk",
+    "crew": "1-2",
+    "base": "RAF Waddington",
+    "weapons": "Smoke Generation System (Red, White, Blue)",
+    "weight": "5,700 kg",
+    "length": "12.43 m",
+    "payload": "N/A",
+    "description": "Iconic aerobatic display aircraft representing the speed, agility, and precision of the Royal Air Force."
   }
 ]
