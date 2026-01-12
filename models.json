@@ -6,5 +6,9 @@
   {
     "name": "Chinook",
     "file": "Chinook"
+  },
+  {
+    "name": "Puma",
+    "file": "Puma"
   }
 ]
