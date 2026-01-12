@@ -1,233 +1,316 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>YunExpress 3D Viewer</title>
+    <title>RAF ASSET VIEWER - TACTICAL</title>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
     <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
+    
     <style>
-        body { margin: 0; font-family: sans-serif; display: flex; flex-direction: column; height: 100vh; }
-        .header { padding: 10px 15px; display: flex; flex-direction: column; align-items: center; background: white; border-bottom: 2px solid #00837d; }
-        .header img { height: 50px; width: auto; margin-bottom: 10px; }
-        .controls { margin-bottom: 10px; display: flex; gap: 10px; align-items: center; }
-        select { padding: 8px; border-radius: 5px; border: 1px solid #00837d; color: #00837d; font-weight: bold; background: white; }
-        model-viewer { flex-grow: 1; width: 100%; background-color: #eeeeee; }
-        #ar-button { background: white; border-radius: 8px; border: 1px solid #00837d; padding: 12px 20px; position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%); font-weight: bold; color: #00837d; z-index: 10; }
+        :root {
+            --app-bg: #1a202c;
+            --raf-blue: #5d7a8c;
+            --raf-red: #c21807;
+            --glass: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --accent: #63b3ed;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background-color: var(--app-bg);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        /* Full Screen Viewer */
+        model-viewer {
+            width: 100vw;
+            height: 100vh;
+            background-color: #2d3748;
+            --poster-color: transparent;
+        }
+
+        /* Floating App Interface */
+        .app-overlay {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 100;
+            width: 90%;
+            max-width: 550px;
+        }
+
+        .control-panel {
+            background: var(--glass);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid var(--glass-border);
+            padding: 12px 20px;
+            border-radius: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+        }
+
+        .panel-label {
+            color: #cbd5e0;
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        select {
+            background: transparent;
+            color: white;
+            border: none;
+            font-size: 14px;
+            font-weight: 600;
+            outline: none;
+            cursor: pointer;
+            text-transform: uppercase;
+            width: 100%;
+        }
+
+        select option { background: #2d3748; color: white; }
+
+        /* Tactical Button */
+        .factsheet-btn {
+            background: var(--raf-blue);
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 10px;
+            font-weight: 800;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: background 0.3s;
+        }
+
+        .factsheet-btn:hover { background: var(--accent); }
+
+        /* Tactical Details Panel */
+        .details-panel {
+            position: absolute;
+            top: 0;
+            right: -100%; /* Hidden to the right */
+            width: 100%;
+            max-width: 450px;
+            height: 100%;
+            background: rgba(10, 15, 25, 0.98);
+            backdrop-filter: blur(20px);
+            z-index: 300;
+            transition: right 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+            color: white;
+            border-left: 2px solid var(--raf-blue);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .details-panel.active { right: 0; }
+
+        /* Scanning Animation Effect */
+        .details-panel.active::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--accent);
+            box-shadow: 0 0 15px var(--accent);
+            animation: scan 3s linear infinite;
+            z-index: 301;
+            opacity: 0.3;
+        }
+
+        @keyframes scan {
+            0% { top: 0%; }
+            100% { top: 100%; }
+        }
+
+        .details-content {
+            padding: 60px 40px;
+            overflow-y: auto;
+        }
+
+        .details-panel h2 {
+            font-size: 28px;
+            letter-spacing: 2px;
+            margin: 10px 0;
+            color: white;
+            text-transform: uppercase;
+        }
+
+        .spec-sheet {
+            width: 100%;
+            margin-top: 30px;
+        }
+
+        .spec-item {
+            border-top: 1px solid var(--glass-border);
+            padding: 20px 0;
+        }
+
+        .spec-label {
+            display: block;
+            font-size: 11px;
+            color: var(--accent);
+            font-weight: 800;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .spec-value {
+            font-size: 16px;
+            color: #cbd5e0;
+            line-height: 1.6;
+            font-family: 'Courier New', Courier, monospace; /* Tech look */
+        }
+
+        #ar-button {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--raf-red);
+            color: white;
+            border: none;
+            padding: 16px 32px;
+            border-radius: 50px;
+            font-weight: 700;
+            text-transform: uppercase;
+            cursor: pointer;
+            z-index: 50;
+            box-shadow: 0 10px 20px rgba(194, 24, 7, 0.4);
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: 1px solid white;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 20px;
+        }
     </style>
 </head>
 <body>
 
-<header class="header">
-    <img src="logo.jpeg" alt="YunExpress Logo">
-    <div class="controls">
-        <label for="model-select">Select Asset:</label>
-        <select id="model-select">
-            <option>Loading models...</option>
-        </select>
+    <div id="details-panel" class="details-panel">
+        <button class="close-btn" onclick="toggleDetails()">×</button>
+        <div class="details-content">
+            <div class="panel-label">Intelligence Report</div>
+            <h2 id="asset-title">Asset Name</h2>
+            <hr style="border: 0; border-top: 2px solid var(--raf-blue); width: 50px; margin: 20px 0;">
+            
+            <div class="spec-sheet">
+                <div class="spec-item">
+                    <span class="spec-label">Personnel / Crew</span>
+                    <span id="spec-crew" class="spec-value">-</span>
+                </div>
+                <div class="spec-item">
+                    <span class="spec-label">Tactical Armament</span>
+                    <span id="spec-armament" class="spec-value">-</span>
+                </div>
+                <div class="spec-item">
+                    <span class="spec-label">Operational Profile</span>
+                    <span id="spec-desc" class="spec-value">-</span>
+                </div>
+            </div>
+        </div>
     </div>
-</header>
 
-<model-viewer 
-    id="main-viewer" 
-    ar ar-modes="webxr scene-viewer quick-look" 
-    camera-controls 
-    shadow-intensity="1" 
-    auto-rotate>
-    <button slot="ar-button" id="ar-button">👋 VIEW IN YOUR SPACE</button>
-</model-viewer>
+    <div class="app-overlay">
+        <div class="control-panel">
+            <div style="flex-grow: 1;">
+                <div class="panel-label">Mission Asset</div>
+                <select id="model-select">
+                    <option>Loading System...</option>
+                </select>
+            </div>
+            <button class="factsheet-btn" onclick="toggleDetails()">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+                FACTSHEET
+            </button>
+        </div>
+    </div>
+
+    <model-viewer 
+        id="main-viewer" 
+        ar 
+        ar-modes="webxr scene-viewer quick-look" 
+        ar-placement="floor"
+        camera-controls 
+        touch-action="pan-y"
+        shadow-intensity="1.5"
+        auto-rotate
+        exposure="1">
+        
+        <button slot="ar-button" id="ar-button">Start AR Deployment</button>
+    </model-viewer>
 
 <script>
     const viewer = document.querySelector('#main-viewer');
     const modelSelect = document.querySelector('#model-select');
+    const detailsPanel = document.querySelector('#details-panel');
+    let modelData = [];
 
-    async function loadModelList() {
+    function toggleDetails() {
+        detailsPanel.classList.toggle('active');
+    }
+
+    async function initializeApp() {
         try {
+            // Load your data (ensure models.json has name, file, crew, armament, description)
             const response = await fetch('models.json');
-            const models = await response.json();
+            modelData = await response.json();
+            modelSelect.innerHTML = ''; 
 
-            modelSelect.innerHTML = ''; // Clear the "Loading" message
-
-            models.forEach((m, index) => {
+            modelData.forEach((m, index) => {
                 const opt = document.createElement('option');
-                opt.value = `models/${m.file}.glb`;
-                opt.setAttribute('data-ios', `models/${m.file}.usdz`);
+                opt.value = index;
                 opt.textContent = m.name;
                 modelSelect.appendChild(opt);
             });
 
-            // Load the first model automatically
-            if (models.length > 0) {
-                updateModel(modelSelect.options[0]);
-            }
-        } catch (error) {
-            console.error("Error loading model list. Make sure models.json exists.", error);
-            modelSelect.innerHTML = '<option>Error loading models</option>';
-        }
-    }
-
-    function updateModel(option) {
-        viewer.src = option.value;
-        viewer.iosSrc = option.getAttribute('data-ios');
-    }
-
-    modelSelect.addEventListener('change', (e) => {
-        updateModel(e.target.selectedOptions[0]);
-    });
-
-    loadModelList();
-</script>
-</body>
-</html>        }
-
-        .controls {
-            margin-top: 10px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            background: rgba(0, 0, 0, 0.2);
-            padding: 8px 20px;
-            border-radius: 2px;
-        }
-
-        label { 
-            font-size: 12px; 
-            font-weight: bold; 
-            text-transform: uppercase; 
-            letter-spacing: 1px;
-        }
-
-        select {
-            padding: 5px 10px;
-            border: 1px solid white;
-            background: white;
-            color: var(--raf-dark);
-            font-weight: bold;
-            text-transform: uppercase;
-            cursor: pointer;
-        }
-
-        /* 3D Viewer */
-        model-viewer {
-            flex-grow: 1;
-            width: 100%;
-            background-color: #cbd5e0;
-        }
-
-        /* AR Button (RAF Red) */
-        #ar-button {
-            background-color: var(--raf-red);
-            border: 2px solid white;
-            padding: 14px 28px;
-            position: absolute;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-weight: bold;
-            color: white;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
-        }
-
-        /* Status Badge */
-        .status-badge {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            background: rgba(45, 55, 72, 0.8);
-            color: white;
-            padding: 6px 12px;
-            font-size: 11px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            border-left: 3px solid var(--raf-red);
-        }
-    </style>
-</head>
-<body>
-
-<header class="header">
-    <img src="logo.jpeg" alt="RAF Logo" style="height: 50px; margin-bottom: 5px;">
-    <div class="controls">
-        <label for="model-select">Asset Registry:</label>
-        <select id="model-select">
-            <option>Synchronizing...</option>
-        </select>
-    </div>
-</header>
-
-<model-viewer 
-    id="main-viewer" 
-    ar 
-    ar-modes="webxr scene-viewer quick-look" 
-    ar-scale="fixed"
-    camera-controls 
-    shadow-intensity="1" 
-    auto-rotate 
-    tone-mapping="neutral">
-    
-    <div class="status-badge">Standardized Scale: 2.0m</div>
-    <button slot="ar-button" id="ar-button">Deploy to AR (Fixed 2M)</button>
-</model-viewer>
-
-<script>
-    const viewer = document.querySelector('#main-viewer');
-    const modelSelect = document.querySelector('#model-select');
-
-    async function initialize() {
-        try {
-            // Fetch the list generated by your GitHub Action
-            const response = await fetch('models.json');
-            const models = await response.json();
-            
-            modelSelect.innerHTML = ''; // Clear status
-
-            models.forEach(m => {
-                const opt = document.createElement('option');
-                opt.value = `models/${m.file}.glb`;
-                opt.setAttribute('data-ios', `models/${m.file}.usdz`);
-                opt.textContent = m.name.toUpperCase();
-                modelSelect.appendChild(opt);
-            });
-
-            // Load the first asset in the list
-            if (models.length > 0) {
-                updateAsset(modelSelect.options[0]);
-            }
-
+            if (modelData.length > 0) updateAsset(0);
         } catch (e) {
-            console.error("Initialization error:", e);
-            modelSelect.innerHTML = '<option>CONNECTION ERROR</option>';
+            modelSelect.innerHTML = '<option>SYSTEM OFFLINE</option>';
         }
     }
 
-    function updateAsset(option) {
-        viewer.src = option.value;
-        viewer.iosSrc = option.getAttribute('data-ios');
+    function updateAsset(index) {
+        const asset = modelData[index];
+        viewer.src = `models/${asset.file}.glb`;
+        viewer.iosSrc = `models/${asset.file}.usdz`;
 
-        // REVERTED SCALING LOGIC:
-        // Automatically calculates the scale to ensure the model's longest side is 2 meters
-        const enforceTwoMeterScale = () => {
-            const dimensions = viewer.getDimensions();
-            const maxDimension = Math.max(dimensions.x, dimensions.y, dimensions.z);
-            
-            if (maxDimension > 0) {
-                const multiplier = 2 / maxDimension;
-                viewer.scale = `${multiplier} ${multiplier} ${multiplier}`;
-                console.log(`Auto-scaled ${option.textContent} to 2m (Factor: ${multiplier.toFixed(3)})`);
-            }
-        };
-
-        // Trigger whenever a new model finishes loading
-        viewer.addEventListener('load', enforceTwoMeterScale, { once: true });
+        // Map data to the Factsheet
+        document.getElementById('asset-title').textContent = asset.name;
+        document.getElementById('spec-crew').textContent = asset.crew || "Information Restricted";
+        document.getElementById('spec-armament').textContent = asset.armament || "Standard Configuration";
+        document.getElementById('spec-desc').textContent = asset.description || "Mission profile pending.";
     }
 
-    modelSelect.addEventListener('change', (e) => {
-        updateAsset(e.target.selectedOptions[0]);
-    });
+    modelSelect.addEventListener('change', (e) => updateAsset(e.target.value));
 
-    initialize();
+    initializeApp();
 </script>
 
 </body>
