@@ -43,7 +43,7 @@
             transform: translateX(-50%);
             z-index: 100;
             width: 90%;
-            max-width: 500px;
+            max-width: 550px;
         }
 
         .control-panel {
@@ -76,160 +76,181 @@
             outline: none;
             cursor: pointer;
             text-transform: uppercase;
-            max-width: 60%;
+            width: 100%;
         }
 
         select option { background: #2d3748; color: white; }
+
+        /* Tactical Button */
+        .factsheet-btn {
+            background: var(--raf-blue);
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 10px;
+            font-weight: 800;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: background 0.3s;
+        }
+
+        .factsheet-btn:hover { background: var(--accent); }
 
         /* Tactical Details Panel */
         .details-panel {
             position: absolute;
             top: 0;
-            left: -100%;
-            width: 85%;
-            max-width: 400px;
+            right: -100%; /* Hidden to the right */
+            width: 100%;
+            max-width: 450px;
             height: 100%;
-            background: rgba(10, 15, 25, 0.95);
+            background: rgba(10, 15, 25, 0.98);
             backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            z-index: 200;
-            transition: left 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+            z-index: 300;
+            transition: right 0.4s cubic-bezier(0.19, 1, 0.22, 1);
             color: white;
-            border-right: 2px solid var(--raf-blue);
+            border-left: 2px solid var(--raf-blue);
             display: flex;
             flex-direction: column;
         }
 
-        .details-panel.active { left: 0; }
+        .details-panel.active { right: 0; }
+
+        /* Scanning Animation Effect */
+        .details-panel.active::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--accent);
+            box-shadow: 0 0 15px var(--accent);
+            animation: scan 3s linear infinite;
+            z-index: 301;
+            opacity: 0.3;
+        }
+
+        @keyframes scan {
+            0% { top: 0%; }
+            100% { top: 100%; }
+        }
 
         .details-content {
-            padding: 40px 30px;
+            padding: 60px 40px;
             overflow-y: auto;
         }
 
         .details-panel h2 {
-            font-size: 24px;
+            font-size: 28px;
             letter-spacing: 2px;
-            margin-bottom: 5px;
-            color: var(--accent);
+            margin: 10px 0;
+            color: white;
             text-transform: uppercase;
         }
 
-        .spec-table {
+        .spec-sheet {
             width: 100%;
             margin-top: 30px;
-            border-collapse: collapse;
         }
 
-        .spec-row {
-            border-bottom: 1px solid var(--glass-border);
-            padding: 15px 0;
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
+        .spec-item {
+            border-top: 1px solid var(--glass-border);
+            padding: 20px 0;
         }
 
         .spec-label {
-            font-size: 10px;
-            color: var(--raf-blue);
+            display: block;
+            font-size: 11px;
+            color: var(--accent);
             font-weight: 800;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
             text-transform: uppercase;
+            margin-bottom: 8px;
         }
 
         .spec-value {
-            font-size: 15px;
-            color: #e2e8f0;
-            line-height: 1.4;
-        }
-
-        .swipe-hint {
-            position: absolute;
-            bottom: 20px;
-            left: 20px;
-            color: var(--raf-blue);
-            font-size: 10px;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0% { opacity: 0.4; }
-            50% { opacity: 1; }
-            100% { opacity: 0.4; }
+            font-size: 16px;
+            color: #cbd5e0;
+            line-height: 1.6;
+            font-family: 'Courier New', Courier, monospace; /* Tech look */
         }
 
         #ar-button {
             position: absolute;
             bottom: 40px;
-            right: 20px;
+            left: 50%;
+            transform: translateX(-50%);
             background: var(--raf-red);
             color: white;
             border: none;
-            padding: 12px 24px;
+            padding: 16px 32px;
             border-radius: 50px;
             font-weight: 700;
             text-transform: uppercase;
             cursor: pointer;
             z-index: 50;
+            box-shadow: 0 10px 20px rgba(194, 24, 7, 0.4);
         }
 
-        .progress-bar {
-            display: block;
-            width: 33%;
-            height: 4px;
+        .close-btn {
             position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: var(--glass-border);
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: 1px solid white;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 20px;
         }
-
-        .update-bar { background-color: white; width: 0%; height: 100%; transition: width 0.3s; }
     </style>
 </head>
 <body>
 
     <div id="details-panel" class="details-panel">
+        <button class="close-btn" onclick="toggleDetails()">×</button>
         <div class="details-content">
-            <div class="panel-label" style="margin-bottom: 10px;">Classification: Official</div>
+            <div class="panel-label">Intelligence Report</div>
             <h2 id="asset-title">Asset Name</h2>
-            <div id="asset-type" style="font-size: 12px; color: var(--raf-blue); margin-bottom: 20px;">Multi-role Combat Aircraft</div>
+            <hr style="border: 0; border-top: 2px solid var(--raf-blue); width: 50px; margin: 20px 0;">
             
-            <div class="spec-table">
-                <div class="spec-row">
-                    <span class="spec-label">Crew Requirements</span>
+            <div class="spec-sheet">
+                <div class="spec-item">
+                    <span class="spec-label">Personnel / Crew</span>
                     <span id="spec-crew" class="spec-value">-</span>
                 </div>
-                <div class="spec-row">
-                    <span class="spec-label">Armament / Payload</span>
+                <div class="spec-item">
+                    <span class="spec-label">Tactical Armament</span>
                     <span id="spec-armament" class="spec-value">-</span>
                 </div>
-                <div class="spec-row">
-                    <span class="spec-label">Mission Capability</span>
+                <div class="spec-item">
+                    <span class="spec-label">Operational Profile</span>
                     <span id="spec-desc" class="spec-value">-</span>
                 </div>
             </div>
-
-            <button onclick="toggleDetails()" style="margin-top: 40px; background: none; border: 1px solid var(--raf-blue); color: var(--raf-blue); padding: 10px; cursor: pointer; width: 100%; font-weight: bold;">CLOSE DATA SHEET</button>
         </div>
     </div>
 
     <div class="app-overlay">
         <div class="control-panel">
-            <div class="panel-info">
+            <div style="flex-grow: 1;">
                 <div class="panel-label">Mission Asset</div>
                 <select id="model-select">
                     <option>Loading System...</option>
                 </select>
             </div>
-            <div class="status-dot" style="width: 8px; height: 8px; background: #48bb78; border-radius: 50%; box-shadow: 0 0 10px #48bb78;"></div>
+            <button class="factsheet-btn" onclick="toggleDetails()">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+                FACTSHEET
+            </button>
         </div>
     </div>
-
-    <div class="swipe-hint">Swipe Right for Specs →</div>
 
     <model-viewer 
         id="main-viewer" 
@@ -242,56 +263,22 @@
         auto-rotate
         exposure="1">
         
-        <div slot="progress-bar" class="progress-bar">
-            <div class="update-bar"></div>
-        </div>
-
-        <button slot="ar-button" id="ar-button">Deploy AR</button>
+        <button slot="ar-button" id="ar-button">Start AR Deployment</button>
     </model-viewer>
 
 <script>
     const viewer = document.querySelector('#main-viewer');
     const modelSelect = document.querySelector('#model-select');
     const detailsPanel = document.querySelector('#details-panel');
-    const progressBar = document.querySelector('.update-bar');
-    
     let modelData = [];
-    let touchStartX = 0;
-
-    // Swipe Detection
-    document.addEventListener('touchstart', e => {
-        touchStartX = e.changedTouches[0].screenX;
-    });
-
-    document.addEventListener('touchend', e => {
-        const touchEndX = e.changedTouches[0].screenX;
-        const diff = touchEndX - touchStartX;
-
-        // Swipe Right (Threshold 100px)
-        if (diff > 100) {
-            detailsPanel.classList.add('active');
-        } 
-        // Swipe Left to close
-        else if (diff < -100) {
-            detailsPanel.classList.remove('active');
-        }
-    });
 
     function toggleDetails() {
         detailsPanel.classList.toggle('active');
     }
 
-    // Update loading bar
-    viewer.addEventListener('progress', (event) => {
-        progressBar.style.width = `${event.detail.totalProgress * 100}%`;
-        if (event.detail.totalProgress === 1) {
-            setTimeout(() => { document.querySelector('.progress-bar').style.display = 'none'; }, 500);
-        }
-    });
-
     async function initializeApp() {
         try {
-            // NOTE: Ensure models.json contains: name, file, crew, armament, description
+            // Load your data (ensure models.json has name, file, crew, armament, description)
             const response = await fetch('models.json');
             modelData = await response.json();
             modelSelect.innerHTML = ''; 
@@ -303,32 +290,25 @@
                 modelSelect.appendChild(opt);
             });
 
-            if (modelData.length > 0) {
-                updateAsset(0);
-            }
+            if (modelData.length > 0) updateAsset(0);
         } catch (e) {
             modelSelect.innerHTML = '<option>SYSTEM OFFLINE</option>';
-            console.error("Failed to load models.json", e);
         }
     }
 
     function updateAsset(index) {
         const asset = modelData[index];
-        
-        document.querySelector('.progress-bar').style.display = 'block';
         viewer.src = `models/${asset.file}.glb`;
         viewer.iosSrc = `models/${asset.file}.usdz`;
 
-        // Update Tactical Panel
+        // Map data to the Factsheet
         document.getElementById('asset-title').textContent = asset.name;
-        document.getElementById('spec-crew').textContent = asset.crew || "Unknown";
-        document.getElementById('spec-armament').textContent = asset.armament || "Classified";
-        document.getElementById('spec-desc').textContent = asset.description || "No mission data available.";
+        document.getElementById('spec-crew').textContent = asset.crew || "Information Restricted";
+        document.getElementById('spec-armament').textContent = asset.armament || "Standard Configuration";
+        document.getElementById('spec-desc').textContent = asset.description || "Mission profile pending.";
     }
 
-    modelSelect.addEventListener('change', (e) => {
-        updateAsset(e.target.value);
-    });
+    modelSelect.addEventListener('change', (e) => updateAsset(e.target.value));
 
     initializeApp();
 </script>
