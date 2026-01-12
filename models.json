@@ -38,7 +38,7 @@
   {
     "name": "Chinook HC6A",
     "file": "chinook-2",
-    "usdz_file": "Chinook mk2",
+    "usdz_file": "Chinook-2",
     "crew": "4 (2 pilots, 2 crewmen)",
     "base": "RAF Odiham",
     "length": "30.1 m",
@@ -109,7 +109,7 @@
   },
   {
     "name": "BAe Hawk",
-    "file": "bAe_Hawk",
+    "file": "bAe_hawk",
     "usdz_file": "BAe_Hawk",
     "crew": "2",
     "base": "RAF Valley",
