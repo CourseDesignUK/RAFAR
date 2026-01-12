@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>RAF 3D Asset Viewer | Native Scale</title>
+    <title>RAF 3D Asset Viewer | Ground Positioned</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
@@ -80,7 +80,7 @@
             text-transform: uppercase;
             letter-spacing: 1px;
             cursor: pointer;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+            z-index: 10;
         }
 
         .status-badge {
@@ -100,11 +100,11 @@
 <body>
 
 <header class="header">
-    <img src="Logo.jpeg" alt="RAF Logo" style="height: 50px; margin-bottom: 5px;">
+    <img src="logo.jpeg" alt="RAF Logo" style="height: 50px; margin-bottom: 5px;">
     <div class="controls">
-        <label for="model-select">Asset Registry:</label>
+        <label for="model-select">Registry:</label>
         <select id="model-select">
-            <option>Synchronizing...</option>
+            <option>Linking...</option>
         </select>
     </div>
 </header>
@@ -113,13 +113,20 @@
     id="main-viewer" 
     ar 
     ar-modes="webxr scene-viewer quick-look" 
+    ar-placement="floor"
     camera-controls 
-    shadow-intensity="1" 
+    touch-action="pan-y"
+    shadow-intensity="2" 
+    shadow-softness="0.5"
+    camera-orbit="45deg 75deg auto"
+    min-camera-orbit="auto auto auto"
+    max-camera-orbit="auto auto auto"
+    bounds="tight"
     auto-rotate 
     tone-mapping="neutral">
     
-    <div class="status-badge">Displaying Native Scale</div>
-    <button slot="ar-button" id="ar-button">Deploy to AR</button>
+    <div class="status-badge">Placement: Horizontal Surface</div>
+    <button slot="ar-button" id="ar-button">Deploy to Floor</button>
 </model-viewer>
 
 <script>
@@ -144,14 +151,18 @@
                 updateAsset(modelSelect.options[0]);
             }
         } catch (e) {
-            modelSelect.innerHTML = '<option>CONNECTION ERROR</option>';
+            modelSelect.innerHTML = '<option>OFFLINE</option>';
         }
     }
 
     function updateAsset(option) {
-        // Simply update the sources. No scaling math applied.
         viewer.src = option.value;
         viewer.iosSrc = option.getAttribute('data-ios');
+        
+        // Ensure the camera resets to see the model on the ground
+        viewer.addEventListener('load', () => {
+            viewer.resetTurntableRotation();
+        }, { once: true });
     }
 
     modelSelect.addEventListener('change', (e) => {
