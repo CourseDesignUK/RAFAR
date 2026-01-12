@@ -16,8 +16,16 @@
     "file": "Boeing_AH-64D_Apache_Combat_Helicopter"
   },
   {
+    "name": "Boeing E 7 Wedgetail AEWC",
+    "file": "Boeing_E-7_Wedgetail_AEWC"
+  },
+  {
     "name": "Chinook 2",
     "file": "Chinook-2"
+  },
+  {
+    "name": "EC135",
+    "file": "EC135"
   },
   {
     "name": "F35",
