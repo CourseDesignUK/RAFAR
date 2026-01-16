@@ -1,230 +1,90 @@
 [
   {
-    "name": "Airseeker (RC-135W)",
-    "file": "airseeker",
-    "usdz_file": "Airseeker",
-    "crew": "2 Pilots, 2 Navigators, 20+ Mission Specialists",
-    "base": "RAF Waddington",
-    "length": "41.5m",
-    "weight": "133,000 kg",
-    "payload": "Advanced Signals Intelligence (SIGINT) Suite",
-    "weapons": "None (Electronic Warfare focused)",
-    "description": "The RC-135W Airseeker provides real-time signals intelligence and surveillance to support theater and national level consumers."
+    "name": "Airbus A319",
+    "file": "Airbus_A319"
   },
   {
-    "name": "Airbus A400M Atlas",
-    "file": "airbusa400m",
-    "usdz_file": "a400m",
-    "crew": "3-4 (2 Pilots, 1-2 Loadmasters)",
-    "base": "RAF Brize Norton",
-    "length": "45.1m",
-    "weight": "141,000 kg",
-    "payload": "37,000 kg / 116 Fully Equipped Troops",
-    "weapons": "None (Strategic/Tactical Airlift)",
-    "description": "The Atlas C1 provides tactical airlift and strategic oversized cargo capabilities, filling the gap between the C-130 and C-17."
+    "name": "Airbus A320",
+    "file": "Airbus_A320"
   },
   {
-    "name": "BAE Hawk T2",
-    "file": "bae_hawk",
-    "usdz_file": "BAe_Hawk",
-    "crew": "2 (Student & Instructor)",
-    "base": "RAF Valley",
-    "length": "12.4m",
-    "weight": "9,100 kg",
-    "payload": "Advanced glass cockpit for fast jet training",
-    "weapons": "Practice bombs and AIM-9L Sidewinder capability",
-    "description": "Used for advanced fast jet pilot training, mimicking the cockpit environments of Typhoon and F-35."
+    "name": "Airbus A321",
+    "file": "Airbus_A321"
   },
   {
-    "name": "Bell Boeing V-22 Osprey",
-    "file": "bell_boeing_v-22_osprey_military_helicopter",
-    "usdz_file": "Bell_Boeing_V-22_Osprey_Military_Helicopter",
-    "crew": "4 (2 Pilots, 2 Flight Engineers)",
-    "base": "Various (Joint Operations)",
-    "length": "17.48m",
-    "weight": "27,400 kg",
-    "payload": "24 seated troops or 9,070 kg internal cargo",
-    "weapons": "M240 machine gun, GAU-17 minigun",
-    "description": "A multi-role, tiltrotor military aircraft with both vertical takeoff and landing (VTOL) and short takeoff and landing (STOL) capabilities."
+    "name": "Airseeker",
+    "file": "Airseeker"
   },
   {
-    "name": "Boeing AH-64D Apache",
-    "file": "boeing_ah-64d_apache_combat_helicopter",
-    "usdz_file": "Boeing_AH-64D_Apache_Combat_Helicopter",
-    "crew": "2 (Pilot & Co-pilot/Gunner)",
-    "base": "Wattisham Airfield",
-    "length": "17.7m",
-    "weight": "10,433 kg",
-    "payload": "Longbow Fire Control Radar",
-    "weapons": "30mm Chain Gun, Hellfire missiles, CRV7 rockets",
-    "description": "A high-performance attack helicopter designed to hunt and destroy tanks and support ground troops."
+    "name": "BAe Hawk",
+    "file": "BAe_Hawk"
   },
   {
-    "name": "Boeing E-7 Wedgetail",
-    "file": "boeing_e-7_wedgetail_aewc",
-    "usdz_file": "Boeing_E-7_Wedgetail_AEWC",
-    "crew": "2 Pilots, 6-10 Mission Crew",
-    "base": "RAF Lossiemouth",
-    "length": "33.6m",
-    "weight": "77,600 kg",
-    "payload": "MESA Active Electronically Scanned Array Radar",
-    "weapons": "None (Airborne Early Warning & Control)",
-    "description": "Provides powerful long-range air surveillance and control, acting as a command center in the sky."
+    "name": "Bell Boeing V 22 Osprey Military Helicopter",
+    "file": "Bell_Boeing_V-22_Osprey_Military_Helicopter"
   },
   {
-    "name": "C-17 Globemaster III",
-    "file": "C17",
-    "usdz_file": "c17",
-    "crew": "3 (2 Pilots, 1 Loadmaster)",
-    "base": "RAF Brize Norton",
-    "length": "53m",
-    "weight": "265,350 kg",
-    "payload": "77,500 kg / CH-47 Chinook capacity",
-    "weapons": "None (Strategic Heavy Lift)",
-    "description": "The backbone of strategic heavy lift, capable of rapid delivery of troops and all types of cargo to main operating bases."
+    "name": "Boeing AH 64D Apache Combat Helicopter",
+    "file": "Boeing_AH-64D_Apache_Combat_Helicopter"
   },
   {
-    "name": "C-130J Hercules",
-    "file": "C130J",
-    "usdz_file": "c130j",
-    "crew": "3 (2 Pilots, 1 Loadmaster)",
-    "base": "Joint Support (Tactical)",
-    "length": "29.79m",
-    "weight": "70,305 kg",
-    "payload": "19,000 kg cargo / 92 Troops",
-    "weapons": "None (Tactical Transport)",
-    "description": "The workhorse of tactical airlift, capable of operating from unprepared runways for rapid response."
+    "name": "Boeing E 7 Wedgetail AEWC",
+    "file": "Boeing_E-7_Wedgetail_AEWC"
   },
   {
-    "name": "Chinook CH-47",
-    "file": "chinook-2",
-    "usdz_file": "Chinook-2",
-    "crew": "3-4 (2 Pilots, 1-2 Aircrewmen)",
-    "base": "RAF Odiham",
-    "length": "30m",
-    "weight": "22,680 kg",
-    "payload": "55 troops or 10,000 kg freight",
-    "weapons": "M134 Miniguns, M60 machine guns",
-    "description": "An extremely versatile heavy-lift helicopter used for troop movement, casualty evacuation, and logistics."
+    "name": "Chinook 2",
+    "file": "Chinook-2"
   },
   {
-    "name": "EC135 Juno",
-    "file": "ec135",
-    "usdz_file": "EC135",
-    "crew": "1-2 Pilots",
-    "base": "RAF Shawbury",
-    "length": "12.16m",
-    "weight": "2,984 kg",
-    "payload": "Training Avionics Suite",
-    "weapons": "None (Training/Transport)",
-    "description": "The Juno HT1 is used for basic rotary wing pilot training within the Defence Helicopter Flying School."
+    "name": "EC135",
+    "file": "EC135"
   },
   {
-    "name": "F-15 Eagle",
-    "file": "F15",
-    "usdz_file": "f15",
-    "crew": "1 (F-15C) or 2 (F-15E)",
-    "base": "RAF Lakenheath (USAF Europe)",
-    "length": "19.43m",
-    "weight": "30,845 kg",
-    "payload": "High-capacity external stores",
-    "weapons": "20mm M61A1 Vulcan, AIM-120, AIM-9X, Paveway series",
-    "description": "An all-weather, extremely maneuverable tactical fighter designed to gain and maintain air supremacy."
+    "name": "F35",
+    "file": "F35"
   },
   {
-    "name": "F-16 Fighting Falcon",
-    "file": "F16",
-    "usdz_file": "f16",
-    "crew": "1 Pilot",
-    "base": "Allied Expeditionary Support",
-    "length": "15.06m",
-    "weight": "19,200 kg",
-    "payload": "External hardpoints for 7,700 kg",
-    "weapons": "20mm M61A1 Vulcan, AIM-120 AMRAAM, AIM-9 Sidewinder",
-    "description": "A highly maneuverable, multi-role fighter designed for air-to-air combat and air-to-surface attack."
+    "name": "Hornet",
+    "file": "Hornet"
   },
   {
-    "name": "F-22 Raptor",
-    "file": "F22",
-    "usdz_file": "f22",
-    "crew": "1 Pilot",
-    "base": "Strategic Allied Support",
-    "length": "18.9m",
-    "weight": "38,000 kg",
-    "payload": "Internal Weapons Bays",
-    "weapons": "20mm M61A2, AIM-120 AMRAAM, AIM-9 Sidewinder",
-    "description": "A 5th-generation stealth tactical fighter aircraft, widely considered the premier air superiority fighter in the world."
+    "name": "Protector",
+    "file": "Protector"
   },
   {
-    "name": "F-35 Lightning II",
-    "file": "f35",
-    "usdz_file": "F35",
-    "crew": "1 Pilot",
-    "base": "RAF Marham / HMS Queen Elizabeth",
-    "length": "15.7m",
-    "weight": "31,750 kg",
-    "payload": "Internal & External Weapon Bays",
-    "weapons": "AIM-120 AMRAAM, Paveway IV, 25mm GAU-22 Cannon",
-    "description": "A 5th Generation stealth multi-role fighter combining advanced sensors and mission systems."
+    "name": "Typhoon",
+    "file": "Typhoon"
   },
   {
-    "name": "F/A-18 Hornet",
-    "file": "Hornet2",
-    "usdz_file": "Hornet",
-    "crew": "1 (F/A-18C) or 2 (F/A-18D)",
-    "base": "Allied Bases (Tactical Support)",
-    "length": "17.1m",
-    "weight": "23,541 kg",
-    "payload": "Multi-role pylons",
-    "weapons": "20mm M61 Vulcan, Sidewinder, Harpoon missiles",
-    "description": "A versatile combat-proven multi-role fighter for carrier-based or land-based operations."
+    "name": "Voyager",
+    "file": "Voyager"
   },
   {
-    "name": "Grob G 115 Tutor",
-    "file": "Grob",
-    "usdz_file": "grob",
-    "crew": "2 (Student & Instructor)",
-    "base": "Multiple (University Air Squadrons)",
-    "length": "7.54m",
-    "weight": "990 kg",
-    "payload": "Dual Control Avionics",
-    "weapons": "None (Elementary Training)",
-    "description": "Used for elementary flying training, providing the first experience of flight for RAF students."
+    "name": "a400m",
+    "file": "a400m"
   },
   {
-    "name": "Protector RG Mk1",
-    "file": "protector",
-    "usdz_file": "Protector",
-    "crew": "0 (Remote: 1 Pilot, 1 Sensor Operator)",
-    "base": "RAF Waddington",
-    "length": "11.7m",
-    "weight": "5,670 kg",
-    "payload": "Multi-spectral Targeting System",
-    "weapons": "Brimstone missiles, Paveway IV laser-guided bombs",
-    "description": "The next generation of Remotely Piloted Air System (RPAS), providing persistent surveillance and strike capability."
+    "name": "c130j",
+    "file": "c130j"
   },
   {
-    "name": "Typhoon FGR4",
-    "file": "typhoon",
-    "usdz_file": "Typhoon",
-    "crew": "1 Pilot",
-    "base": "RAF Coningsby / Lossiemouth",
-    "length": "15.96m",
-    "weight": "23,500 kg",
-    "payload": "13 hardpoints for stores",
-    "weapons": "27mm Mauser Cannon, Meteor, ASRAAM, Brimstone",
-    "description": "A highly capable and extremely agile multi-role combat aircraft, used for air-to-air and air-to-surface operations."
+    "name": "c17",
+    "file": "c17"
   },
   {
-    "name": "Voyager KC Mk2",
-    "file": "Voyager",
-    "usdz_file": "Voyager",
-    "crew": "2 Pilots, 1 Mission Controller",
-    "base": "RAF Brize Norton",
-    "length": "58.8m",
-    "weight": "233,000 kg",
-    "payload": "111,000 kg fuel capacity",
-    "weapons": "None (Air-to-Air Refuelling)",
-    "description": "The RAF's sole air-to-air refuelling (AAR) tanker and strategic air transport aircraft."
+    "name": "f15",
+    "file": "f15"
+  },
+  {
+    "name": "f16",
+    "file": "f16"
+  },
+  {
+    "name": "f22",
+    "file": "f22"
+  },
+  {
+    "name": "grob",
+    "file": "grob"
   }
 ]
