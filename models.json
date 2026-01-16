@@ -1,50 +1,146 @@
 [
   {
-    "name": "Airseeker",
-    "file": "Airseeker"
+    "name": "Airseeker (RC-135W)",
+    "file": "airseeker",
+    "usdz_file": "Airseeker",
+    "crew": "2 Pilots, 2 Navigators, 20+ Mission Specialists",
+    "base": "RAF Waddington",
+    "length": "41.5m",
+    "weight": "133,000 kg",
+    "payload": "Advanced Signals Intelligence (SIGINT) Suite",
+    "weapons": "None (Electronic Warfare focused)",
+    "description": "The RC-135W Airseeker provides real-time signals intelligence and surveillance to support theater and national level consumers."
   },
   {
-    "name": "BAe Hawk",
-    "file": "BAe_Hawk"
+    "name": "BAE Hawk T2",
+    "file": "bae_hawk",
+    "usdz_file": "BAe_Hawk",
+    "crew": "2 (Student & Instructor)",
+    "base": "RAF Valley",
+    "length": "12.4m",
+    "weight": "9,100 kg",
+    "payload": "Advanced glass cockpit for fast jet training",
+    "weapons": "Practice bombs and AIM-9L Sidewinder capability",
+    "description": "Used for advanced fast jet pilot training, mimicking the cockpit environments of Typhoon and F-35."
   },
   {
-    "name": "Bell Boeing V 22 Osprey Military Helicopter",
-    "file": "Bell_Boeing_V-22_Osprey_Military_Helicopter"
+    "name": "Bell Boeing V-22 Osprey",
+    "file": "bell_boeing_v-22_osprey_military_helicopter",
+    "usdz_file": "Bell_Boeing_V-22_Osprey_Military_Helicopter",
+    "crew": "4 (2 Pilots, 2 Flight Engineers)",
+    "base": "Various (Joint Operations)",
+    "length": "17.48m",
+    "weight": "27,400 kg",
+    "payload": "24 seated troops or 9,070 kg internal cargo",
+    "weapons": "M240 machine gun, GAU-17 minigun",
+    "description": "A multi-role, tiltrotor military aircraft with both vertical takeoff and landing (VTOL) and short takeoff and landing (STOL) capabilities."
   },
   {
-    "name": "Boeing AH 64D Apache Combat Helicopter",
-    "file": "Boeing_AH-64D_Apache_Combat_Helicopter"
+    "name": "Boeing AH-64D Apache",
+    "file": "boeing_ah-64d_apache_combat_helicopter",
+    "usdz_file": "Boeing_AH-64D_Apache_Combat_Helicopter",
+    "crew": "2 (Pilot & Co-pilot/Gunner)",
+    "base": "Wattisham Airfield",
+    "length": "17.7m",
+    "weight": "10,433 kg",
+    "payload": "Longbow Fire Control Radar",
+    "weapons": "30mm Chain Gun, Hellfire missiles, CRV7 rockets",
+    "description": "A high-performance attack helicopter designed to hunt and destroy tanks and support ground troops."
   },
   {
-    "name": "Boeing E 7 Wedgetail AEWC",
-    "file": "Boeing_E-7_Wedgetail_AEWC"
+    "name": "Boeing E-7 Wedgetail",
+    "file": "boeing_e-7_wedgetail_aewc",
+    "usdz_file": "Boeing_E-7_Wedgetail_AEWC",
+    "crew": "2 Pilots, 6-10 Mission Crew",
+    "base": "RAF Lossiemouth",
+    "length": "33.6m",
+    "weight": "77,600 kg",
+    "payload": "MESA Active Electronically Scanned Array Radar",
+    "weapons": "None (Airborne Early Warning & Control)",
+    "description": "Provides powerful long-range air surveillance and control, acting as a command center in the sky."
   },
   {
-    "name": "Chinook 2",
-    "file": "Chinook-2"
+    "name": "Chinook CH-47",
+    "file": "chinook-2",
+    "usdz_file": "Chinook-2",
+    "crew": "3-4 (2 Pilots, 1-2 Aircrewmen)",
+    "base": "RAF Odiham",
+    "length": "30m",
+    "weight": "22,680 kg",
+    "payload": "55 troops or 10,000 kg freight",
+    "weapons": "M134 Miniguns, M60 machine guns",
+    "description": "An extremely versatile heavy-lift helicopter used for troop movement, casualty evacuation, and logistics."
   },
   {
-    "name": "EC135",
-    "file": "EC135"
+    "name": "EC135 Juno",
+    "file": "ec135",
+    "usdz_file": "EC135",
+    "crew": "1-2 Pilots",
+    "base": "RAF Shawbury",
+    "length": "12.16m",
+    "weight": "2,984 kg",
+    "payload": "Training Avionics Suite",
+    "weapons": "None (Training/Transport)",
+    "description": "The Juno HT1 is used for basic rotary wing pilot training within the Defence Helicopter Flying School."
   },
   {
-    "name": "F35",
-    "file": "F35"
+    "name": "F-35 Lightning II",
+    "file": "f35",
+    "usdz_file": "F35",
+    "crew": "1 Pilot",
+    "base": "RAF Marham / HMS Queen Elizabeth",
+    "length": "15.7m",
+    "weight": "31,750 kg",
+    "payload": "Internal & External Weapon Bays",
+    "weapons": "AIM-120 AMRAAM, Paveway IV, 25mm GAU-22 Cannon",
+    "description": "A 5th Generation stealth multi-role fighter combining advanced sensors and mission systems."
   },
   {
-    "name": "Hornet",
-    "file": "Hornet"
+    "name": "F/A-18 Hornet",
+    "file": "Hornet2",
+    "usdz_file": "Hornet",
+    "crew": "1 (F/A-18C) or 2 (F/A-18D)",
+    "base": "Allied Bases (Tactical Support)",
+    "length": "17.1m",
+    "weight": "23,541 kg",
+    "payload": "Multi-role pylons",
+    "weapons": "20mm M61 Vulcan, Sidewinder, Harpoon missiles",
+    "description": "A versatile combat-proven multi-role fighter for carrier-based or land-based operations."
   },
   {
-    "name": "Protector",
-    "file": "Protector"
+    "name": "Protector RG Mk1",
+    "file": "protector",
+    "usdz_file": "Protector",
+    "crew": "0 (Remote: 1 Pilot, 1 Sensor Operator)",
+    "base": "RAF Waddington",
+    "length": "11.7m",
+    "weight": "5,670 kg",
+    "payload": "Multi-spectral Targeting System",
+    "weapons": "Brimstone missiles, Paveway IV laser-guided bombs",
+    "description": "The next generation of Remotely Piloted Air System (RPAS), providing persistent surveillance and strike capability."
   },
   {
-    "name": "Typhoon",
-    "file": "Typhoon"
+    "name": "Typhoon FGR4",
+    "file": "typhoon",
+    "usdz_file": "Typhoon",
+    "crew": "1 Pilot",
+    "base": "RAF Coningsby / Lossiemouth",
+    "length": "15.96m",
+    "weight": "23,500 kg",
+    "payload": "13 hardpoints for stores",
+    "weapons": "27mm Mauser Cannon, Meteor, ASRAAM, Brimstone",
+    "description": "A highly capable and extremely agile multi-role combat aircraft, used for air-to-air and air-to-surface operations."
   },
   {
-    "name": "Voyager",
-    "file": "Voyager"
+    "name": "Voyager KC Mk2",
+    "file": "Voyager",
+    "usdz_file": "Voyager",
+    "crew": "2 Pilots, 1 Mission Controller",
+    "base": "RAF Brize Norton",
+    "length": "58.8m",
+    "weight": "233,000 kg",
+    "payload": "111,000 kg fuel capacity",
+    "weapons": "None (Air-to-Air Refuelling)",
+    "description": "The RAF's sole air-to-air refuelling (AAR) tanker and strategic air transport aircraft."
   }
 ]
