@@ -28,6 +28,14 @@
     "file": "Bell_Boeing_V-22_Osprey_Military_Helicopter"
   },
   {
+    "name": "Boeing 747 8F",
+    "file": "Boeing_747-8F"
+  },
+  {
+    "name": "Boeing 767 300",
+    "file": "Boeing_767-300"
+  },
+  {
     "name": "Boeing AH 64D Apache Combat Helicopter",
     "file": "Boeing_AH-64D_Apache_Combat_Helicopter"
   },
@@ -50,6 +58,10 @@
   {
     "name": "Hornet",
     "file": "Hornet"
+  },
+  {
+    "name": "McDonnell Douglas DC 3",
+    "file": "McDonnell_Douglas_DC-3"
   },
   {
     "name": "Protector",
