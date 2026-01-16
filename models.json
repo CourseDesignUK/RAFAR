@@ -1,118 +1,328 @@
 [
   {
     "name": "Airbus A319",
-    "file": "Airbus_A319"
+    "file": "airbus_a319",
+    "usdz_file": "Airbus_A319",
+    "crew": "2 Pilots",
+    "passengers": "124 - 156",
+    "weight": "75,500 kg (MTOW)",
+    "exits": 6,
+    "description": "A shortened-fuselage member of the Airbus A320 family, designed for short-to-medium-range flights."
   },
   {
     "name": "Airbus A320",
-    "file": "Airbus_A320"
+    "file": "airbus_a320",
+    "usdz_file": "Airbus_A320",
+    "crew": "2 Pilots",
+    "passengers": "150 - 180",
+    "weight": "78,000 kg (MTOW)",
+    "exits": 8,
+    "description": "The foundational model of the A320 family and one of the world's most popular narrow-body airliners."
   },
   {
     "name": "Airbus A321",
-    "file": "Airbus_A321"
+    "file": "airbus_a321",
+    "usdz_file": "Airbus_A321",
+    "crew": "2 Pilots",
+    "passengers": "185 - 236",
+    "weight": "93,500 kg (MTOW)",
+    "exits": 8,
+    "description": "The largest variant of the A320 family, featuring a stretched fuselage for higher passenger capacity."
   },
   {
     "name": "Airbus A380",
-    "file": "Airbus_A380"
+    "file": "airbus_a380",
+    "usdz_file": "Airbus_A380",
+    "crew": "2 Pilots",
+    "passengers": "525 - 853",
+    "weight": "575,000 kg (MTOW)",
+    "exits": 16,
+    "description": "The world's largest passenger airliner, a double-deck, wide-body aircraft designed for long-haul travel."
   },
   {
-    "name": "Airseeker",
-    "file": "Airseeker"
+    "name": "Airseeker R.1 (RC-135W)",
+    "file": "airseeker",
+    "usdz_file": "Airseeker",
+    "crew": "2 Pilots, 1 Navigator, up to 25 Mission Crew",
+    "base": "RAF Waddington",
+    "length": "41.1 m",
+    "weight": "146,000 kg (MTOW)",
+    "payload": "Electronic Surveillance Suite",
+    "weapons": "None (SIGINT platform)",
+    "description": "A signals intelligence aircraft providing near-real-time on-scene intelligence collection and analysis."
   },
   {
     "name": "BAe Hawk",
-    "file": "BAe_Hawk"
+    "file": "bae_hawk",
+    "usdz_file": "BAe_Hawk",
+    "crew": "2 (Instructor and Student)",
+    "base": "RAF Valley / Various",
+    "length": "12.4 m",
+    "weight": "9,100 kg (MTOW)",
+    "payload": "3,000 kg",
+    "weapons": "30mm ADEN cannon pod, AIM-9 Sidewinder",
+    "description": "A British single-engine, jet-powered advanced trainer aircraft also capable of light-attack roles."
   },
   {
     "name": "Beechcraft Super King Air",
-    "file": "Beechcraft_Super_King_Air"
+    "file": "beechcraft_super_king_air",
+    "usdz_file": "Beechcraft_Super_King_Air",
+    "crew": "1-2 Pilots",
+    "passengers": "7 - 11",
+    "weight": "5,670 kg (MTOW)",
+    "exits": 2,
+    "description": "A twin-turboprop utility aircraft used widely for corporate transport and light cargo missions."
   },
   {
-    "name": "Bell Boeing V 22 Osprey Military Helicopter",
-    "file": "Bell_Boeing_V-22_Osprey_Military_Helicopter"
+    "name": "V-22 Osprey",
+    "file": "bell_boeing_v-22_osprey_military_helicopter",
+    "usdz_file": "Bell_Boeing_V-22_Osprey_Military_Helicopter",
+    "crew": "4 (2 Pilots, 2 Flight Engineers)",
+    "base": "RAF Mildenhall (USAF) / Various",
+    "length": "17.5 m",
+    "weight": "27,400 kg (MTOW)",
+    "payload": "9,070 kg (Internal)",
+    "weapons": "M240 machine gun, GAU-17 minigun",
+    "description": "A tiltrotor aircraft with both vertical takeoff (VTOL) and high-speed turboprop cruise capabilities."
   },
   {
-    "name": "Boeing 747 8F",
-    "file": "Boeing_747-8F"
+    "name": "Boeing 747-8F",
+    "file": "boeing_747-8f",
+    "usdz_file": "Boeing_747-8F",
+    "crew": "2 Pilots",
+    "passengers": "0 (Freighter)",
+    "weight": "447,700 kg (MTOW)",
+    "exits": 2,
+    "description": "The largest commercial cargo aircraft produced by Boeing, featuring a iconic nose-loading door."
   },
   {
-    "name": "Boeing 767 300",
-    "file": "Boeing_767-300"
+    "name": "Boeing 767-300",
+    "file": "boeing_767-300",
+    "usdz_file": "Boeing_767-300",
+    "crew": "2 Pilots",
+    "passengers": "210 - 290",
+    "weight": "158,760 kg (MTOW)",
+    "exits": 8,
+    "description": "A wide-body, twin-engine jet airliner designed for medium to long-haul trans-continental routes."
   },
   {
-    "name": "Boeing AH 64D Apache Combat Helicopter",
-    "file": "Boeing_AH-64D_Apache_Combat_Helicopter"
+    "name": "AH-64D Apache",
+    "file": "boeing_ah-64d_apache_combat_helicopter",
+    "usdz_file": "Boeing_AH-64D_Apache_Combat_Helicopter",
+    "crew": "2 (Pilot and Co-pilot/Gunner)",
+    "base": "Wattisham Airfield (Army Air Corps)",
+    "length": "17.7 m",
+    "weight": "10,433 kg (MTOW)",
+    "payload": "1,500 kg",
+    "weapons": "30mm M230 Chain Gun, AGM-114 Hellfire, Hydra 70 Rockets",
+    "description": "An advanced multi-role attack helicopter featuring the Longbow fire-control radar."
   },
   {
-    "name": "Boeing E 7 Wedgetail AEWC",
-    "file": "Boeing_E-7_Wedgetail_AEWC"
+    "name": "Boeing E-7 Wedgetail",
+    "file": "boeing_e-7_wedgetail_aewc",
+    "usdz_file": "Boeing_E-7_Wedgetail_AEWC",
+    "crew": "2 Pilots, 6-10 Mission Crew",
+    "base": "RAF Lossiemouth",
+    "length": "33.6 m",
+    "weight": "77,565 kg (MTOW)",
+    "payload": "MESA Radar Suite",
+    "weapons": "None (AEW&C platform)",
+    "description": "Based on the 737-700, this aircraft provides airborne early warning and control using an active electronically scanned array radar."
   },
   {
-    "name": "Chinook 2",
-    "file": "Chinook-2"
+    "name": "C-130J Super Hercules",
+    "file": "c130j",
+    "usdz_file": "C130J",
+    "crew": "3 (2 Pilots, 1 Loadmaster)",
+    "base": "RAF Brize Norton",
+    "length": "29.8 m",
+    "weight": "70,307 kg (MTOW)",
+    "payload": "19,000 kg",
+    "weapons": "None",
+    "description": "The latest variant of the Hercules, featuring updated engines and a digital flight deck for tactical airlift."
   },
   {
-    "name": "EC135",
-    "file": "EC135"
+    "name": "C-17 Globemaster III",
+    "file": "c17",
+    "usdz_file": "C17",
+    "crew": "3 (2 Pilots, 1 Loadmaster)",
+    "base": "RAF Brize Norton",
+    "length": "53.0 m",
+    "weight": "265,350 kg (MTOW)",
+    "payload": "77,519 kg",
+    "weapons": "None",
+    "description": "A large military transport aircraft capable of strategic delivery of troops and heavy cargo directly to austere airfields."
   },
   {
-    "name": "F35",
-    "file": "F35"
+    "name": "CH-47 Chinook",
+    "file": "chinook-2",
+    "usdz_file": "Chinook-2",
+    "crew": "3-4 (2 Pilots, 1-2 Crewmen)",
+    "base": "RAF Odiham / RAF Benson",
+    "length": "30.1 m",
+    "weight": "22,680 kg (MTOW)",
+    "payload": "10,886 kg",
+    "weapons": "2 x M134 Miniguns, 1 x M60 Machine Gun",
+    "description": "A heavy-lift tandem rotor helicopter used for troop movement, artillery placement, and battlefield resupply."
   },
   {
-    "name": "Hornet",
-    "file": "Hornet"
+    "name": "Airbus H135 (EC135)",
+    "file": "ec135",
+    "usdz_file": "EC135",
+    "crew": "1-2 Pilots",
+    "passengers": "5 - 6",
+    "weight": "2,985 kg (MTOW)",
+    "exits": 4,
+    "description": "A twin-engine light utility helicopter widely used by emergency services and for flight training."
   },
   {
-    "name": "McDonnell Douglas DC 3",
-    "file": "McDonnell_Douglas_DC-3"
+    "name": "F-15 Eagle",
+    "file": "f15",
+    "usdz_file": "f15",
+    "crew": "1 (Pilot)",
+    "base": "RAF Lakenheath (USAF)",
+    "length": "19.4 m",
+    "weight": "30,845 kg (MTOW)",
+    "payload": "7,300 kg",
+    "weapons": "20mm M61 Vulcan, AIM-120 AMRAAM, AIM-9 Sidewinder",
+    "description": "An all-weather, extremely maneuverable tactical fighter designed to gain and maintain air supremacy."
   },
   {
-    "name": "Protector",
-    "file": "Protector"
+    "name": "F-16 Fighting Falcon",
+    "file": "f16",
+    "usdz_file": "f16",
+    "crew": "1 (Pilot)",
+    "base": "Various Global",
+    "length": "15.1 m",
+    "weight": "19,187 kg (MTOW)",
+    "payload": "7,700 kg",
+    "weapons": "20mm M61 Vulcan, AIM-120, Various Air-to-Ground Munitions",
+    "description": "A compact, multi-role fighter aircraft capable of both air-to-air and air-to-surface combat."
   },
   {
-    "name": "Saab JAS 39 Gripen   Fighter Jet   Free",
-    "file": "Saab_JAS_39_Gripen_-_Fighter_Jet_-_Free"
+    "name": "F-22 Raptor",
+    "file": "f22",
+    "usdz_file": "f22",
+    "crew": "1 (Pilot)",
+    "base": "Various USAF",
+    "length": "18.9 m",
+    "weight": "38,000 kg (MTOW)",
+    "payload": "Internal Weapons Bay",
+    "weapons": "20mm M61A2, 6 x AIM-120 AMRAAM, 2 x AIM-9 Sidewinder",
+    "description": "A fifth-generation stealth air superiority fighter incorporating supercruise and thrust vectoring."
   },
   {
-    "name": "Sikorsky UH 60M Blackhawk",
-    "file": "Sikorsky_UH-60M_Blackhawk"
+    "name": "F-35 Lightning II",
+    "file": "f35",
+    "usdz_file": "F35",
+    "crew": "1 (Pilot)",
+    "base": "RAF Marham / HMS Queen Elizabeth",
+    "length": "15.7 m",
+    "weight": "31,750 kg (MTOW)",
+    "payload": "8,160 kg",
+    "weapons": "25mm GAU-22/A, Internal AIM-120, JDAM",
+    "description": "A multi-role stealth fighter optimized for ground attack and air-to-air missions."
   },
   {
-    "name": "Typhoon",
-    "file": "Typhoon"
+    "name": "Grob G 115 Tutor",
+    "file": "grob",
+    "usdz_file": "grob",
+    "crew": "2 (Instructor and Student)",
+    "passengers": "0",
+    "weight": "990 kg (MTOW)",
+    "exits": 1,
+    "description": "A light aircraft made of composite materials, used primarily by the RAF for elementary flying training."
   },
   {
-    "name": "Voyager",
-    "file": "Voyager"
+    "name": "F/A-18 Hornet",
+    "file": "Hornet2",
+    "usdz_file": "Hornet",
+    "crew": "1-2 Pilots",
+    "base": "Various US Navy Carriers",
+    "length": "17.1 m",
+    "weight": "23,541 kg (MTOW)",
+    "payload": "6,215 kg",
+    "weapons": "20mm M61 Vulcan, AIM-9, AIM-120, Harpoon",
+    "description": "A versatile multi-role combat jet designed for both carrier-based and land-based operations."
   },
   {
-    "name": "a400m",
-    "file": "a400m"
+    "name": "McDonnell Douglas DC-3",
+    "file": "mcdonnell_douglas_dc-3",
+    "usdz_file": "McDonnell_Douglas_DC-3",
+    "crew": "2 Pilots",
+    "passengers": "21 - 32",
+    "weight": "11,430 kg (MTOW)",
+    "exits": 2,
+    "description": "A fixed-wing propeller-driven airliner that revolutionized air transport in the 1930s and 1940s."
   },
   {
-    "name": "c130j",
-    "file": "c130j"
+    "name": "Protector RG1",
+    "file": "protector",
+    "usdz_file": "Protector",
+    "crew": "0 (Remotely Piloted)",
+    "base": "RAF Waddington",
+    "length": "11.7 m",
+    "weight": "5,670 kg (MTOW)",
+    "payload": "Paveway IV, Brimstone Missiles",
+    "weapons": "Precision Guided Munitions",
+    "description": "The UK's next-generation Medium Altitude Long Endurance (MALE) Remotely Piloted Aircraft System (RPAS)."
   },
   {
-    "name": "c17",
-    "file": "c17"
+    "name": "Saab JAS 39 Gripen",
+    "file": "saab_jas_39_gripen_-_fighter_jet_-_free-2",
+    "usdz_file": "Saab_JAS_39_Gripen_-_Fighter_Jet_-_Free",
+    "crew": "1 (Pilot)",
+    "base": "Swedish Air Force / Various",
+    "length": "14.1 m",
+    "weight": "14,000 kg (MTOW)",
+    "payload": "5,300 kg",
+    "weapons": "27mm Mauser BK-27, Meteor, IRIS-T",
+    "description": "A lightweight single-engine multirole fighter aircraft manufactured by the Swedish aerospace company Saab."
   },
   {
-    "name": "f15",
-    "file": "f15"
+    "name": "Sikorsky UH-60 Black Hawk",
+    "file": "sikorsky_uh-60m_blackhawk",
+    "usdz_file": "Sikorsky_UH-60M_Blackhawk",
+    "crew": "4 (2 Pilots, 2 Crew Chiefs)",
+    "base": "Various Global",
+    "length": "19.7 m",
+    "weight": "9,979 kg (MTOW)",
+    "payload": "1,200 kg (Internal)",
+    "weapons": "M240H machine guns",
+    "description": "The primary utility helicopter for the US Army, used for air assault, medevac, and transport."
   },
   {
-    "name": "f16",
-    "file": "f16"
+    "name": "Eurofighter Typhoon",
+    "file": "typhoon",
+    "usdz_file": "Typhoon",
+    "crew": "1 (Pilot)",
+    "base": "RAF Coningsby / RAF Lossiemouth",
+    "length": "15.9 m",
+    "weight": "23,500 kg (MTOW)",
+    "payload": "7,500 kg",
+    "weapons": "27mm BK-27, Meteor, ASRAAM, Paveway IV",
+    "description": "A highly agile twin-engine multirole fighter designed for air superiority and ground attack."
   },
   {
-    "name": "f22",
-    "file": "f22"
+    "name": "Voyager (A330 MRTT)",
+    "file": "voyager",
+    "usdz_file": "Voyager",
+    "crew": "2 Pilots, 1 Mission Controller",
+    "passengers": "291",
+    "weight": "233,000 kg (MTOW)",
+    "exits": 8,
+    "description": "A multi-role tanker transport based on the Airbus A330, used by the RAF for aerial refueling and transport."
   },
   {
-    "name": "grob",
-    "file": "grob"
+    "name": "A400M Atlas",
+    "file": "airbusa400m",
+    "usdz_file": "a400m",
+    "crew": "3-4 (2 Pilots, 1-2 Loadmasters)",
+    "base": "RAF Brize Norton",
+    "length": "45.1 m",
+    "weight": "141,000 kg (MTOW)",
+    "payload": "37,000 kg",
+    "weapons": "None",
+    "description": "A multi-national four-engine turboprop military transport aircraft designed as a strategic-tactical airlifter."
   }
 ]
