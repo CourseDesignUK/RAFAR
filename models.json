@@ -156,9 +156,9 @@
     "description": "Tactical AEW&C. MESA radar structure on top affects fuselage integrity and rescue entry. High RF radiation hazard."
   },
   {
-    "name": "C-130J Super Hercules",
+    "name": "C-130k Hercules",
     "type": "military",
-    "file": "c130j",
+    "file": "c130",
     "usdz_file": "C130J",
     "crew": "3 (2 Pilots, 1 Loadmaster)",
     "base": "RAF Brize Norton",
@@ -210,7 +210,7 @@
   {
     "name": "F-15 Eagle",
     "type": "military",
-    "file": "f15",
+    "file": "F15",
     "usdz_file": "f15",
     "crew": "1 (Pilot)",
     "base": "RAF Lakenheath (USAF)",
@@ -223,7 +223,7 @@
   {
     "name": "F-16 Fighting Falcon",
     "type": "military",
-    "file": "f16",
+    "file": "F16",
     "usdz_file": "f16",
     "crew": "1 (Pilot)",
     "base": "Various Global",
@@ -236,7 +236,7 @@
   {
     "name": "F-22 Raptor",
     "type": "military",
-    "file": "f22",
+    "file": "F22",
     "usdz_file": "f22",
     "crew": "1 (Pilot)",
     "base": "Various USAF",
