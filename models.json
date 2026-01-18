@@ -4,52 +4,52 @@
     "type": "civilian",
     "file": "airbus_a319",
     "usdz_file": "Airbus_A319",
-    "arff_cat": "Category 6",
+    "arff_cat": "ICAO Category 6",
+    "max_passengers": "156",
     "material": "Aluminum Alloy / Composite Tail",
     "exits": "6 (2 Fwd, 2 Overwing, 2 Aft)",
     "fuel": "24,210 Liters",
     "batteries": "Forward E/E Bay (Below Cockpit)",
-    "entry_tool": "Standard K-12 Rotary Saws",
-    "description": "ARFF Note: Primarily aluminum construction. Overwing exits are plug-type; ensure slides are disarmed before exterior handle pull."
+    "description": "ICAO RFF Req: Min 7,900L water. Discharge: 3,000 L/min. Overwing exits are plug-type; ensure slides are disarmed before exterior handle pull."
   },
   {
     "name": "Airbus A320",
     "type": "civilian",
     "file": "airbus_a320",
     "usdz_file": "Airbus_A320",
-    "arff_cat": "Category 7",
+    "arff_cat": "ICAO Category 6",
+    "max_passengers": "180",
     "material": "Aluminum Alloy / CFRP Stabilizers",
     "exits": "8 (2 Fwd, 4 Overwing, 2 Aft)",
     "fuel": "27,200 Liters",
     "batteries": "E/E Bay (Avionics Bay Access Fwd)",
-    "entry_tool": "Standard Rescue Tools",
-    "description": "ARFF Note: Fuel tanks in wings and center fuselage. High-pressure oxygen bottles located in forward cargo hold."
+    "description": "ICAO RFF Req: Min 7,900L water. Discharge: 3,000 L/min. High-pressure oxygen bottles located in forward cargo hold."
   },
   {
     "name": "Airbus A321",
     "type": "civilian",
     "file": "airbus_a321",
     "usdz_file": "Airbus_A321",
-    "arff_cat": "Category 7",
+    "arff_cat": "ICAO Category 7",
+    "max_passengers": "220",
     "material": "Aluminum / Composite Components",
     "exits": "8 (4 Main Doors, 4 Emergency Exit Doors)",
     "fuel": "29,680 Liters",
     "batteries": "E/E Bay (Forward)",
-    "entry_tool": "Conventional Cutting Tools",
-    "description": "ARFF Note: Stretched fuselage means increased fuel load in center tanks compared to A320. Main gear is dual-tandem on some versions."
+    "description": "ICAO RFF Req: Min 12,100L water. Discharge: 5,300 L/min. Stretched fuselage hazard for center-tank fires. Main gear is dual-tandem."
   },
   {
     "name": "Airbus A380",
     "type": "civilian",
     "file": "airbus_a380",
     "usdz_file": "Airbus_A380",
-    "arff_cat": "Category 10",
-    "material": "GLARE (Fiber-Metal Laminate) / Composite",
+    "arff_cat": "ICAO Category 10",
+    "max_passengers": "555",
+    "material": "GLARE / Composite",
     "exits": "16 (Main and Upper Deck)",
     "fuel": "320,000 Liters",
     "batteries": "Multiple Li-ion locations in E/E Bays",
-    "entry_tool": "Heavy-duty Diamond Blade Saws",
-    "description": "ARFF Note: Double-deck evacuation risk. GLARE skin is highly fire-resistant but difficult to penetrate. Massive fuel volume hazard."
+    "description": "ICAO RFF Req: Min 32,300L water. Discharge: 11,200 L/min. Double-deck evacuation hazard. GLARE skin is highly fire-resistant."
   },
   {
     "name": "Airseeker R.1 (RC-135W)",
@@ -62,7 +62,7 @@
     "weight": "146,000 kg (MTOW)",
     "payload": "Electronic Surveillance Suite",
     "weapons": "None (SIGINT platform)",
-    "description": "A signals intelligence aircraft providing near-real-time on-scene intelligence collection and analysis."
+    "description": "Tactical Intelligence. Significant cooling requirements for electronics. Avoid boarding while mission systems are active due to RF hazard."
   },
   {
     "name": "BAe Hawk",
@@ -75,20 +75,20 @@
     "weight": "9,100 kg (MTOW)",
     "payload": "3,000 kg",
     "weapons": "30mm ADEN cannon pod, AIM-9 Sidewinder",
-    "description": "Advanced jet trainer; ejector seats (Martin-Baker Mk.10) present a significant hazard to ground rescue crews."
+    "description": "Jet Trainer. HAZARD: Ejector seats (Martin-Baker Mk.10) must be pinned before ground rescue attempts. High-pressure hydraulics."
   },
   {
     "name": "Beechcraft Super King Air",
     "type": "civilian",
     "file": "beechcraft_super_king_air",
     "usdz_file": "Beechcraft_Super_King_Air",
-    "arff_cat": "Category 4",
+    "arff_cat": "ICAO Category 3",
+    "max_passengers": "11",
     "material": "Aluminum Airframe",
     "exits": "2 (Main Entry L-Aft, Emergency R-Mid)",
     "fuel": "2,040 Liters",
     "batteries": "Engine Nacelles / FWD Nose",
-    "entry_tool": "Standard Hand Tools",
-    "description": "ARFF Note: Twin-turboprop. Beware of spinning propellers during approach. Battery master located in cockpit overhead."
+    "description": "ICAO RFF Req: Min 1,200L water. Discharge: 820 L/min. Beware of spinning propellers. Battery master located in cockpit overhead."
   },
   {
     "name": "V-22 Osprey",
@@ -101,33 +101,33 @@
     "weight": "27,400 kg (MTOW)",
     "payload": "9,070 kg (Internal)",
     "weapons": "M240 machine gun, GAU-17 minigun",
-    "description": "Tiltrotor aircraft. Tactical note: High downwash during VTOL. Engine nacelles contain high-temperature components."
+    "description": "Tiltrotor. High downwash during VTOL. Engine nacelles contain high-temperature components. Prop-rotors present severe approach hazard."
   },
   {
     "name": "Boeing 747-8F",
     "type": "civilian",
     "file": "boeing_747-8f",
     "usdz_file": "Boeing_747-8F",
-    "arff_cat": "Category 10",
+    "arff_cat": "ICAO Category 10",
+    "max_passengers": "6 (Crew)",
     "material": "Aluminum / CFRP Flaps",
     "exits": "2 (Upper Deck) / Nose Cargo Door",
     "fuel": "226,118 Liters",
     "batteries": "Main E/E Bay (FWD Lower)",
-    "entry_tool": "Rotary Power Saws",
-    "description": "ARFF Note: Dedicated freighter. Main deck has no windows for entry. Nose-loading door may be jammed in nose-gear collapse."
+    "description": "ICAO RFF Req: Min 32,300L water. Dedicated freighter. Primary rescue entry is via the upper deck. No windows on main deck."
   },
   {
     "name": "Boeing 767-300",
     "type": "civilian",
     "file": "boeing_767-300",
     "usdz_file": "Boeing_767-300",
-    "arff_cat": "Category 8",
+    "arff_cat": "ICAO Category 8",
+    "max_passengers": "261",
     "material": "Aluminum Airframe",
     "exits": "8 (Doors and Overwing Hatches)",
     "fuel": "91,000 Liters",
     "batteries": "Lower 41 (Avionics) Bay",
-    "entry_tool": "Standard Saws",
-    "description": "ARFF Note: Twin-aisle widebody. Evacuation slides are dual-lane. Overwing exits are unhinged (removable) types."
+    "description": "ICAO RFF Req: Min 18,200L water. Discharge: 7,200 L/min. Twin-aisle widebody. Evacuation slides are dual-lane."
   },
   {
     "name": "AH-64D Apache",
@@ -140,7 +140,7 @@
     "weight": "10,433 kg (MTOW)",
     "payload": "1,500 kg",
     "weapons": "30mm M230 Chain Gun, AGM-114 Hellfire",
-    "description": "Attack helicopter. Hazard: Ordnance may be live. Canopy jettison system uses explosive charges."
+    "description": "Attack Helicopter. HAZARD: Live ordnance/rockets. Canopy jettison uses explosive charges. High-intensity Longbow radar."
   },
   {
     "name": "Boeing E-7 Wedgetail",
@@ -153,7 +153,7 @@
     "weight": "77,565 kg (MTOW)",
     "payload": "MESA Radar Suite",
     "weapons": "None",
-    "description": "Based on 737-700. MESA radar structure on top of fuselage affects center of gravity and rescue entry points."
+    "description": "Tactical AEW&C. MESA radar structure on top affects fuselage integrity and rescue entry. High RF radiation hazard."
   },
   {
     "name": "C-130J Super Hercules",
@@ -166,7 +166,7 @@
     "weight": "70,307 kg (MTOW)",
     "payload": "19,000 kg",
     "weapons": "None",
-    "description": "Tactical airlifter. High-wing design allows for low cargo ramp access. Defensive flare dispensers are a pyrotechnic hazard."
+    "description": "Tactical Airlift. High-wing allows low cargo ramp access. Defensive flare dispensers are a pyrotechnic hazard."
   },
   {
     "name": "C-17 Globemaster III",
@@ -179,33 +179,33 @@
     "weight": "265,350 kg (MTOW)",
     "payload": "77,519 kg",
     "weapons": "None",
-    "description": "Strategic transport. APU is located in the right wheel well sponson. Oxygen bottles in the forward left fuselage."
+    "description": "Strategic Transport. APU in right wheel well sponson. High-pressure oxygen bottles in forward left fuselage. Rear ramp is primary egress."
   },
   {
     "name": "CH-47 Chinook",
     "type": "military",
     "file": "chinook-2",
     "usdz_file": "Chinook-2",
-    "crew": "3-4 (2 Pilots, 1-2 Crewmen)",
+    "crew": "3-4 (2 Pilots, 2 Crew)",
     "base": "RAF Odiham / RAF Benson",
     "length": "30.1 m",
     "weight": "22,680 kg (MTOW)",
     "payload": "10,886 kg",
     "weapons": "M134 Miniguns, M60 Machine Gun",
-    "description": "Tandem rotor helicopter. Extensive fuel load in side sponsons. Beware of low-swinging rotor blades during emergency shut-down."
+    "description": "Tandem Rotor. Fuel in side sponsons. Beware of low-swinging blades during shutdown. Engine fire-suppression access on top deck."
   },
   {
     "name": "Airbus H135 (EC135)",
     "type": "civilian",
     "file": "ec135",
     "usdz_file": "EC135",
-    "arff_cat": "Category H2",
+    "arff_cat": "ICAO Cat H2",
+    "max_passengers": "7",
     "material": "Composite / Aluminum",
     "exits": "4 (2 Fwd, 2 Rear Clamshell)",
     "fuel": "710 Liters",
     "batteries": "Aft Fuselage / Tail Boom",
-    "entry_tool": "Hand Saws / Reciprocating Saws",
-    "description": "ARFF Note: Light utility helicopter. Clamshell rear doors allow stretcher access. Fenestron tail rotor is shrouded for safety."
+    "description": "ICAO Heliport Cat H2. Min 1,000L water req. Rear clamshell doors allow stretcher access. Fenestron tail is shrouded."
   },
   {
     "name": "F-15 Eagle",
@@ -218,7 +218,7 @@
     "weight": "30,845 kg (MTOW)",
     "payload": "7,300 kg",
     "weapons": "20mm Vulcan, AIM-120, AIM-9",
-    "description": "Air superiority fighter. Hazards: Hydrazine (on some models/emergency power), live missiles, and high-pressure hydraulics."
+    "description": "Air Superiority. Hazards: Hydrazine (toxic), live missiles, and high-pressure hydraulics. Cockpit jettison is armed."
   },
   {
     "name": "F-16 Fighting Falcon",
@@ -231,7 +231,7 @@
     "weight": "19,187 kg (MTOW)",
     "payload": "7,700 kg",
     "weapons": "20mm Vulcan, AIM-120",
-    "description": "Multi-role fighter. Critical: EPU uses Hydrazine (highly toxic). Do not approach if 'H' light is visible or vapor is detected."
+    "description": "Multi-role. DANGER: EPU uses Hydrazine (highly toxic). Do not approach if 'H' light is visible. Canopy release on port side."
   },
   {
     "name": "F-22 Raptor",
@@ -244,7 +244,7 @@
     "weight": "38,000 kg (MTOW)",
     "payload": "Internal Weapons Bay",
     "weapons": "20mm M61A2, AIM-120, AIM-9",
-    "description": "Stealth fighter. RAM (Radar Absorbent Material) coating releases toxic particles when burning. Full PPE and SCBA required."
+    "description": "Stealth Fighter. Hazards: RAM (Radar Absorbent Material) coating is toxic when burning. SCBA/Full PPE required for response."
   },
   {
     "name": "F-35 Lightning II",
@@ -257,7 +257,7 @@
     "weight": "31,750 kg (MTOW)",
     "payload": "8,160 kg",
     "weapons": "25mm GAU-22/A, Internal JDAM",
-    "description": "5th Gen Stealth. Composite material risk (CFRP). External canopy release is located on the left-hand side under a panel."
+    "description": "5th Gen Stealth. Composite material risk (CFRP). Canopy release located on left-hand side under panel. Internal ordnance hazard."
   },
   {
     "name": "Grob G 115 Tutor",
@@ -270,7 +270,7 @@
     "weight": "990 kg (MTOW)",
     "payload": "N/A",
     "weapons": "None",
-    "description": "Elementary trainer. Fully composite construction (Glass Fiber Reinforced Plastic). Fire will cause rapid structural failure."
+    "description": "Elementary trainer. Fully composite construction (GFRP). Fire causes rapid structural collapse. No ejector seats."
   },
   {
     "name": "F/A-18 Hornet",
@@ -283,20 +283,20 @@
     "weight": "23,541 kg (MTOW)",
     "payload": "6,215 kg",
     "weapons": "20mm Vulcan, Harpoon",
-    "description": "Carrier fighter. Arresting hook and catapult hardware hazard. High concentration of magnesium in landing gear components."
+    "description": "Carrier Fighter. Hazard: Arresting hook hardware, live wing-tip ordnance. Magnesium landing gear components (flammable)."
   },
   {
     "name": "McDonnell Douglas DC-3",
     "type": "civilian",
     "file": "mcdonnell_douglas_dc-3",
     "usdz_file": "McDonnell_Douglas_DC-3",
-    "arff_cat": "Category 4",
+    "arff_cat": "ICAO Category 4",
+    "max_passengers": "32",
     "material": "Aluminum (Stressed Skin)",
     "exits": "2 (Main Port, Emergency Starboard)",
     "fuel": "3,040 Liters",
     "batteries": "Nose Section / Aft Cockpit",
-    "entry_tool": "Hand Axe / Reciprocating Saw",
-    "description": "ARFF Note: Vintage tail-dragger. Risk of fuel spill from carburetors on impact. No modern composite hazards."
+    "description": "ICAO RFF Req: Min 2,400L water. Vintage airframe. Fuel leak risk from carburetors on impact. Propeller hazard."
   },
   {
     "name": "Protector RG1",
@@ -309,7 +309,7 @@
     "weight": "5,670 kg (MTOW)",
     "payload": "Paveway IV, Brimstone",
     "weapons": "Precision Munitions",
-    "description": "MALE RPAS. Tactical: Control link must be severed if engine is running and unresponsive. Satellite dish is high-intensity RF."
+    "description": "MALE RPAS. Hazards: High-intensity RF satellite dish. Precision ordnance. Sever engine links if responding while engine runs."
   },
   {
     "name": "Saab JAS 39 Gripen",
@@ -322,7 +322,7 @@
     "weight": "14,000 kg (MTOW)",
     "payload": "5,300 kg",
     "weapons": "27mm Mauser, Meteor",
-    "description": "Light multi-role fighter. Delta-canard configuration. High use of composites in the wing and fuselage skin."
+    "description": "Delta-canard Fighter. Large percentage of composite skin. Hazards include cockpit ejection and high-speed turbine components."
   },
   {
     "name": "Sikorsky UH-60 Black Hawk",
@@ -335,7 +335,7 @@
     "weight": "9,979 kg (MTOW)",
     "payload": "1,200 kg",
     "weapons": "M240H machine guns",
-    "description": "Utility helicopter. Sliding cabin doors. Tail boom contains drive shaft; avoid cutting through top center of boom."
+    "description": "Utility Helicopter. Sliding cabin doors. Tail boom contains drive shaft. Hazards: External fuel tanks (ESSS) and armor plates."
   },
   {
     "name": "Eurofighter Typhoon",
@@ -348,7 +348,7 @@
     "weight": "23,500 kg (MTOW)",
     "payload": "7,500 kg",
     "weapons": "27mm BK-27, Meteor, Paveway IV",
-    "description": "Tactical Swing-role. Hazards: Carbon fiber dust, high-pressure liquid oxygen (LOX), and wing-mounted ordnance."
+    "description": "Swing-role. Hazards: Carbon fiber dust, high-pressure LOX, and ordnance. Cockpit canopy release is accessible from port side."
   },
   {
     "name": "Voyager (A330 MRTT)",
@@ -360,20 +360,20 @@
     "length": "58.8 m",
     "weight": "233,000 kg (MTOW)",
     "payload": "111,000 kg Fuel",
-    "weapons": "None (Defensive Aids Suite)",
-    "description": "Strategic Tanker. Tactical: Carries massive fuel load in wings and center tanks. Mission controllers operate refueling pods on wings."
+    "weapons": "None",
+    "description": "Strategic Tanker. Tactical: Massive center/wing fuel load. Mission consoles on flight deck. Refueling pods on wings."
   },
   {
     "name": "A400M Atlas",
     "type": "military",
     "file": "airbusa400m",
     "usdz_file": "a400m",
-    "crew": "3-4 (2 Pilots, 1-2 Loadmasters)",
+    "crew": "3-4 (2 Pilots, 2 Loadmasters)",
     "base": "RAF Brize Norton",
     "length": "45.1 m",
     "weight": "141,000 kg (MTOW)",
     "payload": "37,000 kg",
     "weapons": "None",
-    "description": "Strategic-tactical airlifter. Fly-by-wire controls. Propellers are composite and counter-rotating (down-between-engines)."
+    "description": "Tactical Airlifter. Counter-rotating composite propellers. Fly-by-wire controls. High-capacity cargo ramp."
   }
 ]
