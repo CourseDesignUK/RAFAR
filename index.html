@@ -25,7 +25,7 @@
             font-family: 'Segoe UI', Roboto, sans-serif;
         }
 
-        /* --- RADAR START SCREEN (FIXED SWEEP) --- */
+        /* --- RADAR START SCREEN (CENTERED SWEEP) --- */
         #start-screen {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: radial-gradient(circle at center, #1a202c 0%, #0d1117 100%);
@@ -35,30 +35,30 @@
         }
 
         .radar {
-            position: relative; width: 350px; height: 350px;
+            position: relative; width: 320px; height: 320px;
             border: 2px solid rgba(99, 179, 237, 0.15); border-radius: 50%;
-            background: repeating-radial-gradient(circle, transparent, transparent 40px, rgba(99, 179, 237, 0.05) 41px);
+            background: repeating-radial-gradient(circle, transparent, transparent 39px, rgba(99, 179, 237, 0.05) 40px);
         }
 
-        /* The sweep: Pins to exact center */
+        /* The sweep: perfectly centered using transform-origin */
         .radar::after {
             content: ""; position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
             background: conic-gradient(from 0deg, var(--accent) 0deg, transparent 90deg);
             border-radius: 50%;
-            mask: radial-gradient(circle at center, black 0%, transparent 100%);
-            -webkit-mask: radial-gradient(circle at center, black 0%, transparent 100%);
+            mask: radial-gradient(circle at center, black 0%, transparent 70%);
+            -webkit-mask: radial-gradient(circle at center, black 0%, transparent 70%);
             animation: sweep 4s linear infinite;
         }
 
         @keyframes sweep { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 
         .commence-btn {
-            margin-top: 40px; background: transparent; color: white; border: 1px solid white;
-            padding: 12px 35px; border-radius: 4px; letter-spacing: 3px;
+            margin-top: 50px; background: transparent; color: white; border: 1px solid white;
+            padding: 12px 40px; border-radius: 4px; letter-spacing: 4px;
             font-weight: bold; cursor: pointer; transition: 0.3s; z-index: 1001;
         }
-        .commence-btn:hover { background: white; color: black; }
+        .commence-btn:hover { background: white; color: black; box-shadow: 0 0 20px rgba(255,255,255,0.2); }
 
         /* --- UI OVERLAYS --- */
         .app-overlay {
@@ -113,14 +113,14 @@
     <div id="start-screen">
         <div class="radar"></div>
         <div style="text-align:center; z-index:1001;">
-            <h1 style="color:white; letter-spacing:8px; margin-top: 20px; font-weight:200;">AERO ASSET VIEWER</h1>
-            <button class="commence-btn" onclick="enterApp()">INITIALIZE SYSTEM</button>
+            <h1 style="color:white; letter-spacing:8px; margin-top: 25px; font-weight:200;">AERO ASSET VIEWER</h1>
+            <button class="commence-btn" onclick="enterApp()">START VIEWER</button>
         </div>
     </div>
 
     <div id="details-panel" class="details-panel">
         <div class="details-inner">
-            <div id="asset-classification" class="spec-label">Classification: Syncing...</div>
+            <div id="asset-classification" class="spec-label">Syncing...</div>
             <h2 id="asset-title" style="margin: 10px 0; font-size: 26px; text-transform: uppercase; letter-spacing: 1px;">Asset</h2>
             <div id="spec-container" class="spec-grid"></div>
             <button onclick="toggleDetails()" style="margin-top: 40px; background: transparent; border: 1px solid white; color: white; padding: 12px; width: 100%; cursor: pointer; font-size: 11px; font-weight: 800; text-transform: uppercase;">Close Factsheet</button>
@@ -130,15 +130,15 @@
     <div class="app-overlay">
         <div class="control-panel">
             <div style="flex-grow: 1; overflow: hidden; padding-right: 15px;">
-                <span class="panel-label">Selected Platform</span>
-                <select id="model-select"><option>Loading...</option></select>
+                <span class="panel-label">Primary Asset</span>
+                <select id="model-select"><option>Loading Inventory...</option></select>
             </div>
-            <button class="factsheet-btn" onclick="toggleDetails()">Specs</button>
+            <button class="factsheet-btn" onclick="toggleDetails()">Factsheet</button>
         </div>
     </div>
 
     <model-viewer id="main-viewer" ar ar-modes="webxr scene-viewer quick-look" camera-controls auto-rotate shadow-intensity="2" environment-image="neutral">
-        <button slot="ar-button" id="ar-button">View in AR</button>
+        <button slot="ar-button" id="ar-button">Deploy to Real Scale (AR)</button>
     </model-viewer>
 
 <script>
@@ -161,24 +161,25 @@
             modelData = await response.json();
             modelSelect.innerHTML = ''; 
             
-            const milGroup = document.createElement('optgroup'); milGroup.label = "MILITARY / TACTICAL";
+            // Reordered: Civilian assets now prioritized in the DOM
             const civGroup = document.createElement('optgroup'); civGroup.label = "CIVILIAN / ICAO ARFF";
+            const milGroup = document.createElement('optgroup'); milGroup.label = "MILITARY / TACTICAL";
 
             modelData.forEach((m, index) => {
                 const opt = document.createElement('option');
                 opt.value = index;
                 opt.textContent = m.name;
-                m.type === 'military' ? milGroup.appendChild(opt) : civGroup.appendChild(opt);
+                m.type === 'civilian' ? civGroup.appendChild(opt) : milGroup.appendChild(opt);
             });
             
-            modelSelect.appendChild(milGroup);
             modelSelect.appendChild(civGroup);
+            modelSelect.appendChild(milGroup);
 
-            // SYNC ENSURED: Force select first item and update
+            // Force initial selection to first civilian item and trigger model load
             modelSelect.selectedIndex = 0;
             updateAsset(0);
 
-        } catch (e) { console.error("Data fail", e); }
+        } catch (e) { console.error("Initialization Failed", e); }
     }
 
     function updateAsset(index) {
@@ -189,16 +190,18 @@
         const classif = document.getElementById('asset-classification');
         
         viewer.src = `models/${asset.file}.glb`;
+        if (asset.usdz_file) viewer.setAttribute('ios-src', `models/${asset.usdz_file}.usdz`);
+        
         document.getElementById('asset-title').textContent = asset.name;
 
         if (asset.type === 'military') {
-            classif.textContent = "Classification: Open Source";
+            classif.textContent = "Classification: Tactical / Combat Ready";
             classif.className = "spec-label status-mil";
             container.innerHTML = `
                 <div class="spec-item"><span class="spec-label">Crew</span><span class="spec-value">${asset.crew}</span></div>
                 <div class="spec-item"><span class="spec-label">Home Base</span><span class="spec-value">${asset.base}</span></div>
-                <div class="spec-item"><span class="spec-label">Max Takeoff Wt</span><span class="spec-value">${asset.weight}</span></div>
                 <div class="spec-item"><span class="spec-label">Length</span><span class="spec-value">${asset.length || 'N/A'}</span></div>
+                <div class="spec-item"><span class="spec-label">Max Takeoff Wt</span><span class="spec-value">${asset.weight}</span></div>
                 <div class="spec-item full-width"><span class="spec-label">Tactical Armament</span><span class="spec-value">${asset.weapons}</span></div>
                 <div class="spec-item full-width"><span class="spec-label">Mission Briefing</span><span class="spec-value" style="font-family:inherit; line-height:1.4;">${asset.description}</span></div>
             `;
