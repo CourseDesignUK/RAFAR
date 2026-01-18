@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>AERO ASSET VIEWER - DUAL MODE</title>
+    <title>AERO ASSET VIEWER - ICAO TACTICAL</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    
+    <meta name="theme-color" content="#0d1117">
+
     <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
     
     <style>
@@ -12,10 +13,10 @@
             --app-bg: #0d1117;
             --raf-blue: #5d7a8c;
             --raf-red: #c21807;
-            --civ-gold: #d4af37;
+            --icao-gold: #d4af37;
+            --accent: #63b3ed;
             --glass: rgba(255, 255, 255, 0.05);
             --glass-border: rgba(255, 255, 255, 0.1);
-            --accent: #63b3ed;
         }
 
         body, html {
@@ -24,7 +25,6 @@
             font-family: 'Segoe UI', Roboto, sans-serif;
         }
 
-        /* --- START SCREEN --- */
         #start-screen {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: radial-gradient(circle at center, #1a202c 0%, #0d1117 100%);
@@ -34,7 +34,7 @@
         }
 
         .radar {
-            position: absolute; width: 400px; height: 400px;
+            position: absolute; width: 350px; height: 350px;
             border: 1px solid rgba(99, 179, 237, 0.2); border-radius: 50%;
         }
         .radar::after {
@@ -45,29 +45,24 @@
         }
         @keyframes sweep { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 
-        .start-ui { text-align: center; z-index: 1001; }
         .commence-btn {
             background: transparent; color: white; border: 1px solid white;
-            padding: 12px 30px; border-radius: 4px; letter-spacing: 2px;
-            cursor: pointer; transition: all 0.3s;
+            padding: 12px 35px; border-radius: 4px; letter-spacing: 3px;
+            font-weight: bold; cursor: pointer; transition: 0.3s; z-index: 1001;
         }
         .commence-btn:hover { background: white; color: black; }
 
-        /* --- VIEWER --- */
-        model-viewer { width: 100vw; height: 100vh; background-color: #1a202c; }
-
-        /* --- UI OVERLAYS --- */
         .app-overlay {
             position: absolute; top: 20px; left: 50%; transform: translateX(-50%);
             z-index: 100; width: 90%; max-width: 500px;
         }
         .control-panel {
-            background: var(--glass); backdrop-filter: blur(15px);
-            border: 1px solid var(--glass-border); padding: 10px 15px;
-            border-radius: 12px; display: flex; justify-content: space-between; align-items: center;
+            background: var(--glass); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border); padding: 12px 18px;
+            border-radius: 14px; display: flex; justify-content: space-between; align-items: center;
         }
-        .panel-label { font-size: 9px; color: var(--accent); text-transform: uppercase; font-weight: 800; }
-        select { background: transparent; color: white; border: none; font-weight: bold; width: 100%; }
+        .panel-label { font-size: 9px; color: var(--accent); text-transform: uppercase; font-weight: 800; letter-spacing: 1px; }
+        select { background: transparent; color: white; border: none; font-weight: bold; width: 100%; cursor: pointer; font-size: 14px; outline: none; }
 
         .factsheet-btn {
             background: var(--raf-blue); color: white; border: none;
@@ -75,7 +70,6 @@
             cursor: pointer; text-transform: uppercase;
         }
 
-        /* --- DYNAMIC FACTSHEET --- */
         .details-panel {
             position: absolute; top: 0; right: -100%; width: 100%; max-width: 400px; height: 100%;
             background: rgba(10, 15, 25, 0.98); backdrop-filter: blur(25px);
@@ -85,57 +79,59 @@
         .details-panel.active { right: 0; }
         .details-inner { padding: 40px 30px; }
 
-        .spec-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 20px; }
+        .spec-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 25px; }
         .spec-item { border-top: 1px solid var(--glass-border); padding: 12px 0; }
         .full-width { grid-column: span 2; }
         .spec-label { font-size: 9px; color: var(--accent); text-transform: uppercase; font-weight: 800; }
-        .spec-value { display: block; font-size: 13px; margin-top: 4px; font-family: monospace; }
+        .spec-value { display: block; font-size: 13px; margin-top: 4px; font-family: 'Courier New', monospace; color: #e2e8f0; }
+
+        model-viewer { width: 100vw; height: 100vh; background-color: #1a202c; }
 
         #ar-button {
             position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%);
             background: var(--raf-red); color: white; border: none;
             padding: 14px 28px; border-radius: 50px; font-weight: 700; cursor: pointer;
+            z-index: 50; text-transform: uppercase; font-size: 12px;
         }
 
-        /* Status Colors */
         .status-mil { color: var(--raf-red) !important; }
-        .status-civ { color: var(--civ-gold) !important; }
+        .status-civ { color: var(--icao-gold) !important; }
     </style>
 </head>
 <body>
 
     <div id="start-screen">
         <div class="radar"></div>
-        <div class="start-ui">
-            <h1 style="color:white; letter-spacing:5px;">AERO VIEW</h1>
-            <button class="commence-btn" onclick="enterApp()">INITIALIZE</button>
+        <div style="text-align:center; z-index:1001;">
+            <h1 style="color:white; letter-spacing:8px; margin-bottom:40px; font-weight:200;">AERO ASSET VIEWER</h1>
+            <button class="commence-btn" onclick="enterApp()">INITIALIZE SYSTEM</button>
         </div>
     </div>
 
     <div id="details-panel" class="details-panel">
         <div class="details-inner">
-            <div id="asset-classification" class="spec-label">Classification: Open Source</div>
-            <h2 id="asset-title" style="margin: 10px 0; font-size: 24px; text-transform: uppercase;">Asset</h2>
+            <div id="asset-classification" class="spec-label">Classification: Syncing...</div>
+            <h2 id="asset-title" style="margin: 10px 0; font-size: 26px; text-transform: uppercase; letter-spacing: 1px;">Asset</h2>
             
             <div id="spec-container" class="spec-grid">
                 </div>
             
-            <button onclick="toggleDetails()" style="margin-top: 30px; background: none; border: 1px solid white; color: white; padding: 12px; width: 100%; cursor: pointer; font-size: 11px;">CLOSE</button>
+            <button onclick="toggleDetails()" style="margin-top: 40px; background: transparent; border: 1px solid white; color: white; padding: 12px; width: 100%; cursor: pointer; font-size: 11px; font-weight: 800; text-transform: uppercase;">Close Factsheet</button>
         </div>
     </div>
 
     <div class="app-overlay">
         <div class="control-panel">
-            <div style="flex-grow: 1;">
-                <span class="panel-label">Asset Selection</span>
+            <div style="flex-grow: 1; overflow: hidden; padding-right: 15px;">
+                <span class="panel-label">Selected Platform</span>
                 <select id="model-select"><option>Loading...</option></select>
             </div>
-            <button class="factsheet-btn" onclick="toggleDetails()">Factsheet</button>
+            <button class="factsheet-btn" onclick="toggleDetails()">Specs</button>
         </div>
     </div>
 
-    <model-viewer id="main-viewer" ar camera-controls auto-rotate shadow-intensity="2">
-        <button slot="ar-button" id="ar-button">DEPLOY AR</button>
+    <model-viewer id="main-viewer" ar ar-modes="webxr scene-viewer quick-look" camera-controls auto-rotate shadow-intensity="2" environment-image="neutral">
+        <button slot="ar-button" id="ar-button">Deploy to Real Scale (AR)</button>
     </model-viewer>
 
 <script>
@@ -158,9 +154,8 @@
             modelData = await response.json();
             modelSelect.innerHTML = ''; 
             
-            // Separate groups in dropdown
-            const milGroup = document.createElement('optgroup'); milGroup.label = "MILITARY ASSETS";
-            const civGroup = document.createElement('optgroup'); civGroup.label = "CIVILIAN ASSETS";
+            const milGroup = document.createElement('optgroup'); milGroup.label = "MILITARY / TACTICAL";
+            const civGroup = document.createElement('optgroup'); civGroup.label = "CIVILIAN / ICAO ARFF";
 
             modelData.forEach((m, index) => {
                 const opt = document.createElement('option');
@@ -172,7 +167,7 @@
             modelSelect.appendChild(milGroup);
             modelSelect.appendChild(civGroup);
             updateAsset(0);
-        } catch (e) { console.error("Load failed", e); }
+        } catch (e) { console.error("Data fail", e); }
     }
 
     function updateAsset(index) {
@@ -183,28 +178,27 @@
         viewer.src = `models/${asset.file}.glb`;
         document.getElementById('asset-title').textContent = asset.name;
 
-        // DYNAMIC CONTENT LOGIC
         if (asset.type === 'military') {
-            classif.textContent = "Classification: Tactical / Combat";
+            classif.textContent = "Classification: Tactical / Combat Ready";
             classif.className = "spec-label status-mil";
             container.innerHTML = `
                 <div class="spec-item"><span class="spec-label">Crew</span><span class="spec-value">${asset.crew}</span></div>
                 <div class="spec-item"><span class="spec-label">Home Base</span><span class="spec-value">${asset.base}</span></div>
-                <div class="spec-item"><span class="spec-label">Length</span><span class="spec-value">${asset.length}</span></div>
-                <div class="spec-item"><span class="spec-label">Max Weight</span><span class="spec-value">${asset.weight}</span></div>
-                <div class="spec-item full-width"><span class="spec-label">Primary Armament</span><span class="spec-value">${asset.weapons}</span></div>
-                <div class="spec-item full-width"><span class="spec-label">Mission Profile</span><span class="spec-value">${asset.description}</span></div>
+                <div class="spec-item"><span class="spec-label">Length</span><span class="spec-value">${asset.length || 'N/A'}</span></div>
+                <div class="spec-item"><span class="spec-label">Max Takeoff Wt</span><span class="spec-value">${asset.weight}</span></div>
+                <div class="spec-item full-width"><span class="spec-label">Tactical Armament</span><span class="spec-value">${asset.weapons}</span></div>
+                <div class="spec-item full-width"><span class="spec-label">Mission Briefing</span><span class="spec-value" style="font-family:inherit; line-height:1.4;">${asset.description}</span></div>
             `;
         } else {
-            classif.textContent = "Classification: ARFF Response Data";
+            classif.textContent = "Classification: ICAO ARFF Response Data";
             classif.className = "spec-label status-civ";
             container.innerHTML = `
-                <div class="spec-item"><span class="spec-label">ARFF Category</span><span class="spec-value">${asset.arff_cat}</span></div>
-                <div class="spec-item"><span class="spec-label">Fuselage Skin</span><span class="spec-value">${asset.material}</span></div>
+                <div class="spec-item"><span class="spec-label">RFF Category</span><span class="spec-value">${asset.arff_cat}</span></div>
+                <div class="spec-item"><span class="spec-label">Max Passengers</span><span class="spec-value">${asset.max_passengers}</span></div>
                 <div class="spec-item"><span class="spec-label">Rescue Exits</span><span class="spec-value">${asset.exits}</span></div>
                 <div class="spec-item"><span class="spec-label">Fuel Capacity</span><span class="spec-value">${asset.fuel}</span></div>
-                <div class="spec-item full-width"><span class="spec-label">Battery Hazards</span><span class="spec-value">${asset.batteries}</span></div>
-                <div class="spec-item full-width"><span class="spec-label">Firefighting Note</span><span class="spec-value">${asset.description}</span></div>
+                <div class="spec-item full-width"><span class="spec-label">Rescue Hazards (Batteries)</span><span class="spec-value">${asset.batteries}</span></div>
+                <div class="spec-item full-width"><span class="spec-label">Firefighting & Egress Note</span><span class="spec-value" style="font-family:inherit; line-height:1.4;">${asset.description}</span></div>
             `;
         }
     }
