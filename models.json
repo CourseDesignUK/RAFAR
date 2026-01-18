@@ -1,49 +1,62 @@
 [
   {
     "name": "Airbus A319",
+    "type": "civilian",
     "file": "airbus_a319",
     "usdz_file": "Airbus_A319",
-    "crew": "2 Pilots",
-    "passengers": "124 - 156",
-    "weight": "75,500 kg (MTOW)",
-    "exits": 6,
-    "description": "A shortened-fuselage member of the Airbus A320 family, designed for short-to-medium-range flights."
+    "arff_cat": "Category 6",
+    "material": "Aluminum Alloy / Composite Tail",
+    "exits": "6 (2 Fwd, 2 Overwing, 2 Aft)",
+    "fuel": "24,210 Liters",
+    "batteries": "Forward E/E Bay (Below Cockpit)",
+    "entry_tool": "Standard K-12 Rotary Saws",
+    "description": "ARFF Note: Primarily aluminum construction. Overwing exits are plug-type; ensure slides are disarmed before exterior handle pull."
   },
   {
     "name": "Airbus A320",
+    "type": "civilian",
     "file": "airbus_a320",
     "usdz_file": "Airbus_A320",
-    "crew": "2 Pilots",
-    "passengers": "150 - 180",
-    "weight": "78,000 kg (MTOW)",
-    "exits": 8,
-    "description": "The foundational model of the A320 family and one of the world's most popular narrow-body airliners."
+    "arff_cat": "Category 7",
+    "material": "Aluminum Alloy / CFRP Stabilizers",
+    "exits": "8 (2 Fwd, 4 Overwing, 2 Aft)",
+    "fuel": "27,200 Liters",
+    "batteries": "E/E Bay (Avionics Bay Access Fwd)",
+    "entry_tool": "Standard Rescue Tools",
+    "description": "ARFF Note: Fuel tanks in wings and center fuselage. High-pressure oxygen bottles located in forward cargo hold."
   },
   {
     "name": "Airbus A321",
+    "type": "civilian",
     "file": "airbus_a321",
     "usdz_file": "Airbus_A321",
-    "crew": "2 Pilots",
-    "passengers": "185 - 236",
-    "weight": "93,500 kg (MTOW)",
-    "exits": 8,
-    "description": "The largest variant of the A320 family, featuring a stretched fuselage for higher passenger capacity."
+    "arff_cat": "Category 7",
+    "material": "Aluminum / Composite Components",
+    "exits": "8 (4 Main Doors, 4 Emergency Exit Doors)",
+    "fuel": "29,680 Liters",
+    "batteries": "E/E Bay (Forward)",
+    "entry_tool": "Conventional Cutting Tools",
+    "description": "ARFF Note: Stretched fuselage means increased fuel load in center tanks compared to A320. Main gear is dual-tandem on some versions."
   },
   {
     "name": "Airbus A380",
+    "type": "civilian",
     "file": "airbus_a380",
     "usdz_file": "Airbus_A380",
-    "crew": "2 Pilots",
-    "passengers": "525 - 853",
-    "weight": "575,000 kg (MTOW)",
-    "exits": 16,
-    "description": "The world's largest passenger airliner, a double-deck, wide-body aircraft designed for long-haul travel."
+    "arff_cat": "Category 10",
+    "material": "GLARE (Fiber-Metal Laminate) / Composite",
+    "exits": "16 (Main and Upper Deck)",
+    "fuel": "320,000 Liters",
+    "batteries": "Multiple Li-ion locations in E/E Bays",
+    "entry_tool": "Heavy-duty Diamond Blade Saws",
+    "description": "ARFF Note: Double-deck evacuation risk. GLARE skin is highly fire-resistant but difficult to penetrate. Massive fuel volume hazard."
   },
   {
     "name": "Airseeker R.1 (RC-135W)",
+    "type": "military",
     "file": "airseeker",
     "usdz_file": "Airseeker",
-    "crew": "2 Pilots, 1 Navigator, up to 25 Mission Crew",
+    "crew": "2 Pilots, 1 Navigator, 25 Mission Crew",
     "base": "RAF Waddington",
     "length": "41.1 m",
     "weight": "146,000 kg (MTOW)",
@@ -53,6 +66,7 @@
   },
   {
     "name": "BAe Hawk",
+    "type": "military",
     "file": "bae_hawk",
     "usdz_file": "BAe_Hawk",
     "crew": "2 (Instructor and Student)",
@@ -61,64 +75,76 @@
     "weight": "9,100 kg (MTOW)",
     "payload": "3,000 kg",
     "weapons": "30mm ADEN cannon pod, AIM-9 Sidewinder",
-    "description": "A British single-engine, jet-powered advanced trainer aircraft also capable of light-attack roles."
+    "description": "Advanced jet trainer; ejector seats (Martin-Baker Mk.10) present a significant hazard to ground rescue crews."
   },
   {
     "name": "Beechcraft Super King Air",
+    "type": "civilian",
     "file": "beechcraft_super_king_air",
     "usdz_file": "Beechcraft_Super_King_Air",
-    "crew": "1-2 Pilots",
-    "passengers": "7 - 11",
-    "weight": "5,670 kg (MTOW)",
-    "exits": 2,
-    "description": "A twin-turboprop utility aircraft used widely for corporate transport and light cargo missions."
+    "arff_cat": "Category 4",
+    "material": "Aluminum Airframe",
+    "exits": "2 (Main Entry L-Aft, Emergency R-Mid)",
+    "fuel": "2,040 Liters",
+    "batteries": "Engine Nacelles / FWD Nose",
+    "entry_tool": "Standard Hand Tools",
+    "description": "ARFF Note: Twin-turboprop. Beware of spinning propellers during approach. Battery master located in cockpit overhead."
   },
   {
     "name": "V-22 Osprey",
+    "type": "military",
     "file": "bell_boeing_v-22_osprey_military_helicopter",
     "usdz_file": "Bell_Boeing_V-22_Osprey_Military_Helicopter",
     "crew": "4 (2 Pilots, 2 Flight Engineers)",
-    "base": "RAF Mildenhall (USAF) / Various",
+    "base": "RAF Mildenhall (USAF)",
     "length": "17.5 m",
     "weight": "27,400 kg (MTOW)",
     "payload": "9,070 kg (Internal)",
     "weapons": "M240 machine gun, GAU-17 minigun",
-    "description": "A tiltrotor aircraft with both vertical takeoff (VTOL) and high-speed turboprop cruise capabilities."
+    "description": "Tiltrotor aircraft. Tactical note: High downwash during VTOL. Engine nacelles contain high-temperature components."
   },
   {
     "name": "Boeing 747-8F",
+    "type": "civilian",
     "file": "boeing_747-8f",
     "usdz_file": "Boeing_747-8F",
-    "crew": "2 Pilots",
-    "passengers": "0 (Freighter)",
-    "weight": "447,700 kg (MTOW)",
-    "exits": 2,
-    "description": "The largest commercial cargo aircraft produced by Boeing, featuring a iconic nose-loading door."
+    "arff_cat": "Category 10",
+    "material": "Aluminum / CFRP Flaps",
+    "exits": "2 (Upper Deck) / Nose Cargo Door",
+    "fuel": "226,118 Liters",
+    "batteries": "Main E/E Bay (FWD Lower)",
+    "entry_tool": "Rotary Power Saws",
+    "description": "ARFF Note: Dedicated freighter. Main deck has no windows for entry. Nose-loading door may be jammed in nose-gear collapse."
   },
   {
     "name": "Boeing 767-300",
+    "type": "civilian",
     "file": "boeing_767-300",
     "usdz_file": "Boeing_767-300",
-    "crew": "2 Pilots",
-    "passengers": "210 - 290",
-    "weight": "158,760 kg (MTOW)",
-    "exits": 8,
-    "description": "A wide-body, twin-engine jet airliner designed for medium to long-haul trans-continental routes."
+    "arff_cat": "Category 8",
+    "material": "Aluminum Airframe",
+    "exits": "8 (Doors and Overwing Hatches)",
+    "fuel": "91,000 Liters",
+    "batteries": "Lower 41 (Avionics) Bay",
+    "entry_tool": "Standard Saws",
+    "description": "ARFF Note: Twin-aisle widebody. Evacuation slides are dual-lane. Overwing exits are unhinged (removable) types."
   },
   {
     "name": "AH-64D Apache",
+    "type": "military",
     "file": "boeing_ah-64d_apache_combat_helicopter",
     "usdz_file": "Boeing_AH-64D_Apache_Combat_Helicopter",
-    "crew": "2 (Pilot and Co-pilot/Gunner)",
-    "base": "Wattisham Airfield (Army Air Corps)",
+    "crew": "2 (Pilot and Gunner)",
+    "base": "Wattisham Airfield (AAC)",
     "length": "17.7 m",
     "weight": "10,433 kg (MTOW)",
     "payload": "1,500 kg",
-    "weapons": "30mm M230 Chain Gun, AGM-114 Hellfire, Hydra 70 Rockets",
-    "description": "An advanced multi-role attack helicopter featuring the Longbow fire-control radar."
+    "weapons": "30mm M230 Chain Gun, AGM-114 Hellfire",
+    "description": "Attack helicopter. Hazard: Ordnance may be live. Canopy jettison system uses explosive charges."
   },
   {
     "name": "Boeing E-7 Wedgetail",
+    "type": "military",
     "file": "boeing_e-7_wedgetail_aewc",
     "usdz_file": "Boeing_E-7_Wedgetail_AEWC",
     "crew": "2 Pilots, 6-10 Mission Crew",
@@ -126,11 +152,12 @@
     "length": "33.6 m",
     "weight": "77,565 kg (MTOW)",
     "payload": "MESA Radar Suite",
-    "weapons": "None (AEW&C platform)",
-    "description": "Based on the 737-700, this aircraft provides airborne early warning and control using an active electronically scanned array radar."
+    "weapons": "None",
+    "description": "Based on 737-700. MESA radar structure on top of fuselage affects center of gravity and rescue entry points."
   },
   {
     "name": "C-130J Super Hercules",
+    "type": "military",
     "file": "c130j",
     "usdz_file": "C130J",
     "crew": "3 (2 Pilots, 1 Loadmaster)",
@@ -139,10 +166,11 @@
     "weight": "70,307 kg (MTOW)",
     "payload": "19,000 kg",
     "weapons": "None",
-    "description": "The latest variant of the Hercules, featuring updated engines and a digital flight deck for tactical airlift."
+    "description": "Tactical airlifter. High-wing design allows for low cargo ramp access. Defensive flare dispensers are a pyrotechnic hazard."
   },
   {
     "name": "C-17 Globemaster III",
+    "type": "military",
     "file": "c17",
     "usdz_file": "C17",
     "crew": "3 (2 Pilots, 1 Loadmaster)",
@@ -151,10 +179,11 @@
     "weight": "265,350 kg (MTOW)",
     "payload": "77,519 kg",
     "weapons": "None",
-    "description": "A large military transport aircraft capable of strategic delivery of troops and heavy cargo directly to austere airfields."
+    "description": "Strategic transport. APU is located in the right wheel well sponson. Oxygen bottles in the forward left fuselage."
   },
   {
     "name": "CH-47 Chinook",
+    "type": "military",
     "file": "chinook-2",
     "usdz_file": "Chinook-2",
     "crew": "3-4 (2 Pilots, 1-2 Crewmen)",
@@ -162,21 +191,25 @@
     "length": "30.1 m",
     "weight": "22,680 kg (MTOW)",
     "payload": "10,886 kg",
-    "weapons": "2 x M134 Miniguns, 1 x M60 Machine Gun",
-    "description": "A heavy-lift tandem rotor helicopter used for troop movement, artillery placement, and battlefield resupply."
+    "weapons": "M134 Miniguns, M60 Machine Gun",
+    "description": "Tandem rotor helicopter. Extensive fuel load in side sponsons. Beware of low-swinging rotor blades during emergency shut-down."
   },
   {
     "name": "Airbus H135 (EC135)",
+    "type": "civilian",
     "file": "ec135",
     "usdz_file": "EC135",
-    "crew": "1-2 Pilots",
-    "passengers": "5 - 6",
-    "weight": "2,985 kg (MTOW)",
-    "exits": 4,
-    "description": "A twin-engine light utility helicopter widely used by emergency services and for flight training."
+    "arff_cat": "Category H2",
+    "material": "Composite / Aluminum",
+    "exits": "4 (2 Fwd, 2 Rear Clamshell)",
+    "fuel": "710 Liters",
+    "batteries": "Aft Fuselage / Tail Boom",
+    "entry_tool": "Hand Saws / Reciprocating Saws",
+    "description": "ARFF Note: Light utility helicopter. Clamshell rear doors allow stretcher access. Fenestron tail rotor is shrouded for safety."
   },
   {
     "name": "F-15 Eagle",
+    "type": "military",
     "file": "f15",
     "usdz_file": "f15",
     "crew": "1 (Pilot)",
@@ -184,11 +217,12 @@
     "length": "19.4 m",
     "weight": "30,845 kg (MTOW)",
     "payload": "7,300 kg",
-    "weapons": "20mm M61 Vulcan, AIM-120 AMRAAM, AIM-9 Sidewinder",
-    "description": "An all-weather, extremely maneuverable tactical fighter designed to gain and maintain air supremacy."
+    "weapons": "20mm Vulcan, AIM-120, AIM-9",
+    "description": "Air superiority fighter. Hazards: Hydrazine (on some models/emergency power), live missiles, and high-pressure hydraulics."
   },
   {
     "name": "F-16 Fighting Falcon",
+    "type": "military",
     "file": "f16",
     "usdz_file": "f16",
     "crew": "1 (Pilot)",
@@ -196,11 +230,12 @@
     "length": "15.1 m",
     "weight": "19,187 kg (MTOW)",
     "payload": "7,700 kg",
-    "weapons": "20mm M61 Vulcan, AIM-120, Various Air-to-Ground Munitions",
-    "description": "A compact, multi-role fighter aircraft capable of both air-to-air and air-to-surface combat."
+    "weapons": "20mm Vulcan, AIM-120",
+    "description": "Multi-role fighter. Critical: EPU uses Hydrazine (highly toxic). Do not approach if 'H' light is visible or vapor is detected."
   },
   {
     "name": "F-22 Raptor",
+    "type": "military",
     "file": "f22",
     "usdz_file": "f22",
     "crew": "1 (Pilot)",
@@ -208,91 +243,103 @@
     "length": "18.9 m",
     "weight": "38,000 kg (MTOW)",
     "payload": "Internal Weapons Bay",
-    "weapons": "20mm M61A2, 6 x AIM-120 AMRAAM, 2 x AIM-9 Sidewinder",
-    "description": "A fifth-generation stealth air superiority fighter incorporating supercruise and thrust vectoring."
+    "weapons": "20mm M61A2, AIM-120, AIM-9",
+    "description": "Stealth fighter. RAM (Radar Absorbent Material) coating releases toxic particles when burning. Full PPE and SCBA required."
   },
   {
     "name": "F-35 Lightning II",
+    "type": "military",
     "file": "f35",
     "usdz_file": "F35",
     "crew": "1 (Pilot)",
-    "base": "RAF Marham / HMS Queen Elizabeth",
+    "base": "RAF Marham",
     "length": "15.7 m",
     "weight": "31,750 kg (MTOW)",
     "payload": "8,160 kg",
-    "weapons": "25mm GAU-22/A, Internal AIM-120, JDAM",
-    "description": "A multi-role stealth fighter optimized for ground attack and air-to-air missions."
+    "weapons": "25mm GAU-22/A, Internal JDAM",
+    "description": "5th Gen Stealth. Composite material risk (CFRP). External canopy release is located on the left-hand side under a panel."
   },
   {
     "name": "Grob G 115 Tutor",
+    "type": "military",
     "file": "grob",
     "usdz_file": "grob",
     "crew": "2 (Instructor and Student)",
-    "passengers": "0",
+    "base": "Various RAF (EFTS)",
+    "length": "7.5 m",
     "weight": "990 kg (MTOW)",
-    "exits": 1,
-    "description": "A light aircraft made of composite materials, used primarily by the RAF for elementary flying training."
+    "payload": "N/A",
+    "weapons": "None",
+    "description": "Elementary trainer. Fully composite construction (Glass Fiber Reinforced Plastic). Fire will cause rapid structural failure."
   },
   {
     "name": "F/A-18 Hornet",
+    "type": "military",
     "file": "Hornet2",
     "usdz_file": "Hornet",
     "crew": "1-2 Pilots",
-    "base": "Various US Navy Carriers",
+    "base": "US Navy Carriers",
     "length": "17.1 m",
     "weight": "23,541 kg (MTOW)",
     "payload": "6,215 kg",
-    "weapons": "20mm M61 Vulcan, AIM-9, AIM-120, Harpoon",
-    "description": "A versatile multi-role combat jet designed for both carrier-based and land-based operations."
+    "weapons": "20mm Vulcan, Harpoon",
+    "description": "Carrier fighter. Arresting hook and catapult hardware hazard. High concentration of magnesium in landing gear components."
   },
   {
     "name": "McDonnell Douglas DC-3",
+    "type": "civilian",
     "file": "mcdonnell_douglas_dc-3",
     "usdz_file": "McDonnell_Douglas_DC-3",
-    "crew": "2 Pilots",
-    "passengers": "21 - 32",
-    "weight": "11,430 kg (MTOW)",
-    "exits": 2,
-    "description": "A fixed-wing propeller-driven airliner that revolutionized air transport in the 1930s and 1940s."
+    "arff_cat": "Category 4",
+    "material": "Aluminum (Stressed Skin)",
+    "exits": "2 (Main Port, Emergency Starboard)",
+    "fuel": "3,040 Liters",
+    "batteries": "Nose Section / Aft Cockpit",
+    "entry_tool": "Hand Axe / Reciprocating Saw",
+    "description": "ARFF Note: Vintage tail-dragger. Risk of fuel spill from carburetors on impact. No modern composite hazards."
   },
   {
     "name": "Protector RG1",
+    "type": "military",
     "file": "protector",
     "usdz_file": "Protector",
     "crew": "0 (Remotely Piloted)",
     "base": "RAF Waddington",
     "length": "11.7 m",
     "weight": "5,670 kg (MTOW)",
-    "payload": "Paveway IV, Brimstone Missiles",
-    "weapons": "Precision Guided Munitions",
-    "description": "The UK's next-generation Medium Altitude Long Endurance (MALE) Remotely Piloted Aircraft System (RPAS)."
+    "payload": "Paveway IV, Brimstone",
+    "weapons": "Precision Munitions",
+    "description": "MALE RPAS. Tactical: Control link must be severed if engine is running and unresponsive. Satellite dish is high-intensity RF."
   },
   {
     "name": "Saab JAS 39 Gripen",
+    "type": "military",
     "file": "saab_jas_39_gripen_-_fighter_jet_-_free-2",
     "usdz_file": "Saab_JAS_39_Gripen_-_Fighter_Jet_-_Free",
     "crew": "1 (Pilot)",
-    "base": "Swedish Air Force / Various",
+    "base": "Swedish Air Force",
     "length": "14.1 m",
     "weight": "14,000 kg (MTOW)",
     "payload": "5,300 kg",
-    "weapons": "27mm Mauser BK-27, Meteor, IRIS-T",
-    "description": "A lightweight single-engine multirole fighter aircraft manufactured by the Swedish aerospace company Saab."
+    "weapons": "27mm Mauser, Meteor",
+    "description": "Light multi-role fighter. Delta-canard configuration. High use of composites in the wing and fuselage skin."
   },
   {
     "name": "Sikorsky UH-60 Black Hawk",
+    "type": "military",
     "file": "sikorsky_uh-60m_blackhawk",
     "usdz_file": "Sikorsky_UH-60M_Blackhawk",
     "crew": "4 (2 Pilots, 2 Crew Chiefs)",
     "base": "Various Global",
     "length": "19.7 m",
     "weight": "9,979 kg (MTOW)",
-    "payload": "1,200 kg (Internal)",
+    "payload": "1,200 kg",
     "weapons": "M240H machine guns",
-    "description": "The primary utility helicopter for the US Army, used for air assault, medevac, and transport."
+    "description": "Utility helicopter. Sliding cabin doors. Tail boom contains drive shaft; avoid cutting through top center of boom."
   },
   {
     "name": "Eurofighter Typhoon",
+    "type": "military",
     "file": "typhoon",
     "usdz_file": "Typhoon",
     "crew": "1 (Pilot)",
@@ -300,21 +347,25 @@
     "length": "15.9 m",
     "weight": "23,500 kg (MTOW)",
     "payload": "7,500 kg",
-    "weapons": "27mm BK-27, Meteor, ASRAAM, Paveway IV",
-    "description": "A highly agile twin-engine multirole fighter designed for air superiority and ground attack."
+    "weapons": "27mm BK-27, Meteor, Paveway IV",
+    "description": "Tactical Swing-role. Hazards: Carbon fiber dust, high-pressure liquid oxygen (LOX), and wing-mounted ordnance."
   },
   {
     "name": "Voyager (A330 MRTT)",
+    "type": "military",
     "file": "voyager",
     "usdz_file": "Voyager",
     "crew": "2 Pilots, 1 Mission Controller",
-    "passengers": "291",
+    "base": "RAF Brize Norton",
+    "length": "58.8 m",
     "weight": "233,000 kg (MTOW)",
-    "exits": 8,
-    "description": "A multi-role tanker transport based on the Airbus A330, used by the RAF for aerial refueling and transport."
+    "payload": "111,000 kg Fuel",
+    "weapons": "None (Defensive Aids Suite)",
+    "description": "Strategic Tanker. Tactical: Carries massive fuel load in wings and center tanks. Mission controllers operate refueling pods on wings."
   },
   {
     "name": "A400M Atlas",
+    "type": "military",
     "file": "airbusa400m",
     "usdz_file": "a400m",
     "crew": "3-4 (2 Pilots, 1-2 Loadmasters)",
@@ -323,6 +374,6 @@
     "weight": "141,000 kg (MTOW)",
     "payload": "37,000 kg",
     "weapons": "None",
-    "description": "A multi-national four-engine turboprop military transport aircraft designed as a strategic-tactical airlifter."
+    "description": "Strategic-tactical airlifter. Fly-by-wire controls. Propellers are composite and counter-rotating (down-between-engines)."
   }
 ]
