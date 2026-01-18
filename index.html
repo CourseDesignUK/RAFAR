@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>AERO ASSET VIEWER - ICAO TACTICAL</title>
+    <title>Aircraft Viewer - ICAO TACTICAL</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <meta name="theme-color" content="#0d1117">
@@ -25,7 +25,7 @@
             font-family: 'Segoe UI', Roboto, sans-serif;
         }
 
-        /* --- RADAR START SCREEN (CENTERED SWEEP) --- */
+        /* --- FIXED RADAR SWEEP --- */
         #start-screen {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: radial-gradient(circle at center, #1a202c 0%, #0d1117 100%);
@@ -35,23 +35,33 @@
         }
 
         .radar {
-            position: relative; width: 320px; height: 320px;
-            border: 2px solid rgba(99, 179, 237, 0.15); border-radius: 50%;
-            background: repeating-radial-gradient(circle, transparent, transparent 39px, rgba(99, 179, 237, 0.05) 40px);
+            position: relative; 
+            width: 320px; 
+            height: 320px;
+            border: 2px solid rgba(99, 179, 237, 0.2); 
+            border-radius: 50%;
+            /* Internal grid rings */
+            background: repeating-radial-gradient(circle at center, transparent, transparent 39px, rgba(99, 179, 237, 0.1) 40px);
         }
 
-        /* The sweep: perfectly centered using transform-origin */
+        /* The sweep: Filled trail logic */
         .radar::after {
-            content: ""; position: absolute;
+            content: ""; 
+            position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: conic-gradient(from 0deg, var(--accent) 0deg, transparent 90deg);
             border-radius: 50%;
-            mask: radial-gradient(circle at center, black 0%, transparent 70%);
-            -webkit-mask: radial-gradient(circle at center, black 0%, transparent 70%);
+            /* Gradient reversed: sharp edge at 90deg, fading back to 0deg */
+            background: conic-gradient(from -90deg, transparent 0deg, rgba(99, 179, 237, 0.4) 90deg, transparent 91deg);
+            /* Mask ensures it stays a clean circle and fades toward center */
+            mask: radial-gradient(circle at center, rgba(0,0,0,1) 30%, rgba(0,0,0,0.8) 100%);
+            -webkit-mask: radial-gradient(circle at center, rgba(0,0,0,1) 30%, rgba(0,0,0,0.8) 100%);
             animation: sweep 4s linear infinite;
         }
 
-        @keyframes sweep { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        @keyframes sweep { 
+            from { transform: rotate(0deg); } 
+            to { transform: rotate(360deg); } 
+        }
 
         .commence-btn {
             margin-top: 50px; background: transparent; color: white; border: 1px solid white;
@@ -79,7 +89,6 @@
             cursor: pointer; text-transform: uppercase;
         }
 
-        /* --- DYNAMIC FACTSHEET --- */
         .details-panel {
             position: absolute; top: 0; right: -100%; width: 100%; max-width: 400px; height: 100%;
             background: rgba(10, 15, 25, 0.98); backdrop-filter: blur(25px);
@@ -138,7 +147,7 @@
     </div>
 
     <model-viewer id="main-viewer" ar ar-modes="webxr scene-viewer quick-look" camera-controls auto-rotate shadow-intensity="2" environment-image="neutral">
-        <button slot="ar-button" id="ar-button">Deploy to Real Scale (AR)</button>
+        <button slot="ar-button" id="ar-button">Deploy to AR</button>
     </model-viewer>
 
 <script>
@@ -161,7 +170,6 @@
             modelData = await response.json();
             modelSelect.innerHTML = ''; 
             
-            // Reordered: Civilian assets now prioritized in the DOM
             const civGroup = document.createElement('optgroup'); civGroup.label = "CIVILIAN / ICAO ARFF";
             const milGroup = document.createElement('optgroup'); milGroup.label = "MILITARY / TACTICAL";
 
@@ -175,7 +183,7 @@
             modelSelect.appendChild(civGroup);
             modelSelect.appendChild(milGroup);
 
-            // Force initial selection to first civilian item and trigger model load
+            // Force first item load
             modelSelect.selectedIndex = 0;
             updateAsset(0);
 
@@ -195,13 +203,13 @@
         document.getElementById('asset-title').textContent = asset.name;
 
         if (asset.type === 'military') {
-            classif.textContent = "Classification: Tactical / Combat Ready";
+            classif.textContent = "Classification: Open Source";
             classif.className = "spec-label status-mil";
             container.innerHTML = `
                 <div class="spec-item"><span class="spec-label">Crew</span><span class="spec-value">${asset.crew}</span></div>
                 <div class="spec-item"><span class="spec-label">Home Base</span><span class="spec-value">${asset.base}</span></div>
-                <div class="spec-item"><span class="spec-label">Length</span><span class="spec-value">${asset.length || 'N/A'}</span></div>
                 <div class="spec-item"><span class="spec-label">Max Takeoff Wt</span><span class="spec-value">${asset.weight}</span></div>
+                <div class="spec-item"><span class="spec-label">Length</span><span class="spec-value">${asset.length || 'N/A'}</span></div>
                 <div class="spec-item full-width"><span class="spec-label">Tactical Armament</span><span class="spec-value">${asset.weapons}</span></div>
                 <div class="spec-item full-width"><span class="spec-label">Mission Briefing</span><span class="spec-value" style="font-family:inherit; line-height:1.4;">${asset.description}</span></div>
             `;
@@ -213,7 +221,7 @@
                 <div class="spec-item"><span class="spec-label">Max Passengers</span><span class="spec-value">${asset.max_passengers}</span></div>
                 <div class="spec-item"><span class="spec-label">Rescue Exits</span><span class="spec-value">${asset.exits}</span></div>
                 <div class="spec-item"><span class="spec-label">Fuel Capacity</span><span class="spec-value">${asset.fuel}</span></div>
-                <div class="spec-item full-width"><span class="spec-label">Rescue Hazards (Batteries)</span><span class="spec-value">${asset.batteries}</span></div>
+                <div class="spec-item full-width"><span class="spec-label">Rescue Hazards (Li-ion)</span><span class="spec-value">${asset.batteries}</span></div>
                 <div class="spec-item full-width"><span class="spec-label">Firefighting & Egress Note</span><span class="spec-value" style="font-family:inherit; line-height:1.4;">${asset.description}</span></div>
             `;
         }
