@@ -158,7 +158,7 @@
   {
     "name": "C-130k Hercules",
     "type": "military",
-    "file": "c130",
+    "file": "C130J",
     "usdz_file": "C130J",
     "crew": "3 (2 Pilots, 1 Loadmaster)",
     "base": "RAF Brize Norton",
